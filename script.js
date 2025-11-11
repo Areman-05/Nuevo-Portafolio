@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
     lastScrollY = currentScroll;
   });
 
-  // Menú móvil
   const toggleMenu = document.querySelector('.toggle-menu');
   const navUl = document.querySelector('nav ul');
 
@@ -35,11 +34,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Navegación suave al hacer click en los enlaces del menú
+  const sections = document.querySelectorAll('section:not(#inicio)');
+
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+      } else {
+        entry.target.classList.remove('in-view');
+      }
+    });
+  }, { threshold: 0.35, rootMargin: '0px 0px -10%' });
+
+  sections.forEach(section => sectionObserver.observe(section));
+
   const menuLinks = document.querySelectorAll('nav ul li a');
   menuLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
+    link.addEventListener('click', event => {
+      event.preventDefault();
       navUl.classList.remove('active');
       nav.classList.remove('active');
       const targetSection = document.querySelector(link.getAttribute('href'));
@@ -47,26 +59,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Animaciones al hacer scroll
-  const elementosAnimados = document.querySelectorAll('.timeline-item, .estudio-item, .proyecto-item');
+  const animatedItems = document.querySelectorAll('.timeline-item, .estudio-item, .proyecto-item');
 
-  const observer = new IntersectionObserver(entries => {
+  const itemObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if(entry.isIntersecting) {
+      if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+        itemObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.2 });
 
-  elementosAnimados.forEach(elemento => {
-    observer.observe(elemento);
+  animatedItems.forEach(item => {
+    itemObserver.observe(item);
   });
 
   const form = document.getElementById('contact-form');
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    alert('Gracias por contactarme. Te responderé pronto.');
-    form.reset();
-  });
+  if (form) {
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      alert('Gracias por contactarme. Te respondere pronto.');
+      form.reset();
+    });
+  }
 });
