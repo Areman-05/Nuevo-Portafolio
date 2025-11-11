@@ -352,8 +352,8 @@ nav.active .toggle-menu span:nth-child(3) {
   animation-delay: 0s;
   animation-duration: 7s;
   transform: rotate(-12deg);
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 72%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  background: linear-gradient(140deg, rgba(255, 255, 255, 0.88), rgba(240, 81, 56, 0.7));
+  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+  background: linear-gradient(135deg, rgba(240, 81, 56, 0.75), rgba(255, 255, 255, 0.85));
 }
 .circles li:nth-child(12) {
   left: 70%;
