@@ -168,7 +168,7 @@ nav.active .toggle-menu span:nth-child(3) {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.45);
+  background-color: transparent;
 }
 
 .inicio-content {
