@@ -17,7 +17,8 @@ body {
               radial-gradient(circle at 50% 120%, rgba(240, 81, 56, 0.12), transparent 65%),
               var(--color-fondo);
   color: var(--color-texto);
-  line-height: 1.6;
+  font-size: var(--font-base);
+  line-height: 1.7;
   text-shadow: 0 20px 35px rgba(0, 0, 0, 0.45);
 }
 
@@ -40,6 +41,13 @@ body::before {
   --color-fondo: #050505;
   --color-texto: #F4F4F4;
   --color-texto-oscuro: #0B0C10;
+  --font-base: clamp(17px, 1.05vw, 19px);
+  --font-regular: clamp(1.05rem, 1.2vw, 1.3rem);
+  --font-small: clamp(0.9rem, 0.95vw, 1.05rem);
+  --font-subheading: clamp(1.3rem, 1.8vw, 1.9rem);
+  --font-heading: clamp(2.4rem, 4vw, 3.4rem);
+  --font-hero: clamp(3.2rem, 7vw, 4.8rem);
+  --font-hero-sub: clamp(1.5rem, 2.4vw, 2.2rem);
 }
 
 /* Navegación */
@@ -181,7 +189,7 @@ nav.active .toggle-menu span:nth-child(3) {
 }
 
 .titulo-principal {
-  font-size: 4em;
+  font-size: var(--font-hero);
   margin-bottom: 20px;
   animation: slideInDown 1s ease-in-out;
   color: var(--color-primario);
@@ -349,7 +357,7 @@ nav.active .toggle-menu span:nth-child(3) {
 
 
 .subtitulo {
-  font-size: 1.8em;
+  font-size: var(--font-hero-sub);
   margin-bottom: 30px;
   animation: slideInUp 1s ease-in-out;
   color: var(--color-secundario);
@@ -363,6 +371,7 @@ nav.active .toggle-menu span:nth-child(3) {
   padding: 15px 30px;
   border-radius: 30px;
   font-weight: bold;
+  font-size: var(--font-regular);
   transition: background 0.3s, color 0.3s;
   box-shadow: 0 15px 30px rgba(240, 81, 56, 0.25);
 }
@@ -388,7 +397,7 @@ section > *:not(.overlay):not(.area) {
 section h2 {
   text-align: center;
   margin-bottom: 50px;
-  font-size: 2.8em;
+  font-size: var(--font-heading);
   color: var(--color-primario);
   position: relative;
 }
@@ -413,6 +422,16 @@ section:not(#inicio) {
 section:not(#inicio).in-view {
   opacity: 1;
   transform: translateY(0);
+}
+
+section:not(#inicio) p,
+section:not(#inicio) li,
+section:not(#inicio) a,
+section:not(#inicio) span,
+.tabla-habilidades td,
+.tabla-habilidades th {
+  font-size: var(--font-regular);
+  line-height: 1.7;
 }
 
 /* Sección sobre mí */
@@ -446,10 +465,10 @@ section:not(#inicio).in-view {
 }
 
 .texto-sobre-mi p {
-  font-size: 1.2em;
-  line-height: 1.6;
+  font-size: var(--font-regular);
+  line-height: 1.8;
   color: var(--color-texto);
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 .btn-descargar-cv {
@@ -461,6 +480,7 @@ section:not(#inicio).in-view {
   padding: 10px 20px;
   border-radius: 30px;
   font-weight: bold;
+  font-size: var(--font-regular);
   transition: background 0.3s, color 0.3s;
   box-shadow: 0 15px 30px rgba(240, 81, 56, 0.25);
 }
@@ -709,7 +729,7 @@ section:not(#inicio).in-view {
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: var(--color-texto);
-  font-size: 1em;
+  font-size: var(--font-regular);
   border-radius: 5px;
 }
 
@@ -719,7 +739,7 @@ section:not(#inicio).in-view {
   background: var(--color-primario);
   border: none;
   color: #fff;
-  font-size: 1.2em;
+  font-size: var(--font-regular);
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
@@ -907,4 +927,18 @@ footer p {
   .timeline-item .timeline-icon {
     left: 22px !important;
   }
+}
+
+.timeline-item .timeline-content h3,
+.estudio-item h3,
+.proyecto-item h3 {
+  font-size: var(--font-subheading);
+}
+
+.timeline-item .fecha,
+.estudio-item .fecha,
+.estudio-item .institucion,
+.info-contacto p,
+.info-contacto a {
+  font-size: var(--font-small);
 }
