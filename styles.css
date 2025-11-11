@@ -247,7 +247,7 @@ nav.active .toggle-menu span:nth-child(3) {
   background: linear-gradient(140deg, rgba(240, 81, 56, 0.85), rgba(255, 255, 255, 0.75));
   animation: animate 25s linear infinite;
   bottom: -150px;
-  border-radius: 18px;
+  border-radius: 50%;
   box-shadow: 0 30px 60px rgba(240, 81, 56, 0.28);
   opacity: 0.85;
 }
@@ -258,6 +258,7 @@ nav.active .toggle-menu span:nth-child(3) {
   height: 80px;
   animation-delay: 0s;
   transform: rotate(18deg);
+  clip-path: polygon(50% 0%, 86% 14%, 100% 48%, 82% 86%, 50% 100%, 18% 86%, 0% 48%, 14% 14%);
 }
 
 .circles li:nth-child(2) {
@@ -293,7 +294,8 @@ nav.active .toggle-menu span:nth-child(3) {
   width: 20px;
   height: 20px;
   animation-delay: 0s;
-  border-radius: 12px;
+  clip-path: ellipse(60% 45% at 50% 50%);
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.75), rgba(240, 81, 56, 0.7));
 }
 
 .circles li:nth-child(6) {
@@ -349,8 +351,9 @@ nav.active .toggle-menu span:nth-child(3) {
   height: 120px;
   animation-delay: 0s;
   animation-duration: 7s;
-  border-radius: 24px;
   transform: rotate(-12deg);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 72%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.88), rgba(240, 81, 56, 0.7));
 }
 .circles li:nth-child(12) {
   left: 70%;
@@ -366,13 +369,11 @@ nav.active .toggle-menu span:nth-child(3) {
   0% {
     transform: translateY(0) rotate(0deg);
     opacity: 1;
-    border-radius: 0;
   }
 
   100% {
     transform: translateY(-1000px) rotate(720deg);
     opacity: 0;
-    border-radius: 50%;
   }
 }
 
