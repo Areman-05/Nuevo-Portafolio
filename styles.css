@@ -663,62 +663,93 @@ section:not(#inicio) span,
 }
 
 /* Sección de habilidades */
-.habilidades-content {
+.habilidades-stack {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 30px;
-  padding: clamp(30px, 6vw, 50px);
-  background: transparent;
+  gap: clamp(24px, 4vw, 40px);
+  padding: clamp(30px, 6vw, 50px) 0;
+  max-width: 720px;
+  margin: 0 auto;
 }
 
-.tabla-habilidades {
-  width: 100%;
-  max-width: 800px;
-  border-collapse: collapse;
-  margin-bottom: 50px;
-  border-radius: 22px;
-  overflow: hidden;
+.habilidad-card {
   background:
-    linear-gradient(135deg, rgba(9, 9, 13, 0.95), rgba(12, 12, 17, 0.6)) padding-box,
-    linear-gradient(135deg, rgba(240, 81, 56, 0.85), rgba(255, 255, 255, 0.82)) border-box;
+    linear-gradient(135deg, rgba(10, 10, 16, 0.9), rgba(12, 12, 18, 0.6)) padding-box,
+    linear-gradient(135deg, rgba(240, 81, 56, 0.85), rgba(255, 255, 255, 0.8)) border-box;
+  border-radius: 18px;
   border: 1px solid transparent;
-  box-shadow: 0 22px 48px rgba(240, 81, 56, 0.16);
-  backdrop-filter: blur(18px);
+  padding: clamp(22px, 4vw, 32px);
+  box-shadow: 0 20px 45px rgba(240, 81, 56, 0.16);
+  backdrop-filter: blur(14px);
+  color: rgba(244, 244, 244, 0.92);
 }
 
-.tabla-habilidades th, .tabla-habilidades td {
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 18px;
-  text-align: center;
-  color: rgba(244, 244, 244, 0.88);
-  backdrop-filter: blur(6px);
-  background: rgba(12, 12, 16, 0.35);
-  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
-  letter-spacing: 0.03em;
-}
-
-.tabla-habilidades th {
-  background: linear-gradient(135deg, rgba(240, 81, 56, 0.9), rgba(255, 255, 255, 0.45));
+.habilidad-card h3 {
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  margin-bottom: clamp(18px, 3vw, 24px);
   color: #fff;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
-.tabla-habilidades tr:nth-child(even) {
-  background: rgba(255, 255, 255, 0.04);
+.habilidad-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: clamp(14px, 2vw, 18px);
 }
 
-.tabla-habilidades tr:nth-child(even) td {
-  background: rgba(12, 12, 18, 0.35);
-  color: rgba(255, 255, 255, 0.85);
+.habilidad-item:last-child {
+  margin-bottom: 0;
 }
 
-.tabla-habilidades img {
-  width: 40px;
-  height: 40px;
-  filter: drop-shadow(0 8px 16px rgba(240, 81, 56, 0.28));
+.habilidad-label {
+  font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.habilidad-bar {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.habilidad-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(240, 81, 56, 0.32), rgba(255, 255, 255, 0.25));
+  opacity: 0.65;
+}
+
+.habilidad-bar-fill {
+  position: relative;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(240, 81, 56, 0.92), rgba(255, 255, 255, 0.85));
+  box-shadow: 0 8px 16px rgba(240, 81, 56, 0.45);
+}
+
+.habilidad-bar-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.35), rgba(240, 81, 56, 0.35));
+  mix-blend-mode: screen;
+  opacity: 0.6;
+}
+
+.habilidad-bar-fill.nivel-70 {
+  width: 70%;
+}
+
+.habilidad-bar-fill.nivel-40 {
+  width: 40%;
 }
 
 /* Sección de proyectos */
