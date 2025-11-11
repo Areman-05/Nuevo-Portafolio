@@ -12,17 +12,20 @@ html {
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: var(--color-fondo);
+  background: radial-gradient(circle at top left, rgba(240, 81, 56, 0.12), transparent 45%),
+              radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.06), transparent 55%),
+              var(--color-fondo);
   color: var(--color-texto);
+  line-height: 1.6;
 }
 
 /* Variables de colores */
 :root {
   --color-primario: #F05138;
-  --color-secundario: #FFD700;
-  --color-terciario: #0D0D0D;
+  --color-secundario: #FFFFFF;
+  --color-terciario: #0B0B0B;
   --color-fondo: #050505;
-  --color-texto: #FFFFFF;
+  --color-texto: #F4F4F4;
 }
 
 /* Navegación */
@@ -35,11 +38,14 @@ nav {
   align-items: center;
   padding: 15px 50px;
   z-index: 1000;
-  transition: background 0.5s;
+  transition: background 0.4s, box-shadow 0.4s;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 nav.scrolled {
-  background: rgba(0, 0, 0, 1);
+  background: rgba(0, 0, 0, 0.92);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
 }
 
 nav .logo {
@@ -52,6 +58,7 @@ nav ul {
   list-style: none;
   display: flex;
   align-items: center;
+  gap: 24px;
 }
 
 nav ul li {
@@ -85,6 +92,39 @@ nav ul li a:hover {
   color: var(--color-primario);
 }
 
+.toggle-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 6px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.toggle-menu span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--color-texto);
+  border-radius: 999px;
+  transition: transform 0.3s, opacity 0.3s, width 0.3s;
+}
+
+nav.active .toggle-menu span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+nav.active .toggle-menu span:nth-child(2) {
+  opacity: 0;
+}
+
+nav.active .toggle-menu span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+  width: 100%;
+}
+
 /* Sección de inicio */
 #inicio {
   position: relative;
@@ -92,6 +132,7 @@ nav ul li a:hover {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  padding: 0 5vw;
 }
 
 #inicio .overlay {
@@ -108,6 +149,8 @@ nav ul li a:hover {
   text-align: center;
   color: var(--color-texto);
   animation: fadeIn 2s ease-in-out;
+  max-width: 620px;
+  padding: 0 1.5rem;
 }
 
 .titulo-principal {
@@ -120,7 +163,7 @@ nav ul li a:hover {
 /* Animación de fondo con círculos */
 .area {
   background: #040404;
-  background: linear-gradient(135deg, rgba(240, 81, 56, 0.75), rgba(0, 0, 0, 0.9), rgba(255, 215, 0, 0.75));
+  background: linear-gradient(135deg, rgba(240, 81, 56, 0.7), rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0.08));
   width: 100%;
   height: 100vh;
   position: absolute;
@@ -144,7 +187,7 @@ nav ul li a:hover {
   list-style: none;
   width: 20px;
   height: 20px;
-  background: rgba(255, 215, 0, 0.6);
+  background: rgba(240, 81, 56, 0.35);
   animation: animate 25s linear infinite;
   bottom: -150px;
 }
@@ -258,6 +301,7 @@ nav ul li a:hover {
   margin-bottom: 30px;
   animation: slideInUp 1s ease-in-out;
   color: var(--color-secundario);
+  opacity: 0.85;
 }
 
 .btn-cta {
@@ -268,16 +312,25 @@ nav ul li a:hover {
   border-radius: 30px;
   font-weight: bold;
   transition: background 0.3s, color 0.3s;
+  box-shadow: 0 15px 30px rgba(240, 81, 56, 0.25);
 }
 
 .btn-cta:hover {
   background: var(--color-primario);
   color: #fff;
+  box-shadow: 0 15px 35px rgba(240, 81, 56, 0.35);
 }
 
 /* Secciones generales */
 section {
-  padding: 100px 50px;
+  padding: clamp(80px, 10vw, 120px) 5vw;
+}
+
+section > *:not(.overlay):not(.area) {
+  max-width: 1100px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 section h2 {
@@ -293,7 +346,7 @@ section h2::after {
   position: absolute;
   width: 70px;
   height: 3px;
-  background: var(--color-secundario);
+  background: var(--color-primario);
   left: 50%;
   transform: translateX(-50%);
   bottom: -10px;
@@ -301,7 +354,7 @@ section h2::after {
 
 /* Sección sobre mí */
 #sobre-mi {
-  background-color: #0a0a0a;
+  background-color: rgba(255, 255, 255, 0.02);
 }
 
 .sobre-mi-content {
@@ -309,6 +362,8 @@ section h2::after {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 40px;
+  padding: 0 20px;
 }
 
 .foto-perfil {
@@ -330,6 +385,7 @@ section h2::after {
   font-size: 1.2em;
   line-height: 1.6;
   color: var(--color-texto);
+  opacity: 0.85;
 }
 
 .btn-descargar-cv {
@@ -342,17 +398,20 @@ section h2::after {
   border-radius: 30px;
   font-weight: bold;
   transition: background 0.3s, color 0.3s;
+  box-shadow: 0 15px 30px rgba(240, 81, 56, 0.25);
 }
 
 .btn-descargar-cv:hover {
   background: var(--color-secundario);
   color: #000;
+  box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
 }
 
 /* Sección de experiencia */
 .timeline {
   position: relative;
   margin: 50px 0;
+  max-width: 100%;
 }
 
 .timeline::before {
@@ -360,7 +419,7 @@ section h2::after {
   position: absolute;
   width: 4px;
   height: 100%;
-  background: var(--color-primario);
+  background: rgba(255, 255, 255, 0.08);
   left: 50%;
   transform: translateX(-50%);
 }
@@ -409,6 +468,7 @@ section h2::after {
   border-radius: 10px;
   animation: fadeInUp 1s ease-in-out;
   border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 25px 40px rgba(0, 0, 0, 0.35);
 }
 
 .timeline-item .fecha {
@@ -421,6 +481,7 @@ section h2::after {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 30px;
 }
 
 .estudio-item {
@@ -431,6 +492,7 @@ section h2::after {
   flex: 1 1 300px;
   animation: fadeInUp 1s ease-in-out;
   border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
 }
 
 .estudio-item h3 {
@@ -467,11 +529,12 @@ section h2::after {
   padding: 15px;
   text-align: center;
   color: var(--color-texto);
+  backdrop-filter: blur(4px);
 }
 
 .tabla-habilidades th {
   background: var(--color-primario);
-  color: var(--color-texto);
+  color: #fff;
   font-weight: bold;
 }
 
@@ -486,13 +549,14 @@ section h2::after {
 
 /* Sección de proyectos */
 #proyectos {
-  background-color: #0a0a0a;
+  background-color: rgba(255, 255, 255, 0.02);
 }
 
 .proyectos-content {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 30px;
 }
 
 .proyecto-item {
@@ -523,7 +587,7 @@ section h2::after {
 }
 
 .proyecto-item a {
-  color: var(--color-secundario);
+  color: var(--color-primario);
   text-decoration: none;
   font-weight: bold;
 }
@@ -557,6 +621,7 @@ section h2::after {
   text-align: center;
   margin-bottom: 30px;
   font-size: 1.2em;
+  opacity: 0.85;
 }
 
 #contact-form {
@@ -603,7 +668,7 @@ section h2::after {
 }
 
 .info-contacto a {
-  color: var(--color-secundario);
+  color: var(--color-primario);
   text-decoration: none;
 }
 
@@ -661,11 +726,39 @@ footer p {
   }
 
   nav ul {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: rgba(0, 0, 0, 0.92);
+    flex-direction: column;
+    align-items: flex-start;
+    width: min(320px, 90vw);
+    gap: 18px;
+    padding: 24px 32px;
+    border-radius: 0 0 16px 16px;
     display: none;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  nav ul.active {
+    display: flex;
   }
 
   .toggle-menu {
     display: flex;
+  }
+
+  section {
+    padding: 80px 6vw;
+  }
+
+  section h2 {
+    font-size: 2.4em;
+  }
+
+  .sobre-mi-content {
+    padding: 0;
   }
 }
 
@@ -682,8 +775,24 @@ footer p {
     padding: 80px 20px;
   }
 
+  .timeline::before {
+    left: 32px;
+  }
+
+  .timeline-item {
+    padding-left: 80px;
+  }
+
+  .timeline-item .timeline-icon {
+    left: 32px !important;
+  }
+
   .tabla-habilidades, .proyecto-item {
     width: 100%;
+  }
+
+  .tabla-habilidades {
+    font-size: 0.95em;
   }
 }
 
@@ -698,5 +807,17 @@ footer p {
 
   .estudio-item, .proyecto-item {
     flex: 1 1 100%;
+  }
+
+  .btn-cta {
+    width: 100%;
+  }
+
+  .timeline-item {
+    padding-left: 70px;
+  }
+
+  .timeline-item .timeline-icon {
+    left: 22px !important;
   }
 }
