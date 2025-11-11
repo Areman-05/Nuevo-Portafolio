@@ -406,7 +406,7 @@ section h2::after {
 
 /* Sección sobre mí */
 #sobre-mi {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(8, 8, 12, 0.85) 100%);
+  background: transparent;
 }
 
 .sobre-mi-content {
@@ -625,7 +625,7 @@ section h2::after {
 
 /* Sección de proyectos */
 #proyectos {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(10, 10, 16, 0.88) 100%);
+  background: transparent;
 }
 
 .proyectos-content {
