@@ -519,6 +519,7 @@ section:not(#inicio) span,
   position: relative;
   margin: 50px 0;
   max-width: 100%;
+  padding: 0 clamp(20px, 4vw, 40px);
 }
 
 .timeline::before {
@@ -529,6 +530,9 @@ section:not(#inicio) span,
   background: rgba(255, 255, 255, 0.08);
   left: 50%;
   transform: translateX(-50%);
+  background:
+    linear-gradient(0deg, rgba(240, 81, 56, 0), rgba(240, 81, 56, 0.65) 18%, rgba(255, 255, 255, 0.75) 50%, rgba(240, 81, 56, 0.65) 82%, rgba(240, 81, 56, 0));
+  border-radius: 999px;
 }
 
 .timeline-item {
@@ -536,15 +540,21 @@ section:not(#inicio) span,
   width: 50%;
   padding: 20px;
   box-sizing: border-box;
+  padding-left: clamp(36px, 5vw, 60px);
+  padding-right: clamp(36px, 5vw, 60px);
 }
 
 .timeline-item:nth-child(odd) {
   left: 0;
   text-align: right;
+  padding-left: clamp(36px, 5vw, 60px);
+  padding-right: clamp(52px, 6vw, 70px);
 }
 
 .timeline-item:nth-child(even) {
   left: 50%;
+  padding-left: clamp(52px, 6vw, 70px);
+  padding-right: clamp(36px, 5vw, 60px);
 }
 
 .timeline-item .timeline-icon {
@@ -560,14 +570,16 @@ section:not(#inicio) span,
   color: var(--color-texto-oscuro);
   font-size: 1.5em;
   box-shadow: 0 20px 45px rgba(240, 81, 56, 0.35);
+  border: 3px solid rgba(10, 10, 18, 0.95);
+  z-index: 2;
 }
 
 .timeline-item:nth-child(odd) .timeline-icon {
-  right: -25px;
+  right: clamp(-10px, -1vw, -20px);
 }
 
 .timeline-item:nth-child(even) .timeline-icon {
-  left: -25px;
+  left: clamp(-10px, -1vw, -20px);
 }
 
 .timeline-item .timeline-content {
