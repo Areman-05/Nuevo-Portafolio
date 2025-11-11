@@ -682,14 +682,22 @@ section:not(#inicio) span,
   box-shadow: 0 20px 45px rgba(240, 81, 56, 0.16);
   backdrop-filter: blur(14px);
   color: rgba(244, 244, 244, 0.92);
+.habilidad-group {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2vw, 18px);
 }
 
-.habilidad-card h3 {
-  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
-  margin-bottom: clamp(18px, 3vw, 24px);
+.habilidad-group:not(:last-child) {
+  margin-bottom: clamp(24px, 4vw, 34px);
+}
+
+.habilidad-group h3 {
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
   color: #fff;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
+  margin-bottom: clamp(6px, 1vw, 10px);
 }
 
 .habilidad-item {
@@ -750,6 +758,44 @@ section:not(#inicio) span,
 
 .habilidad-bar-fill.nivel-40 {
   width: 40%;
+}
+
+.habilidad-bar-fill.nivel-45 {
+  width: 45%;
+}
+
+.habilidad-bar-fill.nivel-55 {
+  width: 55%;
+}
+
+.habilidad-bar-fill.nivel-80 {
+  width: 80%;
+}
+
+.habilidad-bar-fill.nivel-90 {
+  width: 90%;
+}
+
+.skill-tag-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: clamp(10px, 1.5vw, 14px);
+}
+
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background:
+    linear-gradient(135deg, rgba(240, 81, 56, 0.12), rgba(255, 255, 255, 0.08));
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(0.82rem, 1vw, 0.95rem);
+  letter-spacing: 0.03em;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 28px rgba(240, 81, 56, 0.18);
 }
 
 /* Sección de proyectos */
