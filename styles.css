@@ -46,20 +46,28 @@ body::before {
 nav {
   position: fixed;
   width: 100%;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(4, 4, 6, 0.78);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 50px;
+  padding: 12px clamp(24px, 6vw, 60px);
   z-index: 1000;
-  transition: background 0.4s, box-shadow 0.4s;
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: transform 0.4s ease, background 0.4s, box-shadow 0.4s;
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  max-width: min(1100px, 92vw);
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 nav.scrolled {
-  background: rgba(0, 0, 0, 0.92);
+  background: rgba(5, 5, 8, 0.88);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+nav.hidden {
+  transform: translate(-50%, -120%);
 }
 
 nav .logo {
@@ -77,19 +85,20 @@ nav ul {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: clamp(18px, 4vw, 32px);
 }
 
 nav ul li {
-  margin-left: 30px;
+  margin-left: 0;
 }
 
 nav ul li a {
   text-decoration: none;
-  color: var(--color-texto);
+  color: rgba(255, 255, 255, 0.82);
   font-weight: 500;
   position: relative;
   transition: color 0.3s;
+  letter-spacing: 0.6px;
 }
 
 nav ul li a::after {
@@ -97,7 +106,7 @@ nav ul li a::after {
   position: absolute;
   width: 0%;
   height: 2px;
-  background: var(--color-primario);
+  background: linear-gradient(90deg, rgba(240, 81, 56, 0.95), rgba(255, 255, 255, 0.75));
   left: 0;
   bottom: -5px;
   transition: width 0.3s;
@@ -108,7 +117,7 @@ nav ul li a:hover::after {
 }
 
 nav ul li a:hover {
-  color: var(--color-primario);
+  color: var(--color-secundario);
 }
 
 .toggle-menu {

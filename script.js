@@ -1,11 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
   const nav = document.querySelector('nav');
+  let lastScrollY = window.scrollY;
+
   window.addEventListener('scroll', () => {
-    if(window.scrollY > 50) {
+    const currentScroll = window.scrollY;
+    const scrollingDown = currentScroll > lastScrollY;
+
+    if (currentScroll > 50) {
       nav.classList.add('scrolled');
     } else {
       nav.classList.remove('scrolled');
     }
+
+    if (!nav.classList.contains('active')) {
+      if (scrollingDown && currentScroll > 120) {
+        nav.classList.add('hidden');
+      } else {
+        nav.classList.remove('hidden');
+      }
+    }
+
+    lastScrollY = currentScroll;
   });
 
   // Menú móvil
@@ -15,6 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
   toggleMenu.addEventListener('click', () => {
     navUl.classList.toggle('active');
     nav.classList.toggle('active');
+    if (nav.classList.contains('active')) {
+      nav.classList.remove('hidden');
+    }
   });
 
   // Navegación suave al hacer click en los enlaces del menú
