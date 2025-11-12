@@ -1047,61 +1047,77 @@ section:not(#inicio) span,
 
 .reflexiones-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: clamp(24px, 4vw, 36px);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(24px, 4vw, 34px);
+  align-items: stretch;
 }
 
 .reflexion-card {
-  position: relative;
-  padding: clamp(26px, 4.5vw, 36px);
-  border-radius: 22px;
-  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
   background:
-    linear-gradient(135deg, rgba(12, 12, 18, 0.92), rgba(9, 9, 16, 0.72)) padding-box,
-    linear-gradient(135deg, rgba(240, 81, 56, 0.65), rgba(255, 255, 255, 0.28)) border-box;
-  box-shadow: 0 28px 58px rgba(10, 10, 16, 0.45);
-  backdrop-filter: blur(18px);
-  color: rgba(242, 244, 250, 0.92);
-  transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+    linear-gradient(140deg, rgba(9, 9, 14, 0.9), rgba(12, 12, 18, 0.68)) padding-box,
+    linear-gradient(140deg, rgba(240, 81, 56, 0.7), rgba(255, 255, 255, 0.6)) border-box;
+  border-radius: 26px;
+  border: 1px solid transparent;
   overflow: hidden;
+  box-shadow: 0 28px 60px rgba(240, 81, 56, 0.22);
+  backdrop-filter: blur(16px);
+  color: rgba(245, 245, 245, 0.92);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  position: relative;
 }
 
-.reflexion-card::before {
+.reflexion-card::after {
   content: '';
   position: absolute;
-  inset: 20%;
-  border-radius: 30px;
-  background: radial-gradient(circle, rgba(240, 81, 56, 0.22), transparent 70%);
-  opacity: 0;
-  transition: opacity 0.45s ease;
-  z-index: 0;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), transparent 55%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.reflexion-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 2vw, 20px);
+  padding: clamp(26px, 4.5vw, 34px);
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+}
+
+.reflexion-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(240, 81, 56, 0.82));
+  color: #0b0b0b;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  font-size: clamp(0.85rem, 1.05vw, 0.95rem);
+  box-shadow: 0 16px 30px rgba(240, 81, 56, 0.25);
+  align-self: flex-start;
 }
 
 .reflexion-card h3 {
-  position: relative;
-  font-size: clamp(1.1rem, 1.6vw, 1.45rem);
-  color: var(--color-secundario);
-  margin-bottom: clamp(14px, 2.2vw, 20px);
-  letter-spacing: 0.04em;
-  z-index: 1;
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+  color: #fff;
+  letter-spacing: 0.05em;
 }
 
 .reflexion-card p {
-  position: relative;
-  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
-  color: rgba(235, 237, 244, 0.78);
-  line-height: 1.75;
-  z-index: 1;
+  font-size: clamp(0.95rem, 1.12vw, 1.05rem);
+  color: rgba(235, 237, 244, 0.8);
+  line-height: 1.7;
 }
 
 .reflexion-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 36px 68px rgba(10, 10, 18, 0.55);
-  border-color: rgba(240, 81, 56, 0.48);
-}
-
-.reflexion-card:hover::before {
-  opacity: 0.85;
+  transform: translateY(-8px);
+  box-shadow: 0 34px 72px rgba(240, 81, 56, 0.3);
 }
 
 /* Sección de contacto */
