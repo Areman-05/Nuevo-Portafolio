@@ -97,10 +97,13 @@ nav .nav-brand {
   background: linear-gradient(135deg, rgba(240, 81, 56, 0.95), rgba(240, 81, 56, 0.4));
   color: var(--color-secundario);
   font-weight: 700;
-  font-size: clamp(1rem, 1.4vw, 1.1rem);
-  letter-spacing: 1.2px;
   box-shadow: 0 18px 32px rgba(240, 81, 56, 0.25);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.brand-mark i {
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  color: var(--color-secundario);
 }
 
 .brand-text {
@@ -182,29 +185,6 @@ nav .nav-list li a:hover::after {
 
 nav .nav-list li a:hover {
   color: var(--color-secundario);
-}
-
-.nav-list .nav-cta a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 22px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, rgba(240, 81, 56, 0.92), rgba(240, 81, 56, 0.55));
-  color: var(--color-secundario);
-  letter-spacing: 1.6px;
-  font-weight: 600;
-  box-shadow: 0 18px 32px rgba(240, 81, 56, 0.28);
-}
-
-.nav-list .nav-cta a::after {
-  display: none;
-}
-
-.nav-list .nav-cta a:hover {
-  color: var(--color-terciario);
-  background: var(--color-secundario);
-  box-shadow: 0 22px 36px rgba(240, 81, 56, 0.35);
 }
 
 .toggle-menu {
@@ -1139,11 +1119,6 @@ footer p {
 
   nav .nav-list.active {
     display: flex;
-  }
-
-  .nav-list .nav-cta a {
-    width: 100%;
-    justify-content: center;
   }
 
   .toggle-menu {
