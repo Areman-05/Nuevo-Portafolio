@@ -1147,13 +1147,13 @@ section:not(#inicio) span,
   padding: clamp(24px, 4vw, 32px);
   border-radius: 26px;
   background:
-    linear-gradient(140deg, rgba(9, 9, 14, 0.9), rgba(12, 12, 18, 0.68)) padding-box,
-    linear-gradient(140deg, rgba(240, 81, 56, 0.7), rgba(255, 255, 255, 0.6)) border-box;
+    linear-gradient(140deg, rgba(248, 222, 207, 0.92), rgba(255, 249, 244, 0.88)) padding-box,
+    linear-gradient(140deg, rgba(240, 81, 56, 0.72), rgba(255, 214, 199, 0.6)) border-box;
   border: 1px solid transparent;
   overflow: hidden;
-  box-shadow: 0 28px 60px rgba(240, 81, 56, 0.22);
-  backdrop-filter: blur(16px);
-  color: rgba(245, 245, 245, 0.92);
+  box-shadow: 0 26px 58px rgba(240, 81, 56, 0.24);
+  backdrop-filter: blur(18px);
+  color: rgba(62, 40, 38, 0.9);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
   position: relative;
 }
@@ -1162,7 +1162,7 @@ section:not(#inicio) span,
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), transparent 55%);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.65), transparent 55%);
   opacity: 0.6;
   pointer-events: none;
 }
