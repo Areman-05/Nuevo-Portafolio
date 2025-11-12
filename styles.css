@@ -1181,10 +1181,37 @@ section:not(#inicio) span,
   color: rgba(235, 237, 244, 0.82);
 }
 
-.contact-social {
+.contact-summary-head {
   display: flex;
   flex-direction: column;
-  gap: clamp(18px, 2.8vw, 24px);
+  gap: clamp(10px, 1.6vw, 14px);
+  margin-bottom: clamp(10px, 1.6vw, 14px);
+}
+
+.contact-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(240, 81, 56, 0.85), rgba(255, 210, 194, 0.55));
+  color: #0b0b0b;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: clamp(0.72rem, 0.9vw, 0.82rem);
+  box-shadow: 0 14px 24px rgba(240, 81, 56, 0.25);
+}
+
+.contact-badge--blue {
+  background: linear-gradient(135deg, rgba(49, 198, 255, 0.85), rgba(140, 75, 255, 0.55));
+  box-shadow: 0 14px 24px rgba(140, 75, 255, 0.25);
+}
+
+.contact-summary {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 2.6vw, 26px);
 }
 
 .contact-social-icons {
@@ -1218,6 +1245,35 @@ section:not(#inicio) span,
 .contact-hint {
   font-size: clamp(0.85rem, 1vw, 0.95rem);
   color: rgba(235, 237, 244, 0.65);
+}
+
+.contact-direct-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: clamp(12px, 2vw, 18px);
+}
+
+.contact-direct-label {
+  display: block;
+  font-size: clamp(0.8rem, 0.95vw, 0.9rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 6px;
+}
+
+.contact-direct-info a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: clamp(0.92rem, 1.05vw, 1rem);
+  transition: color 0.3s ease;
+}
+
+.contact-direct-info a:hover {
+  color: rgba(240, 81, 56, 0.85);
 }
 
 .contact-form-card form {
