@@ -536,7 +536,7 @@ section:not(#inicio) span,
 
 .foto-wrapper {
   position: relative;
-  width: clamp(210px, 26vw, 260px);
+  width: clamp(205px, 24vw, 240px);
   aspect-ratio: 1;
   display: grid;
   place-items: center;
@@ -544,55 +544,55 @@ section:not(#inicio) span,
 
 .foto-aura {
   position: absolute;
-  inset: -12%;
-  background: radial-gradient(circle at 30% 30%, rgba(240, 81, 56, 0.32), transparent 52%),
-              radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.24), transparent 65%);
-  filter: blur(12px);
-  opacity: 0.7;
+  inset: -8%;
+  background: radial-gradient(circle at 28% 28%, rgba(240, 81, 56, 0.24), transparent 48%),
+              radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.18), transparent 60%);
+  filter: blur(10px);
+  opacity: 0.6;
   z-index: 0;
   animation: pulseAura 6s ease-in-out infinite;
 }
 
 .foto-overlay {
   position: absolute;
-  inset: -5%;
+  inset: -3%;
   border-radius: 50%;
   background:
-    linear-gradient(150deg, rgba(240, 81, 56, 0.42), rgba(255, 255, 255, 0.18)) padding-box,
-    linear-gradient(150deg, rgba(240, 81, 56, 0.18), rgba(255, 255, 255, 0.32)) border-box;
+    linear-gradient(155deg, rgba(240, 81, 56, 0.32), rgba(255, 255, 255, 0.14)) padding-box,
+    linear-gradient(155deg, rgba(240, 81, 56, 0.12), rgba(255, 255, 255, 0.26)) border-box;
   border: 1px solid transparent;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 18px 36px rgba(240, 81, 56, 0.16);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 26px rgba(240, 81, 56, 0.12);
   z-index: 1;
-  animation: rotateGlow 14s linear infinite;
+  animation: rotateGlow 18s linear infinite;
 }
 
 .foto-perfil {
   position: relative;
   border-radius: 50%;
-  width: clamp(210px, 24vw, 240px);
+  width: clamp(200px, 22vw, 220px);
   aspect-ratio: 1;
   object-fit: cover;
   z-index: 2;
   animation: fadeIn 1.8s ease-in-out;
-  border: 2px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.38);
 }
 .foto-wrapper::after {
   content: '';
   position: absolute;
-  inset: -20%;
+  inset: -15%;
   border-radius: 50%;
-  background: conic-gradient(from 120deg, rgba(240, 81, 56, 0.18), transparent 45%, rgba(255, 255, 255, 0.16), transparent 70%);
-  opacity: 0.28;
-  filter: blur(20px);
+  background: conic-gradient(from 120deg, rgba(240, 81, 56, 0.14), transparent 45%, rgba(255, 255, 255, 0.12), transparent 70%);
+  opacity: 0.24;
+  filter: blur(16px);
   mix-blend-mode: screen;
   z-index: 0;
 }
 
 @keyframes pulseAura {
-  0%, 100% { transform: scale(1); opacity: 0.65; }
-  50% { transform: scale(1.05); opacity: 0.42; }
+  0%, 100% { transform: scale(1); opacity: 0.58; }
+  50% { transform: scale(1.03); opacity: 0.36; }
 }
 
 @keyframes rotateGlow {
@@ -1183,7 +1183,7 @@ footer p {
   }
 
   .foto-wrapper {
-    width: clamp(190px, 38vw, 220px);
+    width: clamp(180px, 34vw, 200px);
   }
 
   .timeline-item {
