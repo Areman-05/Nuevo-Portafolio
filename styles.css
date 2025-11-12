@@ -147,7 +147,7 @@ nav .nav-list {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: clamp(20px, 4vw, 48px);
+  gap: clamp(18px, 3.5vw, 40px);
   padding: 0 clamp(12px, 2vw, 24px);
   margin-left: auto;
 }
@@ -164,7 +164,7 @@ nav .nav-list li a {
   transition: color 0.3s;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-  font-size: clamp(0.72rem, 1.1vw, 0.95rem);
+  font-size: clamp(0.68rem, 1vw, 0.9rem);
 }
 
 nav .nav-list li a::after {
@@ -1041,38 +1041,8 @@ section:not(#inicio) span,
 
 /* Sección de reflexiones */
 #reflexiones {
-  position: relative;
+  background: transparent;
   padding: clamp(80px, 10vw, 120px) 5vw;
-  overflow: hidden;
-}
-
-#reflexiones::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 10% 20%, rgba(240, 81, 56, 0.25), transparent 55%),
-    radial-gradient(circle at 90% 80%, rgba(240, 81, 56, 0.18), transparent 60%),
-    linear-gradient(130deg, rgba(10, 10, 16, 0.92), rgba(9, 9, 14, 0.78));
-  opacity: 0.95;
-  z-index: -2;
-}
-
-#reflexiones::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 120px 120px;
-  opacity: 0.35;
-  z-index: -1;
-}
-
-#reflexiones h2 {
-  color: var(--color-secundario);
-  margin-bottom: clamp(36px, 6vw, 48px);
 }
 
 .reflexiones-grid {
