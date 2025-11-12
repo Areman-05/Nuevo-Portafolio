@@ -1299,7 +1299,9 @@ body.js-enabled section:not(#inicio).in-view {
   display: flex;
   flex-direction: column;
   gap: clamp(16px, 2.2vw, 22px);
-  padding-top: 0;
+  margin-top: clamp(12px, 2vw, 18px);
+  padding-top: clamp(18px, 2.8vw, 24px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .reflexion-card-body p {
@@ -1318,11 +1320,27 @@ body.js-enabled section:not(#inicio).in-view {
 }
 
 .reflexion-highlights li {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 12px;
+  padding-top: clamp(6px, 1.2vw, 12px);
   font-size: clamp(0.9rem, 1.05vw, 1rem);
   color: rgba(245, 245, 245, 0.78);
+}
+
+.reflexion-highlights li:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  top: calc(-1 * clamp(4px, 0.8vw, 8px));
+  left: calc(12px + 1.2em);
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.08), rgba(240, 81, 56, 0.25));
+}
+
+.reflexion-highlights li:first-child {
+  padding-top: 0;
 }
 
 .reflexion-highlights li i {
