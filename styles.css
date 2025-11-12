@@ -852,6 +852,14 @@ section:not(#inicio) span,
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skill-cluster h3 i {
+  color: rgba(240, 81, 56, 0.85);
+  font-size: 1.15em;
 }
 
 .skill-meters {
@@ -876,6 +884,17 @@ section:not(#inicio) span,
   font-size: clamp(0.85rem, 1vw, 0.95rem);
   letter-spacing: 0.04em;
   color: rgba(235, 237, 244, 0.78);
+}
+
+.meter-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.meter-info i {
+  color: rgba(240, 81, 56, 0.85);
+  font-size: 1.1em;
 }
 
 .meter-bar {
@@ -917,6 +936,11 @@ section:not(#inicio) span,
   backdrop-filter: blur(10px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 14px 32px rgba(240, 81, 56, 0.25);
+  gap: 8px;
+}
+
+.pill i {
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .pill-kotlin {
@@ -954,6 +978,13 @@ section:not(#inicio) span,
   color: #fff;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mini-card h4 i {
+  color: rgba(240, 81, 56, 0.85);
 }
 
 .mini-card ul {
