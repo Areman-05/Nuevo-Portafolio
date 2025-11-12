@@ -2053,3 +2053,14 @@ footer::before {
   box-shadow: 0 24px 44px rgba(240, 81, 56, 0.28);
   color: #fff;
 }
+
+body.js-enabled section:not(#inicio) {
+  opacity: 0;
+  transform: translateY(80px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+body.js-enabled section:not(#inicio).in-view {
+  opacity: 1;
+  transform: translateY(0);
+}

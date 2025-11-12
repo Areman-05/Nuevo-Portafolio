@@ -42,10 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('in-view');
-          sectionObserver.unobserve(entry.target);
+        } else {
+          entry.target.classList.remove('in-view');
         }
       });
-    }, { threshold: 0.25, rootMargin: '0px 0px -10%' });
+    }, { threshold: 0.35, rootMargin: '0px 0px -15%' });
 
     sections.forEach(section => sectionObserver.observe(section));
   } else {
