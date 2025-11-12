@@ -1147,13 +1147,13 @@ section:not(#inicio) span,
   padding: clamp(24px, 4vw, 32px);
   border-radius: 26px;
   background:
-    linear-gradient(140deg, rgba(20, 20, 28, 0.92), rgba(12, 12, 18, 0.75)) padding-box,
-    linear-gradient(140deg, rgba(240, 81, 56, 0.4), rgba(255, 244, 238, 0.18)) border-box;
+    linear-gradient(140deg, rgba(28, 22, 26, 0.92), rgba(18, 14, 18, 0.82)) padding-box,
+    linear-gradient(140deg, rgba(240, 81, 56, 0.5), rgba(255, 196, 168, 0.28)) border-box;
   border: 1px solid transparent;
   overflow: hidden;
   box-shadow: 0 28px 60px rgba(10, 10, 18, 0.42);
   backdrop-filter: blur(16px);
-  color: rgba(245, 245, 245, 0.9);
+  color: rgba(246, 244, 244, 0.92);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
   position: relative;
 }
@@ -1162,8 +1162,8 @@ section:not(#inicio) span,
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(150deg, rgba(255, 255, 255, 0.12), transparent 55%);
-  opacity: 0.55;
+  background: linear-gradient(150deg, rgba(255, 186, 156, 0.18), transparent 55%);
+  opacity: 0.6;
   pointer-events: none;
 }
 
