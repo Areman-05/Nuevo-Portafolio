@@ -508,15 +508,10 @@ section:not(#inicio) span,
   line-height: 1.7;
 }
 
-body.js-enabled section:not(#inicio) {
-  opacity: 0;
-  transform: translateY(80px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
+body.js-enabled section:not(#inicio),
 body.js-enabled section:not(#inicio).in-view {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 /* Sección sobre mí */
@@ -1683,9 +1678,7 @@ footer::before {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body.js-enabled section:not(#inicio) {
-    opacity: 1 !important;
-    transform: none !important;
+  section {
     transition: none !important;
   }
 }
