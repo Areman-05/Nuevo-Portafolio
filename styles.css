@@ -536,7 +536,7 @@ section:not(#inicio) span,
 
 .foto-wrapper {
   position: relative;
-  width: clamp(205px, 24vw, 240px);
+  width: clamp(220px, 26vw, 260px);
   aspect-ratio: 1;
   display: grid;
   place-items: center;
@@ -544,25 +544,25 @@ section:not(#inicio) span,
 
 .foto-aura {
   position: absolute;
-  inset: -8%;
-  background: radial-gradient(circle at 28% 28%, rgba(240, 81, 56, 0.24), transparent 48%),
-              radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.18), transparent 60%);
-  filter: blur(10px);
-  opacity: 0.6;
+  inset: -6%;
+  background: radial-gradient(circle at 28% 28%, rgba(240, 81, 56, 0.22), transparent 48%),
+              radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.16), transparent 60%);
+  filter: blur(8px);
+  opacity: 0.55;
   z-index: 0;
   animation: pulseAura 6s ease-in-out infinite;
 }
 
 .foto-overlay {
   position: absolute;
-  inset: -3%;
+  inset: -1.8%;
   border-radius: 50%;
   background:
-    linear-gradient(155deg, rgba(240, 81, 56, 0.32), rgba(255, 255, 255, 0.14)) padding-box,
-    linear-gradient(155deg, rgba(240, 81, 56, 0.12), rgba(255, 255, 255, 0.26)) border-box;
+    linear-gradient(155deg, rgba(240, 81, 56, 0.3), rgba(255, 255, 255, 0.12)) padding-box,
+    linear-gradient(155deg, rgba(240, 81, 56, 0.1), rgba(255, 255, 255, 0.22)) border-box;
   border: 1px solid transparent;
   backdrop-filter: blur(8px);
-  box-shadow: 0 12px 26px rgba(240, 81, 56, 0.12);
+  box-shadow: 0 10px 22px rgba(240, 81, 56, 0.1);
   z-index: 1;
   animation: rotateGlow 18s linear infinite;
 }
@@ -570,29 +570,29 @@ section:not(#inicio) span,
 .foto-perfil {
   position: relative;
   border-radius: 50%;
-  width: clamp(200px, 22vw, 220px);
+  width: clamp(220px, 26vw, 260px);
   aspect-ratio: 1;
   object-fit: cover;
   z-index: 2;
   animation: fadeIn 1.8s ease-in-out;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.38);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.42);
 }
 .foto-wrapper::after {
   content: '';
   position: absolute;
-  inset: -15%;
+  inset: -12%;
   border-radius: 50%;
-  background: conic-gradient(from 120deg, rgba(240, 81, 56, 0.14), transparent 45%, rgba(255, 255, 255, 0.12), transparent 70%);
-  opacity: 0.24;
-  filter: blur(16px);
+  background: conic-gradient(from 120deg, rgba(240, 81, 56, 0.12), transparent 45%, rgba(255, 255, 255, 0.1), transparent 70%);
+  opacity: 0.22;
+  filter: blur(14px);
   mix-blend-mode: screen;
   z-index: 0;
 }
 
 @keyframes pulseAura {
-  0%, 100% { transform: scale(1); opacity: 0.58; }
-  50% { transform: scale(1.03); opacity: 0.36; }
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.03); opacity: 0.32; }
 }
 
 @keyframes rotateGlow {
@@ -1183,7 +1183,7 @@ footer p {
   }
 
   .foto-wrapper {
-    width: clamp(180px, 34vw, 200px);
+    width: clamp(200px, 38vw, 240px);
   }
 
   .timeline-item {
