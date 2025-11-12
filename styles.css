@@ -821,6 +821,10 @@ section:not(#inicio) span,
   line-height: 1.75;
 }
 
+.skills-intro p {
+  margin: 0;
+}
+
 .skills-columns {
   position: relative;
   z-index: 1;
@@ -1013,8 +1017,36 @@ section:not(#inicio) span,
   box-shadow: 0 0 12px rgba(240, 81, 56, 0.45);
 }
 
+@media (max-width: 992px) {
+  .skills-intro {
+    text-align: center;
+    padding: clamp(24px, 6vw, 36px) clamp(22px, 6vw, 40px) 0;
+  }
+}
+
 @media (max-width: 768px) {
   .skills-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-intro {
+    padding: clamp(20px, 6vw, 28px) 24px 0;
+  }
+
+  .skills-columns {
+    padding: 0 24px clamp(28px, 8vw, 40px);
+  }
+
+  .skill-cluster {
+    gap: clamp(12px, 4vw, 18px);
+    padding: clamp(18px, 6vw, 26px);
+  }
+
+  .skills-pill-grid {
+    gap: clamp(8px, 4vw, 14px);
+  }
+
+  .skills-cards-grid {
     grid-template-columns: 1fr;
   }
 }
