@@ -3,6 +3,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const nav = document.querySelector('nav');
   let lastScrollY = window.scrollY;
 
+  const handleSectionReveal = () => {
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      const isVisible = rect.top < viewportHeight * 0.72 && rect.bottom > viewportHeight * 0.28;
+      if (isVisible) {
+        section.classList.add('in-view');
+      } else {
+        section.classList.remove('in-view');
+      }
+    });
+  };
+
+  const sections = document.querySelectorAll('section:not(#inicio)');
+  handleSectionReveal();
+
+  let revealTicking = false;
+
   window.addEventListener('scroll', () => {
     const currentScroll = window.scrollY;
     const scrollingDown = currentScroll > lastScrollY;
@@ -21,8 +39,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    if (!revealTicking) {
+      revealTicking = true;
+      requestAnimationFrame(() => {
+        handleSectionReveal();
+        revealTicking = false;
+      });
+    }
+
     lastScrollY = currentScroll;
-  });
+  }, { passive: true });
 
   const toggleMenu = document.querySelector('.toggle-menu');
   const navUl = document.querySelector('nav ul');
@@ -34,24 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
       nav.classList.remove('hidden');
     }
   });
-
-  const sections = document.querySelectorAll('section:not(#inicio)');
-
-  if ('IntersectionObserver' in window) {
-    const sectionObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-        } else {
-          entry.target.classList.remove('in-view');
-        }
-      });
-    }, { threshold: 0.35, rootMargin: '0px 0px -15%' });
-
-    sections.forEach(section => sectionObserver.observe(section));
-  } else {
-    sections.forEach(section => section.classList.add('in-view'));
-  }
 
   const menuLinks = document.querySelectorAll('nav ul li a');
   menuLinks.forEach(link => {
