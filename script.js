@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.add('js-enabled');
   const nav = document.querySelector('nav');
   let lastScrollY = window.scrollY;
 
@@ -36,17 +37,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const sections = document.querySelectorAll('section:not(#inicio)');
 
-  const sectionObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-      } else {
-        entry.target.classList.remove('in-view');
-      }
-    });
-  }, { threshold: 0.35, rootMargin: '0px 0px -10%' });
+  if ('IntersectionObserver' in window) {
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          sectionObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25, rootMargin: '0px 0px -10%' });
 
-  sections.forEach(section => sectionObserver.observe(section));
+    sections.forEach(section => sectionObserver.observe(section));
+  } else {
+    sections.forEach(section => section.classList.add('in-view'));
+  }
 
   const menuLinks = document.querySelectorAll('nav ul li a');
   menuLinks.forEach(link => {
@@ -55,7 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
       navUl.classList.remove('active');
       nav.classList.remove('active');
       const targetSection = document.querySelector(link.getAttribute('href'));
-      targetSection.scrollIntoView({ behavior: 'smooth' });
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
     });
   });
 
