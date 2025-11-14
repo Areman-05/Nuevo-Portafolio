@@ -910,6 +910,10 @@ body.js-enabled section:not(#inicio).in-view {
 }
 
 /* Carrusel de iconos de habilidades (full width) */
+#habilidades {
+  overflow-x: hidden;
+}
+
 .skills-carousel-wrapper {
   position: relative;
   width: 100vw;
@@ -922,7 +926,6 @@ body.js-enabled section:not(#inicio).in-view {
   z-index: 1;
   left: 0;
   right: 0;
-  transform: translateX(calc(-5vw));
 }
 
 .skills-carousel-fade-left,
@@ -1007,21 +1010,10 @@ body.js-enabled section:not(#inicio).in-view {
   backdrop-filter: blur(10px);
 }
 
-.skills-carousel-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
 .skills-carousel-item i {
   font-size: clamp(2rem, 4vw, 3rem);
   color: rgba(240, 81, 56, 0.9);
   filter: drop-shadow(0 4px 12px rgba(240, 81, 56, 0.4));
-  transition: transform 0.3s ease;
-}
-
-.skills-carousel-item:hover i {
-  transform: scale(1.05);
 }
 
 .skills-carousel-item span {
