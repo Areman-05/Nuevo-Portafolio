@@ -945,19 +945,28 @@ body.js-enabled section:not(#inicio).in-view {
   background: linear-gradient(to left, rgba(10, 10, 16, 0.98) 0%, rgba(10, 10, 16, 0.85) 30%, transparent 100%);
 }
 
-.skills-carousel-fade-left::after,
-.skills-carousel-fade-right::after {
+.skills-carousel-fade-left::after {
   content: '';
   position: absolute;
   top: 0;
   bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   background: linear-gradient(to right, rgba(240, 81, 56, 0.4) 0%, transparent 100%);
   opacity: 0.6;
 }
 
 .skills-carousel-fade-right::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   background: linear-gradient(to left, rgba(240, 81, 56, 0.4) 0%, transparent 100%);
+  opacity: 0.6;
 }
 
 .skills-carousel {
