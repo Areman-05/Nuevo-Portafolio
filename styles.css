@@ -951,8 +951,8 @@ body.js-enabled section:not(#inicio).in-view {
   top: 0;
   bottom: 0;
   left: 0;
-  right: 0;
   width: 100%;
+  height: 100%;
   background: linear-gradient(to right, rgba(240, 81, 56, 0.4) 0%, transparent 100%);
   opacity: 0.6;
 }
@@ -962,9 +962,9 @@ body.js-enabled section:not(#inicio).in-view {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 0;
   right: 0;
   width: 100%;
+  height: 100%;
   background: linear-gradient(to left, rgba(240, 81, 56, 0.4) 0%, transparent 100%);
   opacity: 0.6;
 }
@@ -1008,9 +1008,10 @@ body.js-enabled section:not(#inicio).in-view {
 }
 
 .skills-carousel-item:hover {
-  transform: translateY(-6px) scale(1.05);
-  box-shadow: 0 16px 32px rgba(240, 81, 56, 0.3);
-  border-color: rgba(240, 81, 56, 0.4);
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, rgba(20, 20, 28, 0.8), rgba(25, 25, 32, 0.6));
 }
 
 .skills-carousel-item i {
@@ -1021,8 +1022,8 @@ body.js-enabled section:not(#inicio).in-view {
 }
 
 .skills-carousel-item:hover i {
-  transform: scale(1.1);
-  filter: drop-shadow(0 6px 16px rgba(240, 81, 56, 0.6));
+  transform: scale(1.08);
+  filter: drop-shadow(0 4px 12px rgba(240, 81, 56, 0.5));
 }
 
 .skills-carousel-item span {
@@ -1035,7 +1036,7 @@ body.js-enabled section:not(#inicio).in-view {
 }
 
 .skills-carousel-item:hover span {
-  color: rgba(240, 81, 56, 0.95);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 @media (max-width: 768px) {
