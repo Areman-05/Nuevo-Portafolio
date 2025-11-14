@@ -788,7 +788,7 @@ body.js-enabled section:not(#inicio).in-view {
   justify-content: center;
   color: rgba(240, 81, 56, 0.9);
   font-size: clamp(1.3rem, 2vw, 1.6rem);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), 0 0 0 3px rgba(10, 10, 16, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.08);
   z-index: 3;
   transition: all 0.3s ease;
