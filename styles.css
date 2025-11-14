@@ -1191,7 +1191,7 @@ body.js-enabled section:not(#inicio).in-view {
 .proyectos-panel-image {
   position: relative;
   width: 100%;
-  height: clamp(600px, 75vh, 800px);
+  height: clamp(500px, 65vh, 650px);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
@@ -1232,7 +1232,7 @@ body.js-enabled section:not(#inicio).in-view {
   }
 
   .proyectos-panel-image {
-    height: clamp(450px, 55vh, 550px);
+    height: clamp(400px, 50vh, 500px);
   }
 
   .proyecto-list-item {
@@ -1250,7 +1250,7 @@ body.js-enabled section:not(#inicio).in-view {
   }
 
   .proyectos-panel-image {
-    height: clamp(380px, 50vh, 450px);
+    height: clamp(340px, 45vh, 400px);
   }
 
   .proyectos-list-items {

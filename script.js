@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentItem.classList.remove('active');
       }
 
-      // Esperar a que termine el fade out antes de cambiar (crossfade)
+      // Esperar a que termine el fade out antes de cambiar (crossfade más rápido)
       setTimeout(() => {
         // Fade in: añadir clase active a nueva imagen y item
         const newImg = proyectoPanelImgs[targetIndex];
@@ -146,11 +146,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         currentProject = targetIndex;
         
-        // Permitir nueva transición después de que termine el fade in
+        // Permitir nueva transición después de que termine el fade in (más rápido)
         setTimeout(() => {
           isTransitioning = false;
-        }, 400);
-      }, 400);
+        }, 300);
+      }, 300);
     };
 
     // Función para manejar el scroll invisible con mejor flujo
@@ -178,19 +178,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const zoneSize = 1 / totalProjects;
             let targetIndex = 0;
             
-            // Determinar en qué zona estamos
+            // Determinar en qué zona estamos con un pequeño offset para evitar cambios bruscos
             for (let i = 0; i < totalProjects; i++) {
               const zoneStart = i * zoneSize;
               const zoneEnd = (i + 1) * zoneSize;
               
               // Si estamos en la última zona, incluir el borde superior
               if (i === totalProjects - 1) {
-                if (scrollProgress >= zoneStart) {
+                if (scrollProgress >= zoneStart - 0.05) {
                   targetIndex = i;
                   break;
                 }
               } else {
-                if (scrollProgress >= zoneStart && scrollProgress < zoneEnd) {
+                if (scrollProgress >= zoneStart - 0.05 && scrollProgress < zoneEnd - 0.05) {
                   targetIndex = i;
                   break;
                 }
@@ -200,8 +200,17 @@ document.addEventListener('DOMContentLoaded', () => {
             // Asegurar que el índice esté en rango
             const clampedIndex = Math.max(0, Math.min(totalProjects - 1, targetIndex));
             
+            // Solo cambiar si hay una diferencia clara y no estamos en transición
             if (clampedIndex !== currentProject && !isTransitioning) {
               switchProject(clampedIndex, true);
+            }
+          }
+        } else {
+          // Si salimos de la sección, permitir scroll normal sin bloqueos
+          if (sectionRect.bottom < 0) {
+            // Si estamos por encima de la sección, resetear al primer proyecto
+            if (currentProject !== 0 && !isTransitioning) {
+              switchProject(0, true);
             }
           }
         }
