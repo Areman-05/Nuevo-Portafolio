@@ -98,163 +98,83 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Funcionalidad de proyectos con scroll horizontal controlado por scroll vertical
-  const proyectoHeroImg = document.getElementById('proyecto-hero-img');
-  const proyectoCards = document.querySelectorAll('.proyecto-card');
-  const proyectosScroll = document.getElementById('proyectos-scroll');
-  const proyectosScrollWrapper = proyectosScroll?.parentElement;
-  const proyectosWrapper = document.querySelector('.proyectos-wrapper');
-  const proyectosSection = document.getElementById('proyectos');
+  // Funcionalidad de proyectos con panel fijo y efecto crossfade
+  const proyectoListItems = document.querySelectorAll('.proyecto-list-item');
+  const proyectoPanelImgs = document.querySelectorAll('.proyecto-panel-img');
+  const proyectoPanelTexts = document.querySelectorAll('.proyecto-panel-text-content');
+  let currentProject = 0;
+  let isTransitioning = false;
 
-  if (proyectoHeroImg && proyectoCards.length > 0 && proyectosScrollWrapper && proyectosWrapper && proyectosSection) {
-    let activeIndex = 0;
-    let scrollTicking = false;
-    let isScrolling = false;
-    const totalCards = proyectoCards.length;
-    
-    // Ajustar la altura del wrapper según el número de proyectos
-    proyectosWrapper.style.height = `${totalCards * 100}vh`;
-
-    const updateHeroImage = (index) => {
-      const card = proyectoCards[index];
-      if (card && card.dataset.image) {
-        const newImageSrc = card.dataset.image;
-        if (proyectoHeroImg.src !== new URL(newImageSrc, window.location.href).href) {
-          proyectoHeroImg.style.opacity = '0';
-          setTimeout(() => {
-            proyectoHeroImg.src = newImageSrc;
-            proyectoHeroImg.style.opacity = '1';
-          }, 150);
-        }
-      }
-    };
-
-    const updateActiveCard = (index) => {
-      proyectoCards.forEach((card, i) => {
-        if (i === index) {
-          card.classList.add('active');
-        } else {
-          card.classList.remove('active');
-        }
-      });
-      activeIndex = index;
-      updateHeroImage(index);
-    };
-
-    const handleHorizontalScroll = () => {
-      if (scrollTicking || isScrolling) return;
-      scrollTicking = true;
-      requestAnimationFrame(() => {
-        const scrollWidth = proyectosScrollWrapper.offsetWidth;
-        
-        // Encontrar qué tarjeta está más centrada en el viewport
-        let closestIndex = 0;
-        let closestDistance = Infinity;
-        
-        proyectoCards.forEach((card, index) => {
-          const cardRect = card.getBoundingClientRect();
-          const scrollRect = proyectosScrollWrapper.getBoundingClientRect();
-          const cardCenter = cardRect.left + cardRect.width / 2 - scrollRect.left;
-          const scrollCenter = scrollWidth / 2;
-          const distance = Math.abs(cardCenter - scrollCenter);
-          
-          if (distance < closestDistance) {
-            closestDistance = distance;
-            closestIndex = index;
-          }
-        });
-        
-        if (closestIndex !== activeIndex) {
-          updateActiveCard(closestIndex);
-        }
-        scrollTicking = false;
-      });
-    };
-
-    // Convertir scroll vertical en scroll horizontal cuando estás en la sección
-    const handleVerticalScroll = () => {
-      if (scrollTicking || isScrolling) return;
-      scrollTicking = true;
+  if (proyectoListItems.length > 0 && proyectoPanelImgs.length > 0 && proyectoPanelTexts.length > 0) {
+    // Función para cambiar el proyecto activo con efecto crossfade
+    const switchProject = (projectIndex) => {
+      if (isTransitioning || projectIndex === currentProject) return;
       
-      requestAnimationFrame(() => {
-        const wrapperRect = proyectosWrapper.getBoundingClientRect();
-        const sectionRect = proyectosSection.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        
-        // Verificar si estamos dentro de la sección sticky
-        if (sectionRect.top <= 0 && sectionRect.bottom > viewportHeight) {
-          // Calcular el progreso del scroll dentro del wrapper
-          const wrapperTop = wrapperRect.top;
-          const wrapperHeight = wrapperRect.height;
-          const scrollProgress = Math.max(0, Math.min(1, -wrapperTop / (wrapperHeight - viewportHeight)));
-          
-          // Calcular el scroll horizontal basado en el progreso
-          const maxScrollLeft = proyectosScroll.scrollWidth - proyectosScrollWrapper.offsetWidth;
-          const targetScrollLeft = scrollProgress * maxScrollLeft;
-          
-          // Aplicar el scroll horizontal
-          isScrolling = true;
-          proyectosScrollWrapper.scrollLeft = targetScrollLeft;
-          
-          // Actualizar la tarjeta activa
-          const cardIndex = Math.round(scrollProgress * (totalCards - 1));
-          const clampedIndex = Math.max(0, Math.min(totalCards - 1, cardIndex));
-          
-          if (clampedIndex !== activeIndex) {
-            updateActiveCard(clampedIndex);
-          }
-          
-          setTimeout(() => {
-            isScrolling = false;
-          }, 100);
+      isTransitioning = true;
+      const targetIndex = parseInt(projectIndex);
+
+      // Fade out: remover clase active de imagen y texto actuales
+      const currentImg = proyectoPanelImgs[currentProject];
+      const currentText = proyectoPanelTexts[currentProject];
+      const currentItem = proyectoListItems[currentProject];
+
+      if (currentImg) {
+        currentImg.classList.remove('active');
+      }
+      if (currentText) {
+        currentText.classList.remove('active');
+      }
+      if (currentItem) {
+        currentItem.classList.remove('active');
+      }
+
+      // Esperar a que termine el fade out antes de cambiar
+      setTimeout(() => {
+        // Fade in: añadir clase active a nueva imagen y texto
+        const newImg = proyectoPanelImgs[targetIndex];
+        const newText = proyectoPanelTexts[targetIndex];
+        const newItem = proyectoListItems[targetIndex];
+
+        if (newImg) {
+          newImg.classList.add('active');
         }
+        if (newText) {
+          newText.classList.add('active');
+        }
+        if (newItem) {
+          newItem.classList.add('active');
+        }
+
+        currentProject = targetIndex;
         
-        scrollTicking = false;
-      });
+        // Permitir nueva transición después de que termine el fade in
+        setTimeout(() => {
+          isTransitioning = false;
+        }, 300);
+      }, 300);
     };
 
-    // Click en tarjetas
-    proyectoCards.forEach((card, index) => {
-      card.addEventListener('click', (e) => {
-        // No cambiar imagen si se hace click en el botón
-        if (e.target.closest('.proyecto-btn')) return;
-        
-        updateActiveCard(index);
-        // Scroll suave a la tarjeta
-        const cardLeft = card.offsetLeft;
-        isScrolling = true;
-        proyectosScrollWrapper.scrollTo({
-          left: cardLeft - (proyectosScrollWrapper.offsetWidth - card.offsetWidth) / 2,
-          behavior: 'smooth'
-        });
-        setTimeout(() => {
-          isScrolling = false;
-        }, 500);
+    // Event listeners para hover en los items de la lista
+    proyectoListItems.forEach((item, index) => {
+      item.addEventListener('mouseenter', () => {
+        if (!isTransitioning) {
+          switchProject(index);
+        }
+      });
+
+      // También permitir click para dispositivos táctiles
+      item.addEventListener('click', () => {
+        if (!isTransitioning) {
+          switchProject(index);
+        }
       });
     });
 
-    // Scroll horizontal manual (cuando el usuario hace scroll horizontal directamente)
-    proyectosScrollWrapper.addEventListener('scroll', handleHorizontalScroll, { passive: true });
-
-    // Scroll vertical (convierte a horizontal)
-    window.addEventListener('scroll', handleVerticalScroll, { passive: true });
-
-    // Inicializar con la primera tarjeta
-    updateActiveCard(0);
-
-    // Intersection Observer para resetear cuando salgas de la sección
-    const proyectosObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
-          // Si salimos por abajo, mantener la última tarjeta
-          // Si salimos por arriba, resetear a la primera
-          if (entry.boundingClientRect.bottom < 0) {
-            updateActiveCard(0);
-          }
-        }
-      });
-    }, { threshold: [0, 1] });
-
-    proyectosObserver.observe(proyectosWrapper);
+    // Inicializar con el primer proyecto activo
+    if (proyectoListItems[0] && proyectoPanelImgs[0] && proyectoPanelTexts[0]) {
+      proyectoListItems[0].classList.add('active');
+      proyectoPanelImgs[0].classList.add('active');
+      proyectoPanelTexts[0].classList.add('active');
+    }
   }
 });
