@@ -270,55 +270,74 @@
   <!-- Sección de proyectos -->
   <section id="proyectos">
     <h2>Proyectos</h2>
-    <div class="proyectos-grid">
-      <article class="proyecto-card">
-        <div class="proyecto-media">
-          <img src="imagenes/computer-programming-vs-computer-science-image_blog.jpg" alt="To-Do List App">
+    <div class="proyectos-container">
+      <div class="proyecto-hero">
+        <div class="proyecto-hero-image">
+          <img id="proyecto-hero-img" src="imagenes/computer-programming-vs-computer-science-image_blog.jpg" alt="Proyecto destacado">
+          <div class="proyecto-hero-overlay"></div>
         </div>
-        <div class="proyecto-body">
-          <h3>To-Do List App</h3>
-          <p class="proyecto-subtitulo">Aplicación web para organizar tareas con filtros y persistencia local.</p>
-          <div class="proyecto-tags">
-            <span class="proyecto-tag">React</span>
-            <span class="proyecto-tag">TypeScript</span>
-            <span class="proyecto-tag">CSS Modules</span>
-          </div>
-          <p class="proyecto-aprendizaje"><span>Aprendizaje:</span> Manejo de estado, diseño modular y almacenamiento en localStorage.</p>
-          <a class="proyecto-btn" href="https://github.com/Areman-05/To-Do-List-App" target="_blank" rel="noopener noreferrer">Acceder a GitHub</a>
+      </div>
+      <div class="proyectos-scroll-wrapper">
+        <div class="proyectos-scroll" id="proyectos-scroll">
+          <article class="proyecto-card" data-image="imagenes/computer-programming-vs-computer-science-image_blog.jpg" data-index="0">
+            <div class="proyecto-card-inner">
+              <div class="proyecto-card-number">01</div>
+              <div class="proyecto-card-content">
+                <h3>To-Do List App</h3>
+                <p class="proyecto-subtitulo">Aplicación web para organizar tareas con filtros y persistencia local.</p>
+                <div class="proyecto-tags">
+                  <span class="proyecto-tag">React</span>
+                  <span class="proyecto-tag">TypeScript</span>
+                  <span class="proyecto-tag">CSS Modules</span>
+                </div>
+                <p class="proyecto-aprendizaje"><span>Aprendizaje:</span> Manejo de estado, diseño modular y almacenamiento en localStorage.</p>
+                <a class="proyecto-btn" href="https://github.com/Areman-05/To-Do-List-App" target="_blank" rel="noopener noreferrer">
+                  <i class="fab fa-github" aria-hidden="true"></i>
+                  Ver en GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+          <article class="proyecto-card" data-image="imagenes/space-shooter-cover.jpg" data-index="1">
+            <div class="proyecto-card-inner">
+              <div class="proyecto-card-number">02</div>
+              <div class="proyecto-card-content">
+                <h3>Space Shooter</h3>
+                <p class="proyecto-subtitulo">Videojuego arcade 2D en el que pilotas una nave espacial y eliminas oleadas de enemigos.</p>
+                <div class="proyecto-tags">
+                  <span class="proyecto-tag">Python</span>
+                  <span class="proyecto-tag">Pygame</span>
+                  <span class="proyecto-tag">Game Design</span>
+                </div>
+                <p class="proyecto-aprendizaje"><span>Aprendizaje:</span> Gestión de eventos, animaciones por sprites y sincronización de efectos de sonido.</p>
+                <a class="proyecto-btn" href="https://github.com/Areman-05/Space-Shooter-Project" target="_blank" rel="noopener noreferrer">
+                  <i class="fab fa-github" aria-hidden="true"></i>
+                  Ver en GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+          <article class="proyecto-card" data-image="imagenes/cuales-son-lenguajes-programacion.png" data-index="2">
+            <div class="proyecto-card-inner">
+              <div class="proyecto-card-number">03</div>
+              <div class="proyecto-card-content">
+                <h3>Ejercicios PHP</h3>
+                <p class="proyecto-subtitulo">Colección de prácticas para dominar PHP: control de flujo, arrays y funciones.</p>
+                <div class="proyecto-tags">
+                  <span class="proyecto-tag">PHP</span>
+                  <span class="proyecto-tag">HTML</span>
+                  <span class="proyecto-tag">Bootstrap</span>
+                </div>
+                <p class="proyecto-aprendizaje"><span>Aprendizaje:</span> Buenas prácticas en PHP, separación lógica/vista y componentes reutilizables.</p>
+                <a class="proyecto-btn" href="https://github.com/Areman-05/php_exercicis" target="_blank" rel="noopener noreferrer">
+                  <i class="fab fa-github" aria-hidden="true"></i>
+                  Ver en GitHub
+                </a>
+              </div>
+            </div>
+          </article>
         </div>
-      </article>
-      <article class="proyecto-card">
-        <div class="proyecto-media">
-          <img src="imagenes/space-shooter-cover.jpg" alt="Space Shooter Project">
-        </div>
-        <div class="proyecto-body">
-          <h3>Space Shooter</h3>
-          <p class="proyecto-subtitulo">Videojuego arcade 2D en el que pilotas una nave espacial y eliminas oleadas de enemigos.</p>
-          <div class="proyecto-tags">
-            <span class="proyecto-tag">Python</span>
-            <span class="proyecto-tag">Pygame</span>
-            <span class="proyecto-tag">Game Design</span>
-          </div>
-          <p class="proyecto-aprendizaje"><span>Aprendizaje:</span> Gestión de eventos, animaciones por sprites y sincronización de efectos de sonido.</p>
-          <a class="proyecto-btn" href="https://github.com/Areman-05/Space-Shooter-Project" target="_blank" rel="noopener noreferrer">Acceder a GitHub</a>
-        </div>
-      </article>
-      <article class="proyecto-card">
-        <div class="proyecto-media">
-          <img src="imagenes/cuales-son-lenguajes-programacion.png" alt="Ejercicios PHP">
-        </div>
-        <div class="proyecto-body">
-          <h3>Ejercicios PHP</h3>
-          <p class="proyecto-subtitulo">Colección de prácticas para dominar PHP: control de flujo, arrays y funciones.</p>
-          <div class="proyecto-tags">
-            <span class="proyecto-tag">PHP</span>
-            <span class="proyecto-tag">HTML</span>
-            <span class="proyecto-tag">Bootstrap</span>
-          </div>
-          <p class="proyecto-aprendizaje"><span>Aprendizaje:</span> Buenas prácticas en PHP, separación lógica/vista y componentes reutilizables.</p>
-          <a class="proyecto-btn" href="https://github.com/Areman-05/php_exercicis" target="_blank" rel="noopener noreferrer">Acceder a GitHub</a>
-        </div>
-      </article>
+      </div>
     </div>
   </section>
 

@@ -97,4 +97,109 @@ document.addEventListener('DOMContentLoaded', () => {
       form.reset();
     });
   }
+
+  // Funcionalidad de proyectos con scroll horizontal
+  const proyectoHeroImg = document.getElementById('proyecto-hero-img');
+  const proyectoCards = document.querySelectorAll('.proyecto-card');
+  const proyectosScroll = document.getElementById('proyectos-scroll');
+  const proyectosScrollWrapper = proyectosScroll?.parentElement;
+
+  if (proyectoHeroImg && proyectoCards.length > 0 && proyectosScrollWrapper) {
+    let activeIndex = 0;
+    let scrollTicking = false;
+
+    const updateHeroImage = (index) => {
+      const card = proyectoCards[index];
+      if (card && card.dataset.image) {
+        const newImageSrc = card.dataset.image;
+        if (proyectoHeroImg.src !== new URL(newImageSrc, window.location.href).href) {
+          proyectoHeroImg.style.opacity = '0';
+          setTimeout(() => {
+            proyectoHeroImg.src = newImageSrc;
+            proyectoHeroImg.style.opacity = '1';
+          }, 150);
+        }
+      }
+    };
+
+    const updateActiveCard = (index) => {
+      proyectoCards.forEach((card, i) => {
+        if (i === index) {
+          card.classList.add('active');
+        } else {
+          card.classList.remove('active');
+        }
+      });
+      activeIndex = index;
+      updateHeroImage(index);
+    };
+
+    const handleScroll = () => {
+      if (scrollTicking) return;
+      scrollTicking = true;
+      requestAnimationFrame(() => {
+        const scrollLeft = proyectosScrollWrapper.scrollLeft;
+        const scrollWidth = proyectosScrollWrapper.offsetWidth;
+        
+        // Encontrar qué tarjeta está más centrada en el viewport
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+        
+        proyectoCards.forEach((card, index) => {
+          const cardRect = card.getBoundingClientRect();
+          const scrollRect = proyectosScrollWrapper.getBoundingClientRect();
+          const cardCenter = cardRect.left + cardRect.width / 2 - scrollRect.left;
+          const scrollCenter = scrollWidth / 2;
+          const distance = Math.abs(cardCenter - scrollCenter);
+          
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = index;
+          }
+        });
+        
+        if (closestIndex !== activeIndex) {
+          updateActiveCard(closestIndex);
+        }
+        scrollTicking = false;
+      });
+    };
+
+    // Click en tarjetas
+    proyectoCards.forEach((card, index) => {
+      card.addEventListener('click', (e) => {
+        // No cambiar imagen si se hace click en el botón
+        if (e.target.closest('.proyecto-btn')) return;
+        
+        updateActiveCard(index);
+        // Scroll suave a la tarjeta
+        const cardLeft = card.offsetLeft;
+        proyectosScrollWrapper.scrollTo({
+          left: cardLeft - (proyectosScrollWrapper.offsetWidth - card.offsetWidth) / 2,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Scroll horizontal
+    proyectosScrollWrapper.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Inicializar con la primera tarjeta
+    updateActiveCard(0);
+
+    // Intersection Observer para activar cuando la sección esté visible
+    const proyectosSection = document.getElementById('proyectos');
+    if (proyectosSection) {
+      const proyectosObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Asegurar que la primera tarjeta esté activa al entrar
+            updateActiveCard(0);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      proyectosObserver.observe(proyectosSection);
+    }
+  }
 });
