@@ -110,8 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (proyectoListItems.length > 0 && proyectoPanelImgs.length > 0 && proyectosWrapper && proyectosSection) {
     const totalProjects = proyectoListItems.length;
     
-    // Ajustar altura del wrapper según número de proyectos (más espacio para mejor visualización)
-    proyectosWrapper.style.height = `${totalProjects * 150}vh`;
+    // Ajustar altura del wrapper según número de proyectos
+    proyectosWrapper.style.height = `${totalProjects * 100}vh`;
 
     // Función para cambiar el proyecto activo con efecto crossfade suave
     const switchProject = (projectIndex, fromScroll = false) => {
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 300);
     };
 
-    // Función para manejar el scroll invisible con mejor flujo
+    // Función para manejar el scroll invisible - versión simple y funcional
     const handleScroll = () => {
       if (scrollTicking) return;
       scrollTicking = true;
@@ -165,41 +165,20 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Verificar si estamos dentro de la sección sticky
         if (sectionRect.top <= 0 && sectionRect.bottom > viewportHeight) {
-          // Calcular el progreso del scroll dentro del wrapper de forma más precisa
           const wrapperTop = wrapperRect.top;
           const wrapperHeight = wrapperRect.height;
           const scrollableHeight = wrapperHeight - viewportHeight;
           
           if (scrollableHeight > 0) {
+            // Calcular progreso del scroll (0 a 1)
             const scrollProgress = Math.max(0, Math.min(1, -wrapperTop / scrollableHeight));
             
-            // Dividir el scroll en zonas para cada proyecto
-            // Cada proyecto ocupa una porción igual del scroll
-            const zoneSize = 1 / totalProjects;
+            // Calcular índice del proyecto basado en el progreso
+            const targetIndex = Math.min(Math.floor(scrollProgress * totalProjects), totalProjects - 1);
             
-            // Calcular directamente qué proyecto debería estar activo basado en el progreso
-            // Usar Math.floor para determinar la zona actual
-            let targetIndex = Math.floor(scrollProgress / zoneSize);
-            
-            // Asegurar que el índice no exceda el número de proyectos
-            if (targetIndex >= totalProjects) {
-              targetIndex = totalProjects - 1;
-            }
-            
-            // Asegurar que el índice esté en rango
-            const clampedIndex = Math.max(0, Math.min(totalProjects - 1, targetIndex));
-            
-            // Solo cambiar si hay una diferencia clara y no estamos en transición
-            if (clampedIndex !== currentProject && !isTransitioning) {
-              switchProject(clampedIndex, true);
-            }
-          }
-        } else {
-          // Si salimos de la sección, permitir scroll normal sin bloqueos
-          if (sectionRect.bottom < 0) {
-            // Si estamos por encima de la sección, resetear al primer proyecto
-            if (currentProject !== 0 && !isTransitioning) {
-              switchProject(0, true);
+            // Cambiar proyecto solo si es diferente y no estamos en transición
+            if (targetIndex !== currentProject && !isTransitioning) {
+              switchProject(targetIndex, true);
             }
           }
         }
