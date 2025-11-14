@@ -110,8 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (proyectoListItems.length > 0 && proyectoPanelImgs.length > 0 && proyectosWrapper && proyectosSection) {
     const totalProjects = proyectoListItems.length;
     
-    // Ajustar altura del wrapper según número de proyectos (más espacio para mejor carga)
-    proyectosWrapper.style.height = `${totalProjects * 120}vh`;
+    // Ajustar altura del wrapper según número de proyectos (más espacio para mejor visualización)
+    proyectosWrapper.style.height = `${totalProjects * 150}vh`;
 
     // Función para cambiar el proyecto activo con efecto crossfade suave
     const switchProject = (projectIndex, fromScroll = false) => {
@@ -178,19 +178,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const zoneSize = 1 / totalProjects;
             let targetIndex = 0;
             
-            // Determinar en qué zona estamos con un pequeño offset para evitar cambios bruscos
+            // Determinar en qué zona estamos con un offset positivo para dar más tiempo a cada proyecto
             for (let i = 0; i < totalProjects; i++) {
               const zoneStart = i * zoneSize;
               const zoneEnd = (i + 1) * zoneSize;
               
+              // Añadir un pequeño margen al inicio de cada zona para dar más tiempo de visualización
+              const adjustedZoneStart = zoneStart + (zoneSize * 0.1);
+              const adjustedZoneEnd = zoneEnd - (zoneSize * 0.1);
+              
               // Si estamos en la última zona, incluir el borde superior
               if (i === totalProjects - 1) {
-                if (scrollProgress >= zoneStart - 0.05) {
+                if (scrollProgress >= adjustedZoneStart) {
                   targetIndex = i;
                   break;
                 }
               } else {
-                if (scrollProgress >= zoneStart - 0.05 && scrollProgress < zoneEnd - 0.05) {
+                if (scrollProgress >= adjustedZoneStart && scrollProgress < adjustedZoneEnd) {
                   targetIndex = i;
                   break;
                 }
