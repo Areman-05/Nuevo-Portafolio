@@ -98,138 +98,163 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Funcionalidad de proyectos con scroll vertical y barra de progreso
-  const proyectosMainImage = document.getElementById('proyectos-main-image');
-  const proyectoTextItems = document.querySelectorAll('.proyecto-text-item');
-  const proyectosProgressFill = document.getElementById('proyectos-progress');
+  // Funcionalidad de proyectos con scroll horizontal controlado por scroll vertical
+  const proyectoHeroImg = document.getElementById('proyecto-hero-img');
+  const proyectoCards = document.querySelectorAll('.proyecto-card');
+  const proyectosScroll = document.getElementById('proyectos-scroll');
+  const proyectosScrollWrapper = proyectosScroll?.parentElement;
+  const proyectosWrapper = document.querySelector('.proyectos-wrapper');
   const proyectosSection = document.getElementById('proyectos');
 
-  if (proyectosMainImage && proyectoTextItems.length > 0 && proyectosProgressFill && proyectosSection) {
+  if (proyectoHeroImg && proyectoCards.length > 0 && proyectosScrollWrapper && proyectosWrapper && proyectosSection) {
     let activeIndex = 0;
     let scrollTicking = false;
-    const totalItems = proyectoTextItems.length;
+    let isScrolling = false;
+    const totalCards = proyectoCards.length;
+    
+    // Ajustar la altura del wrapper según el número de proyectos
+    proyectosWrapper.style.height = `${totalCards * 100}vh`;
 
-    const updateImage = (index) => {
-      const item = proyectoTextItems[index];
-      if (item && item.dataset.image) {
-        const newImageSrc = item.dataset.image;
-        const currentSrc = new URL(proyectosMainImage.src, window.location.href).href;
-        const newSrc = new URL(newImageSrc, window.location.href).href;
-        
-        if (currentSrc !== newSrc) {
-          proyectosMainImage.style.opacity = '0';
+    const updateHeroImage = (index) => {
+      const card = proyectoCards[index];
+      if (card && card.dataset.image) {
+        const newImageSrc = card.dataset.image;
+        if (proyectoHeroImg.src !== new URL(newImageSrc, window.location.href).href) {
+          proyectoHeroImg.style.opacity = '0';
           setTimeout(() => {
-            proyectosMainImage.src = newImageSrc;
-            proyectosMainImage.style.opacity = '1';
-          }, 200);
+            proyectoHeroImg.src = newImageSrc;
+            proyectoHeroImg.style.opacity = '1';
+          }, 150);
         }
       }
     };
 
-    const updateActiveItem = (index, force = false) => {
-      if (!force && index === activeIndex) return;
-      
-      proyectoTextItems.forEach((item, i) => {
+    const updateActiveCard = (index) => {
+      proyectoCards.forEach((card, i) => {
         if (i === index) {
-          item.classList.add('active');
+          card.classList.add('active');
         } else {
-          item.classList.remove('active');
+          card.classList.remove('active');
         }
       });
-      
       activeIndex = index;
-      updateImage(index);
-      
-      // Actualizar barra de progreso
-      const progressHeight = 100 / totalItems;
-      const progressTop = (index * progressHeight);
-      proyectosProgressFill.style.height = `${progressHeight}%`;
-      proyectosProgressFill.style.top = `${progressTop}%`;
+      updateHeroImage(index);
     };
 
-    const handleScroll = () => {
-      if (scrollTicking) return;
+    const handleHorizontalScroll = () => {
+      if (scrollTicking || isScrolling) return;
+      scrollTicking = true;
+      requestAnimationFrame(() => {
+        const scrollWidth = proyectosScrollWrapper.offsetWidth;
+        
+        // Encontrar qué tarjeta está más centrada en el viewport
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+        
+        proyectoCards.forEach((card, index) => {
+          const cardRect = card.getBoundingClientRect();
+          const scrollRect = proyectosScrollWrapper.getBoundingClientRect();
+          const cardCenter = cardRect.left + cardRect.width / 2 - scrollRect.left;
+          const scrollCenter = scrollWidth / 2;
+          const distance = Math.abs(cardCenter - scrollCenter);
+          
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = index;
+          }
+        });
+        
+        if (closestIndex !== activeIndex) {
+          updateActiveCard(closestIndex);
+        }
+        scrollTicking = false;
+      });
+    };
+
+    // Convertir scroll vertical en scroll horizontal cuando estás en la sección
+    const handleVerticalScroll = () => {
+      if (scrollTicking || isScrolling) return;
       scrollTicking = true;
       
       requestAnimationFrame(() => {
+        const wrapperRect = proyectosWrapper.getBoundingClientRect();
         const sectionRect = proyectosSection.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
-        const viewportCenter = viewportHeight * 0.5;
-        const sectionTop = sectionRect.top;
-        const sectionBottom = sectionRect.bottom;
-        const sectionHeight = sectionRect.height;
         
-        // Si la sección no está visible, no hacer nada
-        if (sectionBottom < 0 || sectionTop > viewportHeight) {
-          scrollTicking = false;
-          return;
-        }
-        
-        // Calcular el progreso basándose en la posición del centro del viewport dentro de la sección
-        // Dividimos la sección en zonas iguales para cada proyecto
-        const zoneHeight = sectionHeight / totalItems;
-        const relativePosition = viewportCenter - sectionTop;
-        
-        // Determinar en qué zona estamos
-        let newIndex = Math.floor(relativePosition / zoneHeight);
-        newIndex = Math.max(0, Math.min(totalItems - 1, newIndex));
-        
-        // Si estamos en la primera parte de la sección (primeros 30%), siempre mostrar el primero
-        if (sectionTop > viewportHeight * 0.2 && sectionTop < viewportHeight * 0.5) {
-          newIndex = 0;
-        }
-        
-        if (newIndex !== activeIndex) {
-          updateActiveItem(newIndex);
+        // Verificar si estamos dentro de la sección sticky
+        if (sectionRect.top <= 0 && sectionRect.bottom > viewportHeight) {
+          // Calcular el progreso del scroll dentro del wrapper
+          const wrapperTop = wrapperRect.top;
+          const wrapperHeight = wrapperRect.height;
+          const scrollProgress = Math.max(0, Math.min(1, -wrapperTop / (wrapperHeight - viewportHeight)));
+          
+          // Calcular el scroll horizontal basado en el progreso
+          const maxScrollLeft = proyectosScroll.scrollWidth - proyectosScrollWrapper.offsetWidth;
+          const targetScrollLeft = scrollProgress * maxScrollLeft;
+          
+          // Aplicar el scroll horizontal
+          isScrolling = true;
+          proyectosScrollWrapper.scrollLeft = targetScrollLeft;
+          
+          // Actualizar la tarjeta activa
+          const cardIndex = Math.round(scrollProgress * (totalCards - 1));
+          const clampedIndex = Math.max(0, Math.min(totalCards - 1, cardIndex));
+          
+          if (clampedIndex !== activeIndex) {
+            updateActiveCard(clampedIndex);
+          }
+          
+          setTimeout(() => {
+            isScrolling = false;
+          }, 100);
         }
         
         scrollTicking = false;
       });
     };
 
-    // Función para verificar y actualizar el estado inicial
-    const checkInitialState = () => {
-      const sectionRect = proyectosSection.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      
-      // Si la sección está visible o cerca de ser visible, asegurar que el primer elemento esté activo
-      if (sectionRect.top < viewportHeight * 0.8 && sectionRect.bottom > 0) {
-        // Si estamos en la parte superior de la sección, mostrar el primer elemento
-        if (sectionRect.top > viewportHeight * 0.1) {
-          updateActiveItem(0, true);
-        } else {
-          handleScroll();
-        }
-      }
-    };
-
-    // Intersection Observer para detectar cuando la sección está visible
-    const proyectosObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Cuando la sección entra en vista, verificar el estado
-          checkInitialState();
-          handleScroll();
-        }
+    // Click en tarjetas
+    proyectoCards.forEach((card, index) => {
+      card.addEventListener('click', (e) => {
+        // No cambiar imagen si se hace click en el botón
+        if (e.target.closest('.proyecto-btn')) return;
+        
+        updateActiveCard(index);
+        // Scroll suave a la tarjeta
+        const cardLeft = card.offsetLeft;
+        isScrolling = true;
+        proyectosScrollWrapper.scrollTo({
+          left: cardLeft - (proyectosScrollWrapper.offsetWidth - card.offsetWidth) / 2,
+          behavior: 'smooth'
+        });
+        setTimeout(() => {
+          isScrolling = false;
+        }, 500);
       });
-    }, { 
-      threshold: [0, 0.1, 0.3, 0.5, 0.7, 1],
-      rootMargin: '0px 0px -10% 0px'
     });
 
-    proyectosObserver.observe(proyectosSection);
+    // Scroll horizontal manual (cuando el usuario hace scroll horizontal directamente)
+    proyectosScrollWrapper.addEventListener('scroll', handleHorizontalScroll, { passive: true });
 
-    // Inicializar inmediatamente y después de un pequeño delay
-    checkInitialState();
-    setTimeout(() => {
-      checkInitialState();
-      handleScroll();
-    }, 150);
+    // Scroll vertical (convierte a horizontal)
+    window.addEventListener('scroll', handleVerticalScroll, { passive: true });
 
-    // Escuchar scroll global
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    // También escuchar resize para recalcular
-    window.addEventListener('resize', handleScroll, { passive: true });
+    // Inicializar con la primera tarjeta
+    updateActiveCard(0);
+
+    // Intersection Observer para resetear cuando salgas de la sección
+    const proyectosObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+          // Si salimos por abajo, mantener la última tarjeta
+          // Si salimos por arriba, resetear a la primera
+          if (entry.boundingClientRect.bottom < 0) {
+            updateActiveCard(0);
+          }
+        }
+      });
+    }, { threshold: [0, 1] });
+
+    proyectosObserver.observe(proyectosWrapper);
   }
 });
