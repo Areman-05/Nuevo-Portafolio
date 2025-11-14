@@ -153,9 +153,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 400);
     };
 
-    // Función para manejar el scroll invisible
+    // Función para manejar el scroll invisible con mejor flujo
     const handleScroll = () => {
-      if (scrollTicking || isTransitioning) return;
+      if (scrollTicking) return;
       scrollTicking = true;
       
       requestAnimationFrame(() => {
@@ -165,17 +165,44 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Verificar si estamos dentro de la sección sticky
         if (sectionRect.top <= 0 && sectionRect.bottom > viewportHeight) {
-          // Calcular el progreso del scroll dentro del wrapper
+          // Calcular el progreso del scroll dentro del wrapper de forma más precisa
           const wrapperTop = wrapperRect.top;
           const wrapperHeight = wrapperRect.height;
-          const scrollProgress = Math.max(0, Math.min(1, -wrapperTop / (wrapperHeight - viewportHeight)));
+          const scrollableHeight = wrapperHeight - viewportHeight;
           
-          // Calcular qué proyecto debe estar activo basado en el progreso
-          const projectIndex = Math.round(scrollProgress * (totalProjects - 1));
-          const clampedIndex = Math.max(0, Math.min(totalProjects - 1, projectIndex));
-          
-          if (clampedIndex !== currentProject) {
-            switchProject(clampedIndex, true);
+          if (scrollableHeight > 0) {
+            const scrollProgress = Math.max(0, Math.min(1, -wrapperTop / scrollableHeight));
+            
+            // Dividir el scroll en zonas más precisas para cada proyecto
+            // Cada proyecto ocupa una porción igual del scroll
+            const zoneSize = 1 / totalProjects;
+            let targetIndex = 0;
+            
+            // Determinar en qué zona estamos
+            for (let i = 0; i < totalProjects; i++) {
+              const zoneStart = i * zoneSize;
+              const zoneEnd = (i + 1) * zoneSize;
+              
+              // Si estamos en la última zona, incluir el borde superior
+              if (i === totalProjects - 1) {
+                if (scrollProgress >= zoneStart) {
+                  targetIndex = i;
+                  break;
+                }
+              } else {
+                if (scrollProgress >= zoneStart && scrollProgress < zoneEnd) {
+                  targetIndex = i;
+                  break;
+                }
+              }
+            }
+            
+            // Asegurar que el índice esté en rango
+            const clampedIndex = Math.max(0, Math.min(totalProjects - 1, targetIndex));
+            
+            if (clampedIndex !== currentProject && !isTransitioning) {
+              switchProject(clampedIndex, true);
+            }
           }
         }
         

@@ -60,14 +60,14 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: clamp(12px, 2.6vh, 18px) clamp(28px, 7vw, 80px);
+  padding: clamp(8px, 1.8vh, 12px) clamp(24px, 6vw, 70px);
   z-index: 1000;
   transition: transform 0.4s ease, background 0.4s, box-shadow 0.4s;
   backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 0 0 clamp(26px, 8vw, 60px) clamp(26px, 8vw, 60px);
-  padding-bottom: clamp(18px, 3vh, 26px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0 0 clamp(20px, 6vw, 40px) clamp(20px, 6vw, 40px);
+  padding-bottom: clamp(10px, 2vh, 14px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
 }
 
 nav .nav-inner {
@@ -75,14 +75,14 @@ nav .nav-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: clamp(20px, 4vw, 60px);
+  gap: clamp(16px, 3vw, 50px);
   position: relative;
 }
 
 nav .nav-brand {
   display: inline-flex;
   align-items: center;
-  gap: clamp(12px, 1.8vw, 20px);
+  gap: clamp(10px, 1.5vw, 16px);
   text-decoration: none;
   color: var(--color-secundario);
   letter-spacing: 0.6px;
@@ -91,41 +91,41 @@ nav .nav-brand {
 .brand-mark {
   display: grid;
   place-items: center;
-  width: clamp(42px, 4vw, 52px);
-  height: clamp(42px, 4vw, 52px);
-  border-radius: 16px;
+  width: clamp(36px, 3.5vw, 44px);
+  height: clamp(36px, 3.5vw, 44px);
+  border-radius: 12px;
   background: linear-gradient(135deg, rgba(240, 81, 56, 0.95), rgba(240, 81, 56, 0.4));
   color: var(--color-secundario);
   font-weight: 700;
-  box-shadow: 0 18px 32px rgba(240, 81, 56, 0.25);
+  box-shadow: 0 14px 28px rgba(240, 81, 56, 0.25);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .brand-mark i {
-  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  font-size: clamp(0.95rem, 1.4vw, 1.2rem);
   color: var(--color-secundario);
 }
 
 .brand-text {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
   line-height: 1.15;
 }
 
 .brand-name {
-  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  font-size: clamp(0.88rem, 1.05vw, 0.98rem);
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1.4px;
+  letter-spacing: 1.2px;
 }
 
 .brand-role {
-  font-size: clamp(0.62rem, 0.8vw, 0.78rem);
+  font-size: clamp(0.58rem, 0.7vw, 0.7rem);
   font-weight: 400;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.62);
-  letter-spacing: 2.4px;
+  letter-spacing: 2px;
 }
 
 nav .nav-brand:hover .brand-mark {
@@ -135,7 +135,9 @@ nav .nav-brand:hover .brand-mark {
 
 nav.scrolled {
   background: linear-gradient(90deg, rgba(5, 5, 8, 0.92) 0%, rgba(5, 5, 10, 0.7) 50%, rgba(5, 5, 8, 0.92) 100%);
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  padding: clamp(6px, 1.5vh, 10px) clamp(24px, 6vw, 70px);
+  padding-bottom: clamp(8px, 1.8vh, 12px);
 }
 
 nav.hidden {
@@ -147,13 +149,15 @@ nav .nav-list {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: clamp(18px, 3.5vw, 40px);
-  padding: 0 clamp(12px, 2vw, 24px);
+  gap: clamp(14px, 2.5vw, 28px);
+  padding: 0 clamp(10px, 1.5vw, 20px);
   margin-left: auto;
+  flex-wrap: nowrap;
 }
 
 nav .nav-list li {
   margin-left: 0;
+  white-space: nowrap;
 }
 
 nav .nav-list li a {
@@ -162,19 +166,20 @@ nav .nav-list li a {
   font-weight: 500;
   position: relative;
   transition: color 0.3s;
-  letter-spacing: 1.2px;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
-  font-size: clamp(0.68rem, 1vw, 0.9rem);
+  font-size: clamp(0.6rem, 0.85vw, 0.78rem);
+  white-space: nowrap;
 }
 
 nav .nav-list li a::after {
   content: '';
   position: absolute;
   width: 0%;
-  height: 3px;
+  height: 2px;
   background: linear-gradient(90deg, rgba(240, 81, 56, 0.95), rgba(255, 255, 255, 0.75));
   left: 0;
-  bottom: -8px;
+  bottom: -6px;
   transition: width 0.3s;
   border-radius: 999px;
 }
