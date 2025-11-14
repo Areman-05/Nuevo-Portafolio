@@ -98,108 +98,111 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Funcionalidad de proyectos con scroll horizontal
-  const proyectoHeroImg = document.getElementById('proyecto-hero-img');
-  const proyectoCards = document.querySelectorAll('.proyecto-card');
-  const proyectosScroll = document.getElementById('proyectos-scroll');
-  const proyectosScrollWrapper = proyectosScroll?.parentElement;
+  // Funcionalidad de proyectos con scroll vertical y barra de progreso
+  const proyectosMainImage = document.getElementById('proyectos-main-image');
+  const proyectoTextItems = document.querySelectorAll('.proyecto-text-item');
+  const proyectosProgressFill = document.getElementById('proyectos-progress');
+  const proyectosSection = document.getElementById('proyectos');
 
-  if (proyectoHeroImg && proyectoCards.length > 0 && proyectosScrollWrapper) {
+  if (proyectosMainImage && proyectoTextItems.length > 0 && proyectosProgressFill && proyectosSection) {
     let activeIndex = 0;
     let scrollTicking = false;
+    const totalItems = proyectoTextItems.length;
 
-    const updateHeroImage = (index) => {
-      const card = proyectoCards[index];
-      if (card && card.dataset.image) {
-        const newImageSrc = card.dataset.image;
-        if (proyectoHeroImg.src !== new URL(newImageSrc, window.location.href).href) {
-          proyectoHeroImg.style.opacity = '0';
+    const updateImage = (index) => {
+      const item = proyectoTextItems[index];
+      if (item && item.dataset.image) {
+        const newImageSrc = item.dataset.image;
+        const currentSrc = new URL(proyectosMainImage.src, window.location.href).href;
+        const newSrc = new URL(newImageSrc, window.location.href).href;
+        
+        if (currentSrc !== newSrc) {
+          proyectosMainImage.style.opacity = '0';
           setTimeout(() => {
-            proyectoHeroImg.src = newImageSrc;
-            proyectoHeroImg.style.opacity = '1';
-          }, 150);
+            proyectosMainImage.src = newImageSrc;
+            proyectosMainImage.style.opacity = '1';
+          }, 200);
         }
       }
     };
 
-    const updateActiveCard = (index) => {
-      proyectoCards.forEach((card, i) => {
+    const updateActiveItem = (index) => {
+      if (index === activeIndex) return;
+      
+      proyectoTextItems.forEach((item, i) => {
         if (i === index) {
-          card.classList.add('active');
+          item.classList.add('active');
         } else {
-          card.classList.remove('active');
+          item.classList.remove('active');
         }
       });
+      
       activeIndex = index;
-      updateHeroImage(index);
+      updateImage(index);
+      
+      // Actualizar barra de progreso
+      const progressHeight = 100 / totalItems;
+      const progressTop = (index * progressHeight);
+      proyectosProgressFill.style.height = `${progressHeight}%`;
+      proyectosProgressFill.style.top = `${progressTop}%`;
     };
 
     const handleScroll = () => {
       if (scrollTicking) return;
       scrollTicking = true;
+      
       requestAnimationFrame(() => {
-        const scrollLeft = proyectosScrollWrapper.scrollLeft;
-        const scrollWidth = proyectosScrollWrapper.offsetWidth;
+        const sectionRect = proyectosSection.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const sectionTop = sectionRect.top;
+        const sectionHeight = sectionRect.height;
         
-        // Encontrar qué tarjeta está más centrada en el viewport
-        let closestIndex = 0;
-        let closestDistance = Infinity;
+        // Calcular qué sección debería estar activa basándose en el scroll
+        // Cuando la sección está en el centro del viewport, empezamos a cambiar
+        const scrollStart = viewportHeight * 0.3;
+        const scrollEnd = viewportHeight * 0.7;
+        const scrollRange = scrollEnd - scrollStart;
         
-        proyectoCards.forEach((card, index) => {
-          const cardRect = card.getBoundingClientRect();
-          const scrollRect = proyectosScrollWrapper.getBoundingClientRect();
-          const cardCenter = cardRect.left + cardRect.width / 2 - scrollRect.left;
-          const scrollCenter = scrollWidth / 2;
-          const distance = Math.abs(cardCenter - scrollCenter);
-          
-          if (distance < closestDistance) {
-            closestDistance = distance;
-            closestIndex = index;
-          }
-        });
-        
-        if (closestIndex !== activeIndex) {
-          updateActiveCard(closestIndex);
+        let scrollProgress = 0;
+        if (sectionTop < scrollStart && sectionTop + sectionHeight > scrollStart) {
+          // La sección está siendo scrolleada
+          const scrolled = scrollStart - sectionTop;
+          scrollProgress = Math.max(0, Math.min(1, scrolled / (sectionHeight * 0.7)));
+        } else if (sectionTop <= scrollStart) {
+          scrollProgress = 1;
         }
+        
+        const newIndex = Math.min(
+          totalItems - 1,
+          Math.max(0, Math.floor(scrollProgress * totalItems))
+        );
+        
+        if (newIndex !== activeIndex) {
+          updateActiveItem(newIndex);
+        }
+        
         scrollTicking = false;
       });
     };
 
-    // Click en tarjetas
-    proyectoCards.forEach((card, index) => {
-      card.addEventListener('click', (e) => {
-        // No cambiar imagen si se hace click en el botón
-        if (e.target.closest('.proyecto-btn')) return;
-        
-        updateActiveCard(index);
-        // Scroll suave a la tarjeta
-        const cardLeft = card.offsetLeft;
-        proyectosScrollWrapper.scrollTo({
-          left: cardLeft - (proyectosScrollWrapper.offsetWidth - card.offsetWidth) / 2,
-          behavior: 'smooth'
-        });
+    // Intersection Observer para detectar cuando la sección está visible
+    const proyectosObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          handleScroll();
+          window.addEventListener('scroll', handleScroll, { passive: true });
+        } else {
+          window.removeEventListener('scroll', handleScroll);
+        }
       });
-    });
+    }, { threshold: 0.1 });
 
-    // Scroll horizontal
-    proyectosScrollWrapper.addEventListener('scroll', handleScroll, { passive: true });
+    proyectosObserver.observe(proyectosSection);
 
-    // Inicializar con la primera tarjeta
-    updateActiveCard(0);
+    // Inicializar con el primer item
+    updateActiveItem(0);
 
-    // Intersection Observer para activar cuando la sección esté visible
-    const proyectosSection = document.getElementById('proyectos');
-    if (proyectosSection) {
-      const proyectosObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Asegurar que la primera tarjeta esté activa al entrar
-            updateActiveCard(0);
-          }
-        });
-      }, { threshold: 0.3 });
-
-      proyectosObserver.observe(proyectosSection);
-    }
+    // También escuchar scroll global para mejor detección
+    window.addEventListener('scroll', handleScroll, { passive: true });
   }
 });
