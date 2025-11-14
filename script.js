@@ -110,8 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (proyectoListItems.length > 0 && proyectoPanelImgs.length > 0 && proyectosWrapper && proyectosSection) {
     const totalProjects = proyectoListItems.length;
     
-    // Ajustar altura del wrapper según número de proyectos
-    proyectosWrapper.style.height = `${totalProjects * 100}vh`;
+    // Ajustar altura del wrapper según número de proyectos (más espacio para mejor carga)
+    proyectosWrapper.style.height = `${totalProjects * 120}vh`;
 
     // Función para cambiar el proyecto activo con efecto crossfade suave
     const switchProject = (projectIndex, fromScroll = false) => {
