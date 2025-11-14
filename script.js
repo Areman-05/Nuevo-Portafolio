@@ -173,32 +173,17 @@ document.addEventListener('DOMContentLoaded', () => {
           if (scrollableHeight > 0) {
             const scrollProgress = Math.max(0, Math.min(1, -wrapperTop / scrollableHeight));
             
-            // Dividir el scroll en zonas más precisas para cada proyecto
+            // Dividir el scroll en zonas para cada proyecto
             // Cada proyecto ocupa una porción igual del scroll
             const zoneSize = 1 / totalProjects;
-            let targetIndex = 0;
             
-            // Determinar en qué zona estamos con un offset positivo para dar más tiempo a cada proyecto
-            for (let i = 0; i < totalProjects; i++) {
-              const zoneStart = i * zoneSize;
-              const zoneEnd = (i + 1) * zoneSize;
-              
-              // Añadir un pequeño margen al inicio de cada zona para dar más tiempo de visualización
-              const adjustedZoneStart = zoneStart + (zoneSize * 0.1);
-              const adjustedZoneEnd = zoneEnd - (zoneSize * 0.1);
-              
-              // Si estamos en la última zona, incluir el borde superior
-              if (i === totalProjects - 1) {
-                if (scrollProgress >= adjustedZoneStart) {
-                  targetIndex = i;
-                  break;
-                }
-              } else {
-                if (scrollProgress >= adjustedZoneStart && scrollProgress < adjustedZoneEnd) {
-                  targetIndex = i;
-                  break;
-                }
-              }
+            // Calcular directamente qué proyecto debería estar activo basado en el progreso
+            // Usar Math.floor para determinar la zona actual
+            let targetIndex = Math.floor(scrollProgress / zoneSize);
+            
+            // Asegurar que el índice no exceda el número de proyectos
+            if (targetIndex >= totalProjects) {
+              targetIndex = totalProjects - 1;
             }
             
             // Asegurar que el índice esté en rango
