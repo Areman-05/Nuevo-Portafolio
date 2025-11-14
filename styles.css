@@ -816,7 +816,7 @@ body.js-enabled section:not(#inicio).in-view {
   font-weight: 600;
   color: #fff;
   letter-spacing: 0.02em;
-  margin: 0;
+  margin: 0 0 clamp(20px, 3vw, 24px) 0;
   display: flex;
   align-items: center;
   gap: clamp(10px, 1.5vw, 14px);
@@ -844,6 +844,62 @@ body.js-enabled section:not(#inicio).in-view {
   font-size: clamp(0.85rem, 1vw, 0.95rem) !important;
   color: rgba(235, 237, 244, 0.65) !important;
   font-style: italic;
+  margin-top: clamp(12px, 2vw, 16px) !important;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.2vw, 10px);
+  margin-bottom: clamp(14px, 2vw, 18px);
+}
+
+.skill-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+}
+
+.skill-name {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(8px, 1.2vw, 10px);
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.skill-name i {
+  color: rgba(240, 81, 56, 0.85);
+  font-size: 1.1em;
+}
+
+.skill-level {
+  color: rgba(240, 81, 56, 0.8);
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.skill-progress {
+  position: relative;
+  width: 100%;
+  height: clamp(10px, 1.2vw, 12px);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.skill-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--progress);
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(240, 81, 56, 0.95), rgba(255, 200, 150, 0.85));
+  box-shadow: 0 0 16px rgba(240, 81, 56, 0.5);
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media (max-width: 768px) {
@@ -857,14 +913,14 @@ body.js-enabled section:not(#inicio).in-view {
 .skills-carousel-wrapper {
   position: relative;
   width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
   margin-top: clamp(60px, 10vw, 100px);
   padding: clamp(40px, 7vw, 60px) 0;
   overflow: hidden;
   z-index: 1;
+  left: 0;
+  right: 0;
 }
 
 .skills-carousel-fade-left,
