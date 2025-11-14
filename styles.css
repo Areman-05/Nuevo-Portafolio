@@ -933,7 +933,7 @@ body.js-enabled section:not(#inicio).in-view {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: clamp(150px, 18vw, 250px);
+  width: clamp(120px, 15vw, 200px);
   height: 100%;
   z-index: 3;
   pointer-events: none;
@@ -941,16 +941,12 @@ body.js-enabled section:not(#inicio).in-view {
 
 .skills-carousel-fade-left {
   left: 0;
-  background: radial-gradient(ellipse at left center, rgba(10, 10, 16, 0.95) 0%, rgba(10, 10, 16, 0.7) 30%, rgba(10, 10, 16, 0.3) 60%, transparent 100%);
-  mask-image: linear-gradient(to right, black 0%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, black 0%, transparent 100%);
+  background: linear-gradient(to right, rgba(10, 10, 16, 0.98) 0%, rgba(10, 10, 16, 0.85) 25%, rgba(10, 10, 16, 0.5) 50%, transparent 100%);
 }
 
 .skills-carousel-fade-right {
   right: 0;
-  background: radial-gradient(ellipse at right center, rgba(10, 10, 16, 0.95) 0%, rgba(10, 10, 16, 0.7) 30%, rgba(10, 10, 16, 0.3) 60%, transparent 100%);
-  mask-image: linear-gradient(to left, black 0%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to left, black 0%, transparent 100%);
+  background: linear-gradient(to left, rgba(10, 10, 16, 0.98) 0%, rgba(10, 10, 16, 0.85) 25%, rgba(10, 10, 16, 0.5) 50%, transparent 100%);
 }
 
 .skills-carousel-fade-left::before {
@@ -960,10 +956,8 @@ body.js-enabled section:not(#inicio).in-view {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(ellipse at left center, rgba(240, 81, 56, 0.35) 0%, rgba(240, 81, 56, 0.2) 40%, transparent 80%);
-  opacity: 0.7;
-  mask-image: linear-gradient(to right, black 0%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, black 0%, transparent 100%);
+  background: linear-gradient(to right, rgba(240, 81, 56, 0.4) 0%, rgba(240, 81, 56, 0.25) 30%, rgba(240, 81, 56, 0.1) 60%, transparent 100%);
+  opacity: 0.6;
 }
 
 .skills-carousel-fade-right::before {
@@ -973,10 +967,8 @@ body.js-enabled section:not(#inicio).in-view {
   right: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(ellipse at right center, rgba(240, 81, 56, 0.35) 0%, rgba(240, 81, 56, 0.2) 40%, transparent 80%);
-  opacity: 0.7;
-  mask-image: linear-gradient(to left, black 0%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to left, black 0%, transparent 100%);
+  background: linear-gradient(to left, rgba(240, 81, 56, 0.4) 0%, rgba(240, 81, 56, 0.25) 30%, rgba(240, 81, 56, 0.1) 60%, transparent 100%);
+  opacity: 0.6;
 }
 
 .skills-carousel {
@@ -1015,19 +1007,6 @@ body.js-enabled section:not(#inicio).in-view {
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(12px);
-  position: relative;
-  overflow: hidden;
-}
-
-.skills-carousel-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(240, 81, 56, 0.3), transparent);
-  opacity: 0.5;
 }
 
 .skills-carousel-item i {
