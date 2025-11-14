@@ -268,104 +268,57 @@
   </section>
 
   <!-- Sección de proyectos -->
-  <section id="proyectos">
-    <h2>Proyectos</h2>
-    <div class="proyectos-split-container">
+  <div class="proyectos-wrapper">
+    <section id="proyectos">
+      <h2>Proyectos</h2>
+      <div class="proyectos-split-container">
       <!-- Lista de proyectos a la izquierda -->
       <div class="proyectos-list">
         <ul class="proyectos-list-items">
           <li class="proyecto-list-item active" data-project="0">
             <div class="proyecto-list-content">
-              <span class="proyecto-list-number">01</span>
-              <div class="proyecto-list-text">
-                <h3>To-Do List App</h3>
-                <p>Aplicación web para organizar tareas con filtros y persistencia local.</p>
-              </div>
+              <h3>To-Do List App</h3>
+              <p>Una aplicación web moderna para organizar tareas con filtros avanzados y persistencia local. Desarrollada con React y TypeScript, demuestra habilidades en manejo de estado, diseño modular y almacenamiento en localStorage para una experiencia fluida sin necesidad de backend.</p>
+              <a class="proyecto-list-link" href="https://github.com/Areman-05/To-Do-List-App" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github" aria-hidden="true"></i>
+                Ver en GitHub
+              </a>
             </div>
           </li>
           <li class="proyecto-list-item" data-project="1">
             <div class="proyecto-list-content">
-              <span class="proyecto-list-number">02</span>
-              <div class="proyecto-list-text">
-                <h3>Space Shooter</h3>
-                <p>Videojuego arcade 2D en el que pilotas una nave espacial y eliminas oleadas de enemigos.</p>
-              </div>
+              <h3>Space Shooter</h3>
+              <p>Videojuego arcade 2D desarrollado en Python con Pygame. Los jugadores pilotan una nave espacial enfrentándose a oleadas de enemigos. Este proyecto demuestra habilidades en gestión de eventos, animaciones por sprites y sincronización de efectos de sonido para crear una experiencia inmersiva.</p>
+              <a class="proyecto-list-link" href="https://github.com/Areman-05/Space-Shooter-Project" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github" aria-hidden="true"></i>
+                Ver en GitHub
+              </a>
             </div>
           </li>
           <li class="proyecto-list-item" data-project="2">
             <div class="proyecto-list-content">
-              <span class="proyecto-list-number">03</span>
-              <div class="proyecto-list-text">
-                <h3>Ejercicios PHP</h3>
-                <p>Colección de prácticas para dominar PHP: control de flujo, arrays y funciones.</p>
-              </div>
+              <h3>Ejercicios PHP</h3>
+              <p>Colección completa de prácticas para dominar PHP desde los fundamentos. Incluye ejercicios sobre control de flujo, arrays y funciones, aplicando buenas prácticas de programación. El proyecto demuestra habilidades en separación lógica/vista y creación de componentes reutilizables con HTML y Bootstrap.</p>
+              <a class="proyecto-list-link" href="https://github.com/Areman-05/php_exercicis" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github" aria-hidden="true"></i>
+                Ver en GitHub
+              </a>
             </div>
           </li>
         </ul>
       </div>
       
-      <!-- Panel fijo a la derecha -->
+      <!-- Panel fijo a la derecha - Solo imagen -->
       <div class="proyectos-panel">
-        <div class="proyectos-panel-content">
-          <!-- Imagen con efecto crossfade -->
-          <div class="proyectos-panel-image">
-            <img class="proyecto-panel-img active" src="imagenes/computer-programming-vs-computer-science-image_blog.jpg" alt="To-Do List App" data-project="0">
-            <img class="proyecto-panel-img" src="imagenes/space-shooter-cover.jpg" alt="Space Shooter" data-project="1">
-            <img class="proyecto-panel-img" src="imagenes/cuales-son-lenguajes-programacion.png" alt="Ejercicios PHP" data-project="2">
-            <div class="proyectos-panel-overlay"></div>
-          </div>
-          
-          <!-- Contenido de texto -->
-          <div class="proyectos-panel-text">
-            <div class="proyecto-panel-text-content active" data-project="0">
-              <div class="proyecto-panel-tags">
-                <span class="proyecto-panel-tag">React</span>
-                <span class="proyecto-panel-tag">TypeScript</span>
-                <span class="proyecto-panel-tag">CSS Modules</span>
-              </div>
-              <h3>To-Do List App</h3>
-              <p class="proyecto-panel-description">Una aplicación web moderna para organizar tareas con filtros avanzados y persistencia local. Desarrollada con React y TypeScript, demuestra habilidades en manejo de estado, diseño modular y almacenamiento en localStorage para una experiencia fluida sin necesidad de backend.</p>
-              <p class="proyecto-panel-aprendizaje"><span>Aprendizaje:</span> Manejo de estado, diseño modular y almacenamiento en localStorage.</p>
-              <a class="proyecto-panel-btn" href="https://github.com/Areman-05/To-Do-List-App" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-github" aria-hidden="true"></i>
-                Ver en GitHub
-              </a>
-            </div>
-            
-            <div class="proyecto-panel-text-content" data-project="1">
-              <div class="proyecto-panel-tags">
-                <span class="proyecto-panel-tag">Python</span>
-                <span class="proyecto-panel-tag">Pygame</span>
-                <span class="proyecto-panel-tag">Game Design</span>
-              </div>
-              <h3>Space Shooter</h3>
-              <p class="proyecto-panel-description">Videojuego arcade 2D desarrollado en Python con Pygame. Los jugadores pilotan una nave espacial enfrentándose a oleadas de enemigos. Este proyecto demuestra habilidades en gestión de eventos, animaciones por sprites y sincronización de efectos de sonido para crear una experiencia inmersiva.</p>
-              <p class="proyecto-panel-aprendizaje"><span>Aprendizaje:</span> Gestión de eventos, animaciones por sprites y sincronización de efectos de sonido.</p>
-              <a class="proyecto-panel-btn" href="https://github.com/Areman-05/Space-Shooter-Project" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-github" aria-hidden="true"></i>
-                Ver en GitHub
-              </a>
-            </div>
-            
-            <div class="proyecto-panel-text-content" data-project="2">
-              <div class="proyecto-panel-tags">
-                <span class="proyecto-panel-tag">PHP</span>
-                <span class="proyecto-panel-tag">HTML</span>
-                <span class="proyecto-panel-tag">Bootstrap</span>
-              </div>
-              <h3>Ejercicios PHP</h3>
-              <p class="proyecto-panel-description">Colección completa de prácticas para dominar PHP desde los fundamentos. Incluye ejercicios sobre control de flujo, arrays y funciones, aplicando buenas prácticas de programación. El proyecto demuestra habilidades en separación lógica/vista y creación de componentes reutilizables con HTML y Bootstrap.</p>
-              <p class="proyecto-panel-aprendizaje"><span>Aprendizaje:</span> Buenas prácticas en PHP, separación lógica/vista y componentes reutilizables.</p>
-              <a class="proyecto-panel-btn" href="https://github.com/Areman-05/php_exercicis" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-github" aria-hidden="true"></i>
-                Ver en GitHub
-              </a>
-            </div>
-          </div>
+        <div class="proyectos-panel-image">
+          <img class="proyecto-panel-img active" src="imagenes/computer-programming-vs-computer-science-image_blog.jpg" alt="To-Do List App" data-project="0">
+          <img class="proyecto-panel-img" src="imagenes/space-shooter-cover.jpg" alt="Space Shooter" data-project="1">
+          <img class="proyecto-panel-img" src="imagenes/cuales-son-lenguajes-programacion.png" alt="Ejercicios PHP" data-project="2">
         </div>
       </div>
     </div>
-  </section>
+    </section>
+  </div>
 
   <!-- Sección de reflexiones -->
   <section id="reflexiones">

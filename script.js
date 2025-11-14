@@ -98,48 +98,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Funcionalidad de proyectos con panel fijo y efecto crossfade
+  // Funcionalidad de proyectos con scroll invisible tipo JetBrains
   const proyectoListItems = document.querySelectorAll('.proyecto-list-item');
   const proyectoPanelImgs = document.querySelectorAll('.proyecto-panel-img');
-  const proyectoPanelTexts = document.querySelectorAll('.proyecto-panel-text-content');
+  const proyectosWrapper = document.querySelector('.proyectos-wrapper');
+  const proyectosSection = document.getElementById('proyectos');
   let currentProject = 0;
   let isTransitioning = false;
+  let scrollTicking = false;
 
-  if (proyectoListItems.length > 0 && proyectoPanelImgs.length > 0 && proyectoPanelTexts.length > 0) {
-    // Función para cambiar el proyecto activo con efecto crossfade
-    const switchProject = (projectIndex) => {
+  if (proyectoListItems.length > 0 && proyectoPanelImgs.length > 0 && proyectosWrapper && proyectosSection) {
+    const totalProjects = proyectoListItems.length;
+    
+    // Ajustar altura del wrapper según número de proyectos
+    proyectosWrapper.style.height = `${totalProjects * 100}vh`;
+
+    // Función para cambiar el proyecto activo con efecto crossfade suave
+    const switchProject = (projectIndex, fromScroll = false) => {
       if (isTransitioning || projectIndex === currentProject) return;
       
       isTransitioning = true;
       const targetIndex = parseInt(projectIndex);
 
-      // Fade out: remover clase active de imagen y texto actuales
+      // Fade out: remover clase active de imagen y item actuales
       const currentImg = proyectoPanelImgs[currentProject];
-      const currentText = proyectoPanelTexts[currentProject];
       const currentItem = proyectoListItems[currentProject];
 
       if (currentImg) {
         currentImg.classList.remove('active');
       }
-      if (currentText) {
-        currentText.classList.remove('active');
-      }
       if (currentItem) {
         currentItem.classList.remove('active');
       }
 
-      // Esperar a que termine el fade out antes de cambiar
+      // Esperar a que termine el fade out antes de cambiar (crossfade)
       setTimeout(() => {
-        // Fade in: añadir clase active a nueva imagen y texto
+        // Fade in: añadir clase active a nueva imagen y item
         const newImg = proyectoPanelImgs[targetIndex];
-        const newText = proyectoPanelTexts[targetIndex];
         const newItem = proyectoListItems[targetIndex];
 
         if (newImg) {
           newImg.classList.add('active');
-        }
-        if (newText) {
-          newText.classList.add('active');
         }
         if (newItem) {
           newItem.classList.add('active');
@@ -150,31 +149,66 @@ document.addEventListener('DOMContentLoaded', () => {
         // Permitir nueva transición después de que termine el fade in
         setTimeout(() => {
           isTransitioning = false;
-        }, 300);
-      }, 300);
+        }, 400);
+      }, 400);
     };
 
-    // Event listeners para hover en los items de la lista
+    // Función para manejar el scroll invisible
+    const handleScroll = () => {
+      if (scrollTicking || isTransitioning) return;
+      scrollTicking = true;
+      
+      requestAnimationFrame(() => {
+        const wrapperRect = proyectosWrapper.getBoundingClientRect();
+        const sectionRect = proyectosSection.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        
+        // Verificar si estamos dentro de la sección sticky
+        if (sectionRect.top <= 0 && sectionRect.bottom > viewportHeight) {
+          // Calcular el progreso del scroll dentro del wrapper
+          const wrapperTop = wrapperRect.top;
+          const wrapperHeight = wrapperRect.height;
+          const scrollProgress = Math.max(0, Math.min(1, -wrapperTop / (wrapperHeight - viewportHeight)));
+          
+          // Calcular qué proyecto debe estar activo basado en el progreso
+          const projectIndex = Math.round(scrollProgress * (totalProjects - 1));
+          const clampedIndex = Math.max(0, Math.min(totalProjects - 1, projectIndex));
+          
+          if (clampedIndex !== currentProject) {
+            switchProject(clampedIndex, true);
+          }
+        }
+        
+        scrollTicking = false;
+      });
+    };
+
+    // Event listeners para hover en los items de la lista (mantener funcionalidad manual)
     proyectoListItems.forEach((item, index) => {
       item.addEventListener('mouseenter', () => {
         if (!isTransitioning) {
-          switchProject(index);
+          switchProject(index, false);
         }
       });
 
       // También permitir click para dispositivos táctiles
       item.addEventListener('click', () => {
         if (!isTransitioning) {
-          switchProject(index);
+          switchProject(index, false);
         }
       });
     });
 
+    // Scroll vertical que controla el cambio de proyectos
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
     // Inicializar con el primer proyecto activo
-    if (proyectoListItems[0] && proyectoPanelImgs[0] && proyectoPanelTexts[0]) {
+    if (proyectoListItems[0] && proyectoPanelImgs[0]) {
       proyectoListItems[0].classList.add('active');
       proyectoPanelImgs[0].classList.add('active');
-      proyectoPanelTexts[0].classList.add('active');
     }
+
+    // Verificar estado inicial
+    handleScroll();
   }
 });
