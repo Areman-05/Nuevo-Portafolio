@@ -126,8 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    const updateActiveItem = (index) => {
-      if (index === activeIndex) return;
+    const updateActiveItem = (index, force = false) => {
+      if (!force && index === activeIndex) return;
       
       proyectoTextItems.forEach((item, i) => {
         if (i === index) {
@@ -154,28 +154,30 @@ document.addEventListener('DOMContentLoaded', () => {
       requestAnimationFrame(() => {
         const sectionRect = proyectosSection.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
+        const viewportCenter = viewportHeight * 0.5;
         const sectionTop = sectionRect.top;
+        const sectionBottom = sectionRect.bottom;
         const sectionHeight = sectionRect.height;
         
-        // Calcular qué sección debería estar activa basándose en el scroll
-        // Cuando la sección está en el centro del viewport, empezamos a cambiar
-        const scrollStart = viewportHeight * 0.3;
-        const scrollEnd = viewportHeight * 0.7;
-        const scrollRange = scrollEnd - scrollStart;
-        
-        let scrollProgress = 0;
-        if (sectionTop < scrollStart && sectionTop + sectionHeight > scrollStart) {
-          // La sección está siendo scrolleada
-          const scrolled = scrollStart - sectionTop;
-          scrollProgress = Math.max(0, Math.min(1, scrolled / (sectionHeight * 0.7)));
-        } else if (sectionTop <= scrollStart) {
-          scrollProgress = 1;
+        // Si la sección no está visible, no hacer nada
+        if (sectionBottom < 0 || sectionTop > viewportHeight) {
+          scrollTicking = false;
+          return;
         }
         
-        const newIndex = Math.min(
-          totalItems - 1,
-          Math.max(0, Math.floor(scrollProgress * totalItems))
-        );
+        // Calcular el progreso basándose en la posición del centro del viewport dentro de la sección
+        // Dividimos la sección en zonas iguales para cada proyecto
+        const zoneHeight = sectionHeight / totalItems;
+        const relativePosition = viewportCenter - sectionTop;
+        
+        // Determinar en qué zona estamos
+        let newIndex = Math.floor(relativePosition / zoneHeight);
+        newIndex = Math.max(0, Math.min(totalItems - 1, newIndex));
+        
+        // Si estamos en la primera parte de la sección (primeros 30%), siempre mostrar el primero
+        if (sectionTop > viewportHeight * 0.2 && sectionTop < viewportHeight * 0.5) {
+          newIndex = 0;
+        }
         
         if (newIndex !== activeIndex) {
           updateActiveItem(newIndex);
@@ -185,24 +187,49 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     };
 
+    // Función para verificar y actualizar el estado inicial
+    const checkInitialState = () => {
+      const sectionRect = proyectosSection.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      
+      // Si la sección está visible o cerca de ser visible, asegurar que el primer elemento esté activo
+      if (sectionRect.top < viewportHeight * 0.8 && sectionRect.bottom > 0) {
+        // Si estamos en la parte superior de la sección, mostrar el primer elemento
+        if (sectionRect.top > viewportHeight * 0.1) {
+          updateActiveItem(0, true);
+        } else {
+          handleScroll();
+        }
+      }
+    };
+
     // Intersection Observer para detectar cuando la sección está visible
     const proyectosObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
+          // Cuando la sección entra en vista, verificar el estado
+          checkInitialState();
           handleScroll();
-          window.addEventListener('scroll', handleScroll, { passive: true });
-        } else {
-          window.removeEventListener('scroll', handleScroll);
         }
       });
-    }, { threshold: 0.1 });
+    }, { 
+      threshold: [0, 0.1, 0.3, 0.5, 0.7, 1],
+      rootMargin: '0px 0px -10% 0px'
+    });
 
     proyectosObserver.observe(proyectosSection);
 
-    // Inicializar con el primer item
-    updateActiveItem(0);
+    // Inicializar inmediatamente y después de un pequeño delay
+    checkInitialState();
+    setTimeout(() => {
+      checkInitialState();
+      handleScroll();
+    }, 150);
 
-    // También escuchar scroll global para mejor detección
+    // Escuchar scroll global
     window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // También escuchar resize para recalcular
+    window.addEventListener('resize', handleScroll, { passive: true });
   }
 });
