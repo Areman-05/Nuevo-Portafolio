@@ -249,22 +249,53 @@ body {
   height: 100%;
   border-radius: 50%;
   background: conic-gradient(
-    from 180deg,
-    #4ADE80 0deg,
+    from 0deg,
+    #60C5F8 0deg,
+    #60C5F8 90deg,
     #4ADE80 90deg,
-    #FBBF24 90deg,
+    #4ADE80 180deg,
     #FBBF24 180deg,
-    #FB923C 180deg,
-    #FB923C 270deg,
-    #4ADE80 270deg,
-    #4ADE80 360deg
+    #FBBF24 270deg,
+    #F87171 270deg,
+    #F87171 360deg
   );
   padding: 6px;
   box-sizing: border-box;
-  filter: drop-shadow(0 0 20px rgba(74, 222, 128, 0.4))
-          drop-shadow(0 0 40px rgba(251, 191, 36, 0.3))
-          drop-shadow(0 0 60px rgba(251, 146, 60, 0.2));
   z-index: 1;
+  animation: rotateGradient 6s linear infinite;
+}
+
+@keyframes rotateGradient {
+  0% {
+    transform: rotate(0deg);
+    filter: drop-shadow(0 0 25px rgba(96, 197, 248, 0.6))
+            drop-shadow(0 0 50px rgba(96, 197, 248, 0.4))
+            drop-shadow(0 0 75px rgba(96, 197, 248, 0.2));
+  }
+  25% {
+    transform: rotate(90deg);
+    filter: drop-shadow(0 0 25px rgba(74, 222, 128, 0.6))
+            drop-shadow(0 0 50px rgba(74, 222, 128, 0.4))
+            drop-shadow(0 0 75px rgba(74, 222, 128, 0.2));
+  }
+  50% {
+    transform: rotate(180deg);
+    filter: drop-shadow(0 0 25px rgba(251, 191, 36, 0.6))
+            drop-shadow(0 0 50px rgba(251, 191, 36, 0.4))
+            drop-shadow(0 0 75px rgba(251, 191, 36, 0.2));
+  }
+  75% {
+    transform: rotate(270deg);
+    filter: drop-shadow(0 0 25px rgba(248, 113, 113, 0.6))
+            drop-shadow(0 0 50px rgba(248, 113, 113, 0.4))
+            drop-shadow(0 0 75px rgba(248, 113, 113, 0.2));
+  }
+  100% {
+    transform: rotate(360deg);
+    filter: drop-shadow(0 0 25px rgba(96, 197, 248, 0.6))
+            drop-shadow(0 0 50px rgba(96, 197, 248, 0.4))
+            drop-shadow(0 0 75px rgba(96, 197, 248, 0.2));
+  }
 }
 
 .image-wrapper::after {
