@@ -10,11 +10,11 @@
 
 :root {
   /* Colores - Estilo Embark Studios */
-  --color-bg: #0a0a0a;
-  --color-bg-secondary: #111111;
-  --color-text: #e8e8e8;
-  --color-text-secondary: #a0a0a0;
-  --color-text-muted: #6a6a6a;
+  --color-bg: #000000;
+  --color-bg-secondary: #000000;
+  --color-text: #ffffff;
+  --color-text-secondary: #ffffff;
+  --color-text-muted: rgba(255, 255, 255, 0.6);
   --color-accent: #ffffff;
   --color-border: rgba(255, 255, 255, 0.08);
   --color-border-hover: rgba(255, 255, 255, 0.16);
@@ -43,7 +43,7 @@ html {
 
 body {
   font-family: var(--font-primary);
-  background-color: var(--color-bg);
+  background-color: #000000;
   color: var(--color-text);
   line-height: 1.6;
   font-weight: 400;
@@ -62,24 +62,22 @@ body {
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: rgba(10, 10, 10, 0.8);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--color-border);
+  background-color: #000000;
   transition: all var(--transition-base);
 }
 
 .main-nav.scrolled {
-  background-color: rgba(10, 10, 10, 0.95);
+  background-color: #000000;
 }
 
 .nav-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 1.5rem 2rem;
+  padding: 1.25rem 2rem;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .nav-logo {
@@ -98,7 +96,7 @@ body {
 .nav-menu {
   display: flex;
   list-style: none;
-  gap: 2.5rem;
+  gap: 3rem;
   align-items: center;
   justify-content: center;
   margin: 0;
@@ -106,11 +104,11 @@ body {
 }
 
 .nav-menu a {
-  color: var(--color-text-secondary);
+  color: #ffffff;
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   font-weight: 400;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   transition: color var(--transition-fast);
   position: relative;
@@ -123,13 +121,13 @@ body {
   left: 0;
   width: 0;
   height: 1px;
-  background-color: var(--color-accent);
+  background-color: #ffffff;
   transition: width var(--transition-base);
 }
 
 .nav-menu a:hover,
 .nav-menu a.nav-link-active {
-  color: var(--color-text);
+  color: #ffffff;
 }
 
 .nav-menu a.nav-link-active::after {
@@ -147,16 +145,16 @@ body {
 }
 
 .social-link {
-  color: var(--color-text-secondary);
+  color: #ffffff;
   text-decoration: none;
-  transition: color var(--transition-fast);
+  transition: opacity var(--transition-fast);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .social-link:hover {
-  color: var(--color-text);
+  opacity: 0.7;
 }
 
 /* ============================================
@@ -179,12 +177,14 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 6rem;
   align-items: center;
+  margin: 0 auto;
 }
 
 .hero-text {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  text-align: left;
 }
 
 .hero-title {
@@ -252,29 +252,6 @@ body {
   transform: scale(1.05);
 }
 
-.scroll-indicator {
-  position: absolute;
-  bottom: 3rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  color: var(--color-text-muted);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  opacity: 0;
-  animation: fadeIn 1s ease 1.2s forwards;
-}
-
-.scroll-line {
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, var(--color-text-muted), transparent);
-  animation: scrollPulse 2s ease infinite;
-}
 
 @keyframes fadeIn {
   from {
@@ -296,14 +273,6 @@ body {
   }
 }
 
-@keyframes scrollPulse {
-  0%, 100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 1;
-  }
-}
 
 /* ============================================
    BUTTONS
@@ -744,9 +713,9 @@ section {
    ============================================ */
 
 .main-footer {
-  padding: 3rem 2rem;
-  border-top: 1px solid var(--color-border);
-  background-color: var(--color-bg-secondary);
+  padding: 1.5rem 2rem;
+  background-color: #000000;
+  border-top: none;
 }
 
 .footer-container {
@@ -756,28 +725,28 @@ section {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .footer-text {
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .footer-links {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .footer-links a {
-  color: var(--color-text-secondary);
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   transition: color var(--transition-fast);
 }
 
 .footer-links a:hover {
-  color: var(--color-text);
+  color: #ffffff;
 }
 
 /* ============================================
