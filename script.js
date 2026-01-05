@@ -62,15 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(el);
   });
 
-  // Manejo del formulario de contacto
-  const contactForm = document.querySelector('.contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      // El formulario se enviará a través de Formspree
-      // Solo mostramos un mensaje de confirmación
-      setTimeout(() => {
-        alert('¡Gracias por tu mensaje! Te responderé pronto.');
-      }, 100);
-    });
-  }
+  // El formulario de contacto se maneja directamente por Formspree
+  // No necesitamos JavaScript adicional ya que Formspree redirige a su página de confirmación
 });
