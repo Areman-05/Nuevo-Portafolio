@@ -236,10 +236,10 @@ body {
   width: 100%;
   max-width: 280px;
   aspect-ratio: 1;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
 }
 
 .image-wrapper::before {
@@ -260,13 +260,21 @@ body {
     #4ADE80 360deg
   );
   padding: 6px;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+  box-sizing: border-box;
   filter: drop-shadow(0 0 20px rgba(74, 222, 128, 0.4))
           drop-shadow(0 0 40px rgba(251, 191, 36, 0.3))
           drop-shadow(0 0 60px rgba(251, 146, 60, 0.2));
   z-index: 1;
+}
+
+.image-wrapper::after {
+  content: '';
+  position: absolute;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  border-radius: 50%;
+  background: #000000;
+  z-index: 2;
 }
 
 .profile-image {
@@ -275,7 +283,7 @@ body {
   height: calc(100% - 12px);
   object-fit: cover;
   border-radius: 50%;
-  z-index: 2;
+  z-index: 3;
   border: 2px solid #000000;
   transition: transform var(--transition-slow);
 }
