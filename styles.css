@@ -827,10 +827,6 @@ section {
     gap: 4rem;
   }
 
-  .about-image {
-    position: static;
-  }
-
   .contact-content {
     grid-template-columns: 1fr;
     gap: 4rem;
