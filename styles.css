@@ -445,40 +445,44 @@ section {
    ============================================ */
 
 .about-content {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 6rem;
-  align-items: start;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .about-text {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3rem;
+}
+
+.body-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .lead-text {
-  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-  font-weight: 400;
-  line-height: 1.5;
-  color: var(--color-text);
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  font-weight: 300;
+  line-height: 1.4;
+  color: #ffffff;
   letter-spacing: -0.02em;
 }
 
 .body-text {
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
-  line-height: 1.8;
-  color: var(--color-text-secondary);
+  font-size: clamp(1rem, 1.4vw, 1.1rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
   font-weight: 400;
 }
 
 .about-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  padding: 2rem 0;
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
+  gap: 3rem;
+  padding: 3rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .stat-item {
@@ -502,23 +506,6 @@ section {
   letter-spacing: 0.05em;
 }
 
-.about-image {
-  position: sticky;
-  top: 8rem;
-}
-
-.about-photo {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  border-radius: 0;
-  border: 1px solid var(--color-border);
-  transition: transform var(--transition-slow);
-}
-
-.about-photo:hover {
-  transform: scale(1.02);
-}
 
 /* ============================================
    SKILLS SECTION
