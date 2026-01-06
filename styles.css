@@ -412,6 +412,10 @@ section {
   position: relative;
 }
 
+.skills {
+  padding-top: var(--spacing-lg);
+}
+
 .section-container {
   max-width: 1400px;
   margin: 0 auto;
@@ -422,6 +426,10 @@ section {
   align-items: baseline;
   gap: 1.5rem;
   margin-bottom: 4rem;
+}
+
+.skills .section-header {
+  margin-bottom: 3rem;
 }
 
 .section-number {
