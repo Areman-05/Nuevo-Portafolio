@@ -9,17 +9,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-page="projects">
   <nav class="main-nav">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">Pablo Arenas</a>
       <ul class="nav-menu">
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="sobre-mi.html">SOBRE MÍ</a></li>
-        <li><a href="proyectos.html" class="nav-link-active">PROYECTOS</a></li>
-        <li><a href="contacto.html">CONTACTO</a></li>
+        <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+        <li><a href="sobre-mi.html" data-i18n="nav.about">SOBRE MÍ</a></li>
+        <li><a href="proyectos.html" class="nav-link-active" data-i18n="nav.projects">PROYECTOS</a></li>
+        <li><a href="contacto.html" data-i18n="nav.contact">CONTACTO</a></li>
       </ul>
       <div class="nav-social">
+        <button type="button" class="lang-toggle" id="lang-toggle" aria-label="Idioma">ESP</button>
         <a href="https://github.com/Areman-05" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
@@ -40,27 +41,52 @@
     <div class="section-container">
       <div class="section-header">
         <span class="section-number">01</span>
-        <h2 class="section-title">Proyectos</h2>
+        <h2 class="section-title" data-i18n="projects.title">Proyectos</h2>
       </div>
       <div class="projects-grid">
-        <div class="project-card"><div class="project-image"><img src="imagenes/Gemini_Generated_Image_jb4y7djb4y7djb4y (1).png" alt="WorldScope"></div><div class="project-content"><h3 class="project-title">WorldScope</h3><p class="project-description">Explorador global de países con datos, filtros y vista clara para descubrir información geográfica.</p><div class="project-tags"><span class="project-tag">Kotlin</span><span class="project-tag">Jetpack Compose</span><span class="project-tag">MVVM</span><span class="project-tag">Hilt</span><span class="project-tag">Retrofit</span><span class="project-tag">Room</span></div><a href="https://github.com/Areman-05/WorldScope" target="_blank" rel="noopener noreferrer" class="project-link">Ver en GitHub<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12L11 7L6 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
-        <div class="project-card"><div class="project-image"><img src="imagenes/Gemini_Generated_Image_jb4y7djb4y7djb4y.png" alt="CineTrack"></div><div class="project-content"><h3 class="project-title">CineTrack</h3><p class="project-description">Plataforma para seguir películas, descubrir títulos y mantener tu colección personal organizada.</p><div class="project-tags"><span class="project-tag">Swift</span><span class="project-tag">iOS</span><span class="project-tag">MVVM</span><span class="project-tag">TMDB API</span><span class="project-tag">URLSession</span><span class="project-tag">UserDefaults</span></div><a href="https://github.com/Areman-05/CineTrack" target="_blank" rel="noopener noreferrer" class="project-link">Ver en GitHub<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12L11 7L6 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
-        <div class="project-card"><div class="project-image"><img src="imagenes/f169da0a598814ec38ccb0e25920a011.jpg" alt="TaskPulse"></div><div class="project-content"><h3 class="project-title">TaskPulse</h3><p class="project-description">App Android para organizar tareas y notas con calendario, recordatorios, archivo automático y exportación local.</p><div class="project-tags"><span class="project-tag">Kotlin</span><span class="project-tag">Jetpack Compose</span><span class="project-tag">MVVM</span><span class="project-tag">Room</span><span class="project-tag">WorkManager</span><span class="project-tag">Material 3</span></div><a href="https://github.com/Areman-05/TaskPulse" target="_blank" rel="noopener noreferrer" class="project-link">Ver en GitHub<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12L11 7L6 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+        <div class="project-card">
+          <div class="project-image"><img src="imagenes/Gemini_Generated_Image_jb4y7djb4y7djb4y (1).png" alt="WorldScope"></div>
+          <div class="project-content">
+            <h3 class="project-title">WorldScope</h3>
+            <p class="project-description" data-i18n="proj.worldscope.desc">Explorador global de países con datos, filtros y vista clara para descubrir información geográfica.</p>
+            <div class="project-tags"><span class="project-tag">Kotlin</span><span class="project-tag">Jetpack Compose</span><span class="project-tag">MVVM</span><span class="project-tag">Hilt</span><span class="project-tag">Retrofit</span><span class="project-tag">Room</span></div>
+            <a href="https://github.com/Areman-05/WorldScope" target="_blank" rel="noopener noreferrer" class="project-link"><span data-i18n="proj.viewGithub">Ver en GitHub</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12L11 7L6 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image"><img src="imagenes/Gemini_Generated_Image_jb4y7djb4y7djb4y.png" alt="CineTrack"></div>
+          <div class="project-content">
+            <h3 class="project-title">CineTrack</h3>
+            <p class="project-description" data-i18n="proj.cinetrack.desc">Plataforma para seguir películas, descubrir títulos y mantener tu colección personal organizada.</p>
+            <div class="project-tags"><span class="project-tag">Swift</span><span class="project-tag">iOS</span><span class="project-tag">MVVM</span><span class="project-tag">TMDB API</span><span class="project-tag">URLSession</span><span class="project-tag">UserDefaults</span></div>
+            <a href="https://github.com/Areman-05/CineTrack" target="_blank" rel="noopener noreferrer" class="project-link"><span data-i18n="proj.viewGithub">Ver en GitHub</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12L11 7L6 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image"><img src="imagenes/f169da0a598814ec38ccb0e25920a011.jpg" alt="TaskPulse"></div>
+          <div class="project-content">
+            <h3 class="project-title">TaskPulse</h3>
+            <p class="project-description" data-i18n="proj.taskpulse.desc">App Android para organizar tareas y notas con calendario, recordatorios, archivo automático y exportación local.</p>
+            <div class="project-tags"><span class="project-tag">Kotlin</span><span class="project-tag">Jetpack Compose</span><span class="project-tag">MVVM</span><span class="project-tag">Room</span><span class="project-tag">WorkManager</span><span class="project-tag">Material 3</span></div>
+            <a href="https://github.com/Areman-05/TaskPulse" target="_blank" rel="noopener noreferrer" class="project-link"><span data-i18n="proj.viewGithub">Ver en GitHub</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12L11 7L6 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <footer class="main-footer">
     <div class="footer-container">
-      <p class="footer-text">&copy; 2025 Pablo Arenas Mancebo. Todos los derechos reservados.</p>
+      <p class="footer-text" data-i18n="footer.rights">&copy; 2025 Pablo Arenas Mancebo. Todos los derechos reservados.</p>
       <div class="footer-links">
-        <a href="index.html">Inicio</a>
+        <a href="index.html" data-i18n="footer.home">Inicio</a>
         <a href="https://github.com/Areman-05" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="mailto:pab4822@outlook.com">Email</a>
       </div>
     </div>
   </footer>
 
+  <script src="i18n.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -9,18 +9,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <!-- Navegación minimalista -->
+<body data-page="about">
   <nav class="main-nav">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">Pablo Arenas</a>
       <ul class="nav-menu">
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="sobre-mi.html" class="nav-link-active">SOBRE MÍ</a></li>
-        <li><a href="proyectos.html">PROYECTOS</a></li>
-        <li><a href="contacto.html">CONTACTO</a></li>
+        <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+        <li><a href="sobre-mi.html" class="nav-link-active" data-i18n="nav.about">SOBRE MÍ</a></li>
+        <li><a href="proyectos.html" data-i18n="nav.projects">PROYECTOS</a></li>
+        <li><a href="contacto.html" data-i18n="nav.contact">CONTACTO</a></li>
       </ul>
       <div class="nav-social">
+        <button type="button" class="lang-toggle" id="lang-toggle" aria-label="Idioma">ESP</button>
         <a href="https://github.com/Areman-05" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
@@ -37,62 +37,61 @@
     </div>
   </nav>
 
-  <!-- Sobre Mí -->
   <section id="sobre-mi" class="about">
     <div class="section-container">
       <div class="section-header">
         <span class="section-number">01</span>
-        <h2 class="section-title">Sobre Mí</h2>
+        <h2 class="section-title" data-i18n="about.title">Sobre Mí</h2>
       </div>
       <div class="about-content">
         <div class="about-text">
-          <p class="lead-text">
+          <p class="lead-text" data-i18n="about.lead">
             Desarrollador multiplataforma en formación, apasionado por crear soluciones tecnológicas que marquen la diferencia.
           </p>
           <div class="body-text-wrapper">
-            <p class="body-text">
+            <p class="body-text" data-i18n="about.p1">
               Actualmente estudio el ciclo superior de Desarrollo de Aplicaciones Multiplataforma (DAM) en La Salle Gràcia, Barcelona. Durante mi formación he adquirido habilidades sólidas en programación, resolución de problemas y trabajo en equipo.
             </p>
-            <p class="body-text">
+            <p class="body-text" data-i18n="about.p2">
               Me considero una persona curiosa, responsable y con facilidad para aprender y adaptarme a nuevos entornos. Mi objetivo es seguir creciendo como desarrollador y aplicar mis conocimientos en proyectos que me permitan evolucionar profesional y personalmente.
             </p>
           </div>
           <div class="experience-section">
-            <h3 class="experience-section-title">Experiencia</h3>
+            <h3 class="experience-section-title" data-i18n="experience.title">Experiencia</h3>
             <ul class="experience-list">
               <li class="experience-item">
                 <div class="experience-header">
-                  <h4 class="experience-title">Desarrollador de software</h4>
+                  <h4 class="experience-title" data-i18n="exp1.title">Desarrollador de software</h4>
                   <span class="experience-company">Empresa d'Inserció Solucions Socials Sostenibles</span>
-                  <span class="experience-type">Jornada parcial</span>
+                  <span class="experience-type" data-i18n="exp1.type">Jornada parcial</span>
                 </div>
                 <div class="experience-meta">
-                  <span class="experience-dates">Oct. 2025 — Abr. 2026</span>
-                  <span class="experience-duration">· 7 meses</span>
-                  <span class="experience-location">Barcelona, Cataluña, España · Presencial</span>
+                  <span class="experience-dates" data-i18n="exp1.dates">Oct. 2025 — Abr. 2026</span>
+                  <span class="experience-duration" data-i18n="exp1.duration">· 7 meses</span>
+                  <span class="experience-location" data-i18n="exp1.location">Barcelona, Cataluña, España · Presencial</span>
                 </div>
-                <p class="experience-description">
+                <p class="experience-description" data-i18n="exp1.desc">
                   Desempeño el cargo de programador en JavaScript y PHP, participando en el desarrollo del ERP corporativo y en el mantenimiento de las aplicaciones internas de la empresa. Colaboro con el equipo en la mejora continua de los sistemas y en la implantación de soluciones que optimizan los procesos de la organización.
                 </p>
               </li>
               <li class="experience-item">
                 <div class="experience-header">
-                  <h4 class="experience-title">Profesor de clases particulares</h4>
-                  <span class="experience-company">Autónomo</span>
+                  <h4 class="experience-title" data-i18n="exp2.title">Profesor de clases particulares</h4>
+                  <span class="experience-company" data-i18n="exp2.company">Autónomo</span>
                 </div>
                 <div class="experience-meta">
-                  <span class="experience-dates">2022 — 2024</span>
-                  <span class="experience-duration">· 2 años</span>
-                  <span class="experience-location">Barcelona, Cataluña, España · Presencial</span>
+                  <span class="experience-dates" data-i18n="exp2.dates">2022 — 2024</span>
+                  <span class="experience-duration" data-i18n="exp2.duration">· 2 años</span>
+                  <span class="experience-location" data-i18n="exp2.location">Barcelona, Cataluña, España · Presencial</span>
                 </div>
-                <p class="experience-description">
+                <p class="experience-description" data-i18n="exp2.desc">
                   Impartí clases particulares de forma autónoma, ayudando a estudiantes a consolidar conocimientos y a preparar materias. Esta experiencia me permitió desarrollar la capacidad de explicar conceptos de forma clara, adaptarme a distintos ritmos de aprendizaje y organizar el trabajo de manera autónoma.
                 </p>
               </li>
             </ul>
           </div>
           <a href="./pdf/CV-Pablo-Arenas-2025.pdf" class="btn-outline" download>
-            <span>Descargar CV</span>
+            <span data-i18n="about.downloadCv">Descargar CV</span>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M8 12L3 7H6V2H10V7H13L8 12Z" fill="currentColor"/>
             </svg>
@@ -102,16 +101,15 @@
     </div>
   </section>
 
-  <!-- Habilidades -->
   <section id="habilidades" class="skills">
     <div class="section-container">
       <div class="section-header">
         <span class="section-number">02</span>
-        <h2 class="section-title">Habilidades</h2>
+        <h2 class="section-title" data-i18n="skills.title">Habilidades</h2>
       </div>
       <div class="skills-grid">
         <div class="skill-category">
-          <h3 class="skill-category-title">Desarrollo Móvil</h3>
+          <h3 class="skill-category-title" data-i18n="skill.mobile">Desarrollo Móvil</h3>
           <div class="skill-list">
             <span class="skill-tag">Kotlin</span>
             <span class="skill-tag">Swift</span>
@@ -121,7 +119,7 @@
           </div>
         </div>
         <div class="skill-category">
-          <h3 class="skill-category-title">Desarrollo Web</h3>
+          <h3 class="skill-category-title" data-i18n="skill.web">Desarrollo Web</h3>
           <div class="skill-list">
             <span class="skill-tag">HTML / CSS</span>
             <span class="skill-tag">JavaScript</span>
@@ -130,14 +128,14 @@
           </div>
         </div>
         <div class="skill-category">
-          <h3 class="skill-category-title">Lenguajes</h3>
+          <h3 class="skill-category-title" data-i18n="skill.lang">Lenguajes</h3>
           <div class="skill-list">
             <span class="skill-tag">C#</span>
             <span class="skill-tag">Python</span>
           </div>
         </div>
         <div class="skill-category">
-          <h3 class="skill-category-title">Back-end</h3>
+          <h3 class="skill-category-title" data-i18n="skill.backend">Back-end</h3>
           <div class="skill-list">
             <span class="skill-tag">Java</span>
             <span class="skill-tag">Node.js</span>
@@ -149,7 +147,7 @@
           </div>
         </div>
         <div class="skill-category">
-          <h3 class="skill-category-title">Herramientas</h3>
+          <h3 class="skill-category-title" data-i18n="skill.tools">Herramientas</h3>
           <div class="skill-list">
             <span class="skill-tag">Git</span>
             <span class="skill-tag">GitHub</span>
@@ -164,19 +162,18 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="main-footer">
     <div class="footer-container">
-      <p class="footer-text">&copy; 2025 Pablo Arenas Mancebo. Todos los derechos reservados.</p>
+      <p class="footer-text" data-i18n="footer.rights">&copy; 2025 Pablo Arenas Mancebo. Todos los derechos reservados.</p>
       <div class="footer-links">
-        <a href="index.html">Inicio</a>
+        <a href="index.html" data-i18n="footer.home">Inicio</a>
         <a href="https://github.com/Areman-05" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="mailto:pab4822@outlook.com">Email</a>
       </div>
     </div>
   </footer>
 
+  <script src="i18n.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
-
