@@ -487,18 +487,36 @@ section {
   gap: 1.5rem;
 }
 
-.lead-text {
-  font-size: clamp(1.4rem, 2.8vw, 2rem);
-  font-weight: 300;
-  line-height: 1.4;
+.about-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.about-paragraph {
+  font-size: clamp(1.05rem, 1.55vw, 1.2rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.about-paragraph:first-child {
   color: #ffffff;
-  letter-spacing: -0.02em;
+}
+
+.lead-text {
+  font-size: clamp(1.05rem, 1.55vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1.7;
+  color: #ffffff;
+  letter-spacing: -0.01em;
 }
 
 .body-text {
-  font-size: clamp(1rem, 1.4vw, 1.1rem);
+  font-size: clamp(1.05rem, 1.55vw, 1.2rem);
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.85);
   font-weight: 400;
 }
 
@@ -609,6 +627,26 @@ section {
   color: rgba(255, 255, 255, 0.8);
   font-weight: 400;
   margin: 0;
+}
+
+.experience-highlights {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.experience-highlights li {
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.experience-highlights strong {
+  color: var(--color-text);
+  font-weight: 500;
 }
 
 
