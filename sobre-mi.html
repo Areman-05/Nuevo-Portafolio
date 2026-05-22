@@ -45,84 +45,84 @@
   </header>
   <div class="site-header-spacer" aria-hidden="true"></div>
 
-  <section id="sobre-mi" class="about">
-    <div class="section-container">
-      <div class="section-header">
-        <span class="section-number">01</span>
-        <h2 class="section-title" data-i18n="about.title">Sobre Mí</h2>
-      </div>
-      <div class="about-content">
-        <div class="about-text">
-          <div class="about-copy">
-            <p class="about-paragraph" data-i18n="about.lead">
-              Soy desarrollador multiplataforma (DAM), formado en La Salle Gràcia (Barcelona). Me siento cómodo en todo el ciclo del software —back-end, desarrollo nativo y web— porque entender cada parte del proyecto me ayuda a construir soluciones más coherentes.
+  <section id="sobre-mi" class="about about-page">
+    <div class="section-container about-layout">
+      <header class="about-head">
+        <h1 class="about-head__title" data-i18n="about.title">Sobre Mí</h1>
+        <div class="about-head__prose">
+          <p class="about-head__lead" data-i18n="about.lead">
+            Soy desarrollador multiplataforma (DAM), formado en La Salle Gràcia (Barcelona). Me siento cómodo en todo el ciclo del software —back-end, desarrollo nativo y web— porque entender cada parte del proyecto me ayuda a construir soluciones más coherentes.
+          </p>
+          <p class="about-head__text" data-i18n="about.p1">
+            Disfruto de la lógica de negocio, pero donde más disfruto es cuando el código se nota en la experiencia del usuario: pantallas claras, fluidas y fáciles de usar. Soy curioso, responsable y me adapto con rapidez a nuevos entornos y herramientas. Busco aportar en equipos reales, con especial interés en diseño UI/UX, sin cerrarme a otras vías del desarrollo.
+          </p>
+        </div>
+        <a href="./pdf/CV-Pablo-Arenas-2025.pdf" class="about-cv-link" download>
+          <span data-i18n="about.downloadCv">Descargar CV</span>
+          <span class="about-cv-link__arrow" aria-hidden="true">→</span>
+        </a>
+      </header>
+
+      <div class="about-exp" aria-labelledby="about-exp-label">
+        <p id="about-exp-label" class="about-exp__label" data-i18n="experience.title">Experiencia</p>
+        <ul class="about-exp__list">
+          <li class="about-exp__item">
+            <div class="about-exp__row">
+              <h3 class="about-exp__role" data-i18n="exp1.title">Desarrollador de Software</h3>
+              <p class="about-exp__when">
+                <span data-i18n="exp1.dates">Oct. 2025 — Abr. 2026</span>
+                <span data-i18n="exp1.duration">· 8 meses</span>
+              </p>
+            </div>
+            <p class="about-exp__meta">
+              <span class="about-exp__company" data-i18n="exp1.company">Empresa d'Inserció Solucions Socials Sostenibles (EISS)</span>
+              <span class="about-exp__sep" aria-hidden="true">·</span>
+              <span data-i18n="exp1.location">Barcelona (Presencial)</span>
             </p>
-            <p class="about-paragraph" data-i18n="about.p1">
-              Disfruto de la lógica de negocio, pero donde más disfruto es cuando el código se nota en la experiencia del usuario: pantallas claras, fluidas y fáciles de usar. Soy curioso, responsable y me adapto con rapidez a nuevos entornos y herramientas. Busco aportar en equipos reales, con especial interés en diseño UI/UX, sin cerrarme a otras vías del desarrollo.
-            </p>
-          </div>
-          <div class="experience-section">
-            <h3 class="experience-section-title" data-i18n="experience.title">Experiencia</h3>
-            <ul class="experience-list">
-              <li class="experience-item">
-                <div class="experience-header">
-                  <h4 class="experience-title" data-i18n="exp1.title">Desarrollador de Software</h4>
-                  <span class="experience-company" data-i18n="exp1.company">Empresa d'Inserció Solucions Socials Sostenibles (EISS)</span>
-                </div>
-                <div class="experience-meta">
-                  <span class="experience-dates" data-i18n="exp1.dates">Oct. 2025 — Abr. 2026</span>
-                  <span class="experience-duration" data-i18n="exp1.duration">· 8 meses</span>
-                  <span class="experience-location" data-i18n="exp1.location">Barcelona (Presencial)</span>
-                </div>
-                <ul class="experience-highlights">
-                  <li>
-                    <strong data-i18n="exp1.bullet1.label">Frontend & UX:</strong>
-                    <span data-i18n="exp1.bullet1.text">Diseño e implementación de interfaces funcionales con CSS, mejorando la usabilidad de aplicaciones de logística.</span>
-                  </li>
-                  <li>
-                    <strong data-i18n="exp1.bullet2.label">Lógica & Datos:</strong>
-                    <span data-i18n="exp1.bullet2.text">Desarrollo de la lógica de negocio en Java y Python, optimizando estructuras de datos para conectar backend y frontend.</span>
-                  </li>
-                  <li>
-                    <strong data-i18n="exp1.bullet3.label">Soporte Técnico:</strong>
-                    <span data-i18n="exp1.bullet3.text">Monitorización del sistema y resolución de incidencias críticas, garantizando estabilidad y una experiencia fluida para el usuario.</span>
-                  </li>
-                </ul>
+            <ul class="about-exp__points">
+              <li>
+                <strong data-i18n="exp1.bullet1.label">Frontend & UX:</strong>
+                <span data-i18n="exp1.bullet1.text">Diseño e implementación de interfaces funcionales con CSS, mejorando la usabilidad de aplicaciones de logística.</span>
               </li>
-              <li class="experience-item">
-                <div class="experience-header">
-                  <h4 class="experience-title" data-i18n="exp2.title">Profesor de clases particulares</h4>
-                  <span class="experience-company" data-i18n="exp2.company">Autónomo</span>
-                </div>
-                <div class="experience-meta">
-                  <span class="experience-dates" data-i18n="exp2.dates">2022 — 2024</span>
-                  <span class="experience-duration" data-i18n="exp2.duration">· 2 años</span>
-                  <span class="experience-location" data-i18n="exp2.location">Barcelona (Presencial)</span>
-                </div>
-                <ul class="experience-highlights">
-                  <li>
-                    <strong data-i18n="exp2.bullet1.label">Docencia:</strong>
-                    <span data-i18n="exp2.bullet1.text">Clases particulares a medida, reforzando materias y preparación de exámenes.</span>
-                  </li>
-                  <li>
-                    <strong data-i18n="exp2.bullet2.label">Comunicación:</strong>
-                    <span data-i18n="exp2.bullet2.text">Explicación de conceptos de forma clara y adaptada al ritmo de cada alumno.</span>
-                  </li>
-                  <li>
-                    <strong data-i18n="exp2.bullet3.label">Autonomía:</strong>
-                    <span data-i18n="exp2.bullet3.text">Gestión de agenda, seguimiento del progreso y organización del trabajo sin supervisión directa.</span>
-                  </li>
-                </ul>
+              <li>
+                <strong data-i18n="exp1.bullet2.label">Lógica & Datos:</strong>
+                <span data-i18n="exp1.bullet2.text">Desarrollo de la lógica de negocio en Java y Python, optimizando estructuras de datos para conectar backend y frontend.</span>
+              </li>
+              <li>
+                <strong data-i18n="exp1.bullet3.label">Soporte Técnico:</strong>
+                <span data-i18n="exp1.bullet3.text">Monitorización del sistema y resolución de incidencias críticas, garantizando estabilidad y una experiencia fluida para el usuario.</span>
               </li>
             </ul>
-          </div>
-          <a href="./pdf/CV-Pablo-Arenas-2025.pdf" class="btn-outline" download>
-            <span data-i18n="about.downloadCv">Descargar CV</span>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M8 12L3 7H6V2H10V7H13L8 12Z" fill="currentColor"/>
-            </svg>
-          </a>
-        </div>
+          </li>
+          <li class="about-exp__item">
+            <div class="about-exp__row">
+              <h3 class="about-exp__role" data-i18n="exp2.title">Profesor de clases particulares</h3>
+              <p class="about-exp__when">
+                <span data-i18n="exp2.dates">2022 — 2024</span>
+                <span data-i18n="exp2.duration">· 2 años</span>
+              </p>
+            </div>
+            <p class="about-exp__meta">
+              <span class="about-exp__company" data-i18n="exp2.company">Autónomo</span>
+              <span class="about-exp__sep" aria-hidden="true">·</span>
+              <span data-i18n="exp2.location">Barcelona (Presencial)</span>
+            </p>
+            <ul class="about-exp__points">
+              <li>
+                <strong data-i18n="exp2.bullet1.label">Docencia:</strong>
+                <span data-i18n="exp2.bullet1.text">Clases particulares a medida, reforzando materias y preparación de exámenes.</span>
+              </li>
+              <li>
+                <strong data-i18n="exp2.bullet2.label">Comunicación:</strong>
+                <span data-i18n="exp2.bullet2.text">Explicación de conceptos de forma clara y adaptada al ritmo de cada alumno.</span>
+              </li>
+              <li>
+                <strong data-i18n="exp2.bullet3.label">Autonomía:</strong>
+                <span data-i18n="exp2.bullet3.text">Gestión de agenda, seguimiento del progreso y organización del trabajo sin supervisión directa.</span>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
