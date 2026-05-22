@@ -1,44 +1,46 @@
 // Smooth scroll y navegación
 document.addEventListener('DOMContentLoaded', () => {
   const nav = document.querySelector('.main-nav');
-  let lastScrollY = window.scrollY;
+  const siteHeader = document.getElementById('site-header');
+  const headerSpacer = document.querySelector('.site-header-spacer');
 
-  // Efecto de scroll en la navegación
+  const syncHeaderOffset = () => {
+    if (!siteHeader) return;
+    const h = `${siteHeader.offsetHeight}px`;
+    if (headerSpacer) headerSpacer.style.height = h;
+  };
+
+  syncHeaderOffset();
+  window.addEventListener('resize', syncHeaderOffset, { passive: true });
+
   window.addEventListener('scroll', () => {
-    const currentScroll = window.scrollY;
-
-    if (currentScroll > 50) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
+    if (nav) {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
     }
-
-    lastScrollY = currentScroll;
   }, { passive: true });
 
-  // Smooth scroll solo para enlaces internos (si existen)
   const navLinks = document.querySelectorAll('.nav-menu a, .btn-primary, .btn-secondary');
   navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       const href = link.getAttribute('href');
-      // Solo hacer smooth scroll si es un enlace interno a una sección
       if (href && href.startsWith('#') && document.querySelector(href)) {
         e.preventDefault();
         const target = document.querySelector(href);
-        if (target) {
-          const navHeight = nav.offsetHeight;
-          const targetPosition = target.offsetTop - navHeight;
+        if (target && nav) {
+          const targetPosition = target.offsetTop - nav.offsetHeight;
           window.scrollTo({
             top: targetPosition,
             behavior: 'smooth'
           });
         }
       }
-      // Si es un enlace a otra página, dejar que el navegador lo maneje normalmente
     });
   });
 
-  // Animación de elementos al hacer scroll
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -100px 0px'
@@ -53,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, observerOptions);
 
-  // Observar elementos que deben animarse
   const animatedElements = document.querySelectorAll('.project-card, .work-card, .skill-category, .about-text, .contact-content, .experience-item');
   animatedElements.forEach(el => {
     el.style.opacity = '0';
@@ -61,7 +62,4 @@ document.addEventListener('DOMContentLoaded', () => {
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
   });
-
-  // El formulario de contacto se maneja directamente por Formspree
-  // No necesitamos JavaScript adicional ya que Formspree redirige a su página de confirmación
 });

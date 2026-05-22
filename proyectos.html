@@ -10,48 +10,68 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body data-page="projects">
-  <nav class="main-nav">
-    <div class="nav-container">
-      <a href="index.html" class="nav-logo">Pablo Arenas</a>
-      <ul class="nav-menu">
-        <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
-        <li><a href="sobre-mi.html" data-i18n="nav.about">SOBRE MÍ</a></li>
-        <li><a href="proyectos.html" class="nav-link-active" data-i18n="nav.projects">PROYECTOS</a></li>
-        <li><a href="contacto.html" data-i18n="nav.contact">CONTACTO</a></li>
-      </ul>
-      <div class="nav-social">
-        <button type="button" class="lang-toggle" id="lang-toggle" aria-label="Idioma">ESP</button>
-        <a href="https://github.com/Areman-05" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-          </svg>
-        </a>
-        <a href="https://www.linkedin.com/in/pablo-arenas-mancebo-6a719b354/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-            <rect x="2" y="9" width="4" height="12"/>
-            <circle cx="4" cy="4" r="2"/>
-          </svg>
-        </a>
-      </div>
+  <header class="site-header" id="site-header">
+    <div class="site-header__nebula" aria-hidden="true">
+      <div class="top-nebula__layer top-nebula__layer--a"></div>
+      <div class="top-nebula__layer top-nebula__layer--b"></div>
+      <div class="top-nebula__fade"></div>
     </div>
-  </nav>
+    <nav class="main-nav">
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo">Pablo Arenas</a>
+        <ul class="nav-menu">
+          <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+          <li><a href="sobre-mi.html" data-i18n="nav.about">SOBRE MÍ</a></li>
+          <li><a href="proyectos.html" class="nav-link-active" data-i18n="nav.projects">PROYECTOS</a></li>
+          <li><a href="contacto.html" data-i18n="nav.contact">CONTACTO</a></li>
+        </ul>
+        <div class="nav-social">
+          <button type="button" class="lang-toggle" id="lang-toggle" aria-label="Idioma">ESP</button>
+          <a href="https://github.com/Areman-05" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/pablo-arenas-mancebo-6a719b354/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="site-header-spacer" aria-hidden="true"></div>
 
   <section id="proyectos" class="projects projects-page">
     <div class="section-container">
       <header class="work-header">
-        <h2 class="work-header__title" data-i18n="projects.workTitle">Trabajo reciente</h2>
-        <p class="work-header__lead" data-i18n="projects.lead">Selección de apps y producto digital. El detalle técnico está en cada repositorio.</p>
+        <h2 class="work-header__title" data-i18n="projects.workTitle">Mis proyectos</h2>
+        <p class="work-header__lead">
+          <span data-i18n="projects.lead1">Portfolio de aplicaciones móviles, desarrollo web y software</span><br>
+          <span data-i18n="projects.lead2">desarrollado en proyectos propios y en equipo.</span>
+        </p>
       </header>
 
-      <div class="work-showcase work-showcase--single">
+      <div class="work-showcase work-showcase--row-top">
+        <a href="https://github.com/BreakerxFixer/breakerxfixer.github.io" target="_blank" rel="noopener noreferrer" class="work-card">
+          <figure class="work-card__media work-card__media--fill">
+            <img src="imagenes/Captura de pantalla 2026-05-22 202058.png" alt="BreakerxFixer — captura web" width="800" height="600" loading="lazy">
+          </figure>
+          <div class="work-card__caption">
+            <span class="work-card__label">BreakerxFixer</span>
+            <p class="work-card__tagline" data-i18n="proj.breakerx.tagline">Web colaborativa · writeups y retos CTF</p>
+          </div>
+        </a>
         <a href="https://github.com/Areman-05/TaskPulse" target="_blank" rel="noopener noreferrer" class="work-card">
           <figure class="work-card__media work-card__media--fill">
-            <img src="imagenes/Captura de pantalla 2026-05-22 194825.png" alt="Captura de pantalla" width="800" height="600" loading="lazy">
+            <img src="imagenes/Captura de pantalla 2026-05-22 194825.png" alt="TaskPulse — captura app" width="800" height="600" loading="lazy">
           </figure>
           <div class="work-card__caption">
             <span class="work-card__label">TaskPulse</span>
-            <p class="work-card__tagline" data-i18n="proj.taskpulse.tagline">Notas y tareas</p>
+            <p class="work-card__tagline" data-i18n="proj.taskpulse.tagline">App de notas y tareas</p>
           </div>
         </a>
       </div>
