@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body data-page="home">
-  <nav class="main-nav">
+  <nav class="main-nav" id="home-nav">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">Pablo Arenas</a>
       <ul class="nav-menu">
@@ -37,33 +37,40 @@
     </div>
   </nav>
 
-  <section id="inicio" class="hero">
-    <div class="hero-lines-container" aria-hidden="true">
-      <div class="hero-line hero-line-cyan"></div>
-      <div class="hero-line hero-line-green"></div>
-      <div class="hero-line hero-line-yellow"></div>
-      <div class="hero-line hero-line-orange"></div>
-      <div class="hero-line hero-line-red"></div>
-      <div class="hero-line hero-line-pink"></div>
-      <div class="hero-line hero-line-purple"></div>
+  <section id="inicio" class="hero hero--home">
+    <div class="hero-home__bg" aria-hidden="true">
+      <div class="hero-home__nebula">
+        <div class="top-nebula__layer top-nebula__layer--a"></div>
+        <div class="top-nebula__layer top-nebula__layer--b"></div>
+      </div>
+      <div class="hero-home__vignette"></div>
     </div>
-    <div class="hero-content">
-      <div class="hero-text">
-        <h1 class="hero-title">
-          <span class="title-line" data-i18n="hero.title1">Desarrollador</span>
-          <span class="title-line" data-i18n="hero.title2">Multiplataforma</span>
+
+    <div class="hero-home__inner">
+      <div class="hero-home__copy">
+        <p class="hero-home__name" data-i18n="hero.eyebrow">Pablo Arenas</p>
+        <h1 class="hero-home__title">
+          <span data-i18n="hero.title1">Desarrollador</span>
+          <span data-i18n="hero.title2">Multiplataforma</span>
         </h1>
-        <p class="hero-subtitle" data-i18n="hero.subtitle">
+        <p class="hero-home__lead" data-i18n="hero.subtitle">
           Creando soluciones tecnológicas innovadoras con código limpio y diseño centrado en el usuario.
         </p>
-        <div class="hero-actions">
+        <div class="hero-home__actions">
           <a href="proyectos.html" class="btn-primary" data-i18n="hero.ctaProjects">Ver Proyectos</a>
           <a href="contacto.html" class="btn-secondary" data-i18n="hero.ctaContact">Contactar</a>
         </div>
       </div>
-      <div class="hero-image">
-        <div class="image-wrapper">
-          <img src="imagenes/foto-perfil-2025.jpg" alt="Pablo Arenas" class="profile-image">
+
+      <div class="hero-home__visual">
+        <div class="hero-home__photo">
+          <img
+            src="imagenes/foto-perfil-2025.jpg"
+            alt="Pablo Arenas"
+            width="480"
+            height="480"
+            fetchpriority="high"
+          >
         </div>
       </div>
     </div>
