@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, observerOptions);
 
   // Observar elementos que deben animarse
-  const animatedElements = document.querySelectorAll('.project-card, .skill-category, .about-text, .contact-content, .experience-item');
+  const animatedElements = document.querySelectorAll('.project-card, .work-card, .skill-category, .about-text, .contact-content, .experience-item');
   animatedElements.forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';

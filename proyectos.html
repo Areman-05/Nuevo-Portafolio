@@ -37,40 +37,23 @@
     </div>
   </nav>
 
-  <section id="proyectos" class="projects">
+  <section id="proyectos" class="projects projects-page">
     <div class="section-container">
-      <div class="section-header">
-        <span class="section-number">01</span>
-        <h2 class="section-title" data-i18n="projects.title">Proyectos</h2>
-      </div>
-      <div class="projects-grid">
-        <div class="project-card">
-          <div class="project-image"><img src="imagenes/Gemini_Generated_Image_jb4y7djb4y7djb4y (1).png" alt="WorldScope"></div>
-          <div class="project-content">
-            <h3 class="project-title">WorldScope</h3>
-            <p class="project-description" data-i18n="proj.worldscope.desc">Explorador global de países con datos, filtros y vista clara para descubrir información geográfica.</p>
-            <div class="project-tags"><span class="project-tag">Kotlin</span><span class="project-tag">Jetpack Compose</span><span class="project-tag">MVVM</span><span class="project-tag">Hilt</span><span class="project-tag">Retrofit</span><span class="project-tag">Room</span></div>
-            <a href="https://github.com/Areman-05/WorldScope" target="_blank" rel="noopener noreferrer" class="project-link"><span data-i18n="proj.viewGithub">Ver en GitHub</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12L11 7L6 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <header class="work-header">
+        <h2 class="work-header__title" data-i18n="projects.workTitle">Trabajo reciente</h2>
+        <p class="work-header__lead" data-i18n="projects.lead">Selección de apps y producto digital. El detalle técnico está en cada repositorio.</p>
+      </header>
+
+      <div class="work-showcase work-showcase--single">
+        <a href="https://github.com/Areman-05/TaskPulse" target="_blank" rel="noopener noreferrer" class="work-card">
+          <figure class="work-card__media work-card__media--fill">
+            <img src="imagenes/Captura de pantalla 2026-05-22 194825.png" alt="Captura de pantalla" width="800" height="600" loading="lazy">
+          </figure>
+          <div class="work-card__caption">
+            <span class="work-card__label">TaskPulse</span>
+            <p class="work-card__tagline" data-i18n="proj.taskpulse.tagline">Notas y tareas</p>
           </div>
-        </div>
-        <div class="project-card">
-          <div class="project-image"><img src="imagenes/Gemini_Generated_Image_jb4y7djb4y7djb4y.png" alt="CineTrack"></div>
-          <div class="project-content">
-            <h3 class="project-title">CineTrack</h3>
-            <p class="project-description" data-i18n="proj.cinetrack.desc">Plataforma para seguir películas, descubrir títulos y mantener tu colección personal organizada.</p>
-            <div class="project-tags"><span class="project-tag">Swift</span><span class="project-tag">iOS</span><span class="project-tag">MVVM</span><span class="project-tag">TMDB API</span><span class="project-tag">URLSession</span><span class="project-tag">UserDefaults</span></div>
-            <a href="https://github.com/Areman-05/CineTrack" target="_blank" rel="noopener noreferrer" class="project-link"><span data-i18n="proj.viewGithub">Ver en GitHub</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12L11 7L6 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-image"><img src="imagenes/f169da0a598814ec38ccb0e25920a011.jpg" alt="TaskPulse"></div>
-          <div class="project-content">
-            <h3 class="project-title">TaskPulse</h3>
-            <p class="project-description" data-i18n="proj.taskpulse.desc">App Android para organizar tareas y notas con calendario, recordatorios, archivo automático y exportación local.</p>
-            <div class="project-tags"><span class="project-tag">Kotlin</span><span class="project-tag">Jetpack Compose</span><span class="project-tag">MVVM</span><span class="project-tag">Room</span><span class="project-tag">WorkManager</span><span class="project-tag">Material 3</span></div>
-            <a href="https://github.com/Areman-05/TaskPulse" target="_blank" rel="noopener noreferrer" class="project-link"><span data-i18n="proj.viewGithub">Ver en GitHub</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12L11 7L6 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
+        </a>
       </div>
     </div>
   </section>
