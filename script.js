@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, observerOptions);
 
-  const animatedElements = document.querySelectorAll('.project-card, .work-card, .skill-category, .about-text, .contact-content, .experience-item');
+  const animatedElements = document.querySelectorAll('.project-card, .work-card, .skill-category, .about-text, .contact-content, .contact-split__inner, .experience-item');
   animatedElements.forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
