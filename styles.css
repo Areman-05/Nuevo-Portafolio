@@ -313,7 +313,7 @@ body[data-page="home"] .main-nav.scrolled {
   min-height: 100dvh;
   display: flex;
   align-items: center;
-  padding: calc(var(--nav-bar-height, 4.75rem) + 2rem) clamp(1.25rem, 4vw, 2.5rem) 3rem;
+  padding: calc(var(--nav-bar-height, 4.75rem) + 2rem) clamp(1.25rem, 4vw, 2.5rem) clamp(2.5rem, 6vw, 4rem);
   overflow: hidden;
   background-color: #000000;
   isolation: isolate;
@@ -364,9 +364,9 @@ body[data-page="home"] .main-nav.scrolled {
     ),
     linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.5) 0%,
-      transparent 35%,
-      rgba(0, 0, 0, 0.65) 100%
+      rgba(0, 0, 0, 0.35) 0%,
+      transparent 40%,
+      transparent 100%
     );
 }
 
@@ -615,13 +615,14 @@ section {
 }
 
 .about-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: clamp(3.5rem, 8vw, 5.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 6vw, 4.5rem);
 }
 
 .about-head {
   max-width: 42rem;
+  margin-bottom: 0;
 }
 
 .about-head__title {
@@ -681,6 +682,100 @@ section {
   max-width: 52rem;
   padding-top: clamp(0.5rem, 2vw, 1rem);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ============================================
+   HOME — bloque presentación + stats
+   ============================================ */
+
+.home-intro {
+  position: relative;
+  background-color: #000000;
+  padding: clamp(4rem, 10vw, 7rem) 2rem clamp(5rem, 12vw, 8rem);
+}
+
+.home-intro__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(4rem, 10vw, 8rem);
+  align-items: center;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.home-intro__tagline {
+  margin: 0;
+  font-size: clamp(1.05rem, 1.55vw, 1.2rem);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 400;
+  max-width: 15rem;
+  justify-self: start;
+  padding: 0;
+}
+
+.home-intro__main {
+  max-width: 40rem;
+  justify-self: start;
+  width: 100%;
+}
+
+.home-intro__greeting {
+  margin: 0 0 clamp(1rem, 2vw, 1.35rem);
+  font-size: clamp(1.2rem, 1.85vw, 1.55rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.home-intro__welcome {
+  margin: 0;
+  font-size: clamp(0.8rem, 1.05vw, 0.875rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.48);
+  font-weight: 400;
+  max-width: 100%;
+}
+
+.home-intro__divider {
+  margin: clamp(2.5rem, 5vw, 3.25rem) 0;
+  border: none;
+  height: 1px;
+  width: 100%;
+  max-width: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.home-intro__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(2rem, 5vw, 4rem);
+  margin: 0;
+  max-width: 100%;
+}
+
+.home-stat {
+  margin: 0;
+}
+
+.home-stat__value {
+  display: block;
+  font-size: clamp(1.75rem, 2.6vw, 2.15rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 0.45rem;
+}
+
+.home-stat__label {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.42);
+  font-weight: 400;
 }
 
 .about-exp__label {
@@ -1789,6 +1884,25 @@ section {
   .about-exp__when {
     text-align: left;
     white-space: normal;
+  }
+
+  .home-intro__grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .home-intro__tagline {
+    max-width: none;
+    padding-right: 0;
+  }
+
+  .home-intro__main {
+    max-width: none;
+  }
+
+  .home-intro__stats {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
   }
 
   .skills-grid {

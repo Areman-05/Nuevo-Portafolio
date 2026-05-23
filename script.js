@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, observerOptions);
 
-  const animatedElements = document.querySelectorAll('.project-card, .work-card, .skill-category, .skills-marquee, .about-layout, .contact-content, .contact-split__inner');
+  const animatedElements = document.querySelectorAll('.project-card, .work-card, .skill-category, .skills-marquee, .home-intro, .about-exp__item, .contact-content, .contact-split__inner');
   animatedElements.forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
