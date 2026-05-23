@@ -611,7 +611,7 @@ section {
    ============================================ */
 
 .about-page {
-  padding: clamp(2.5rem, 5vw, 4rem) 2rem clamp(3.5rem, 7vw, 6rem);
+  padding: clamp(2.5rem, 5vw, 4rem) 2rem 0;
 }
 
 .about-layout {
@@ -679,9 +679,9 @@ section {
 }
 
 .about-exp {
-  max-width: 52rem;
-  padding-top: clamp(0.5rem, 2vw, 1rem);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
+  max-width: none;
+  padding-top: clamp(1rem, 3vw, 2rem);
 }
 
 /* ============================================
@@ -778,13 +778,27 @@ section {
   font-weight: 400;
 }
 
-.about-exp__label {
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
-  margin: 0 0 clamp(2rem, 4vw, 2.75rem);
+.about-exp__header {
+  max-width: 36rem;
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.about-exp__title {
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+.about-exp__subtitle {
+  margin: 0;
+  font-size: clamp(0.875rem, 1.2vw, 0.95rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.48);
+  font-weight: 400;
+  max-width: 32rem;
 }
 
 .about-exp__list {
@@ -793,90 +807,79 @@ section {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: clamp(2.5rem, 5vw, 3.5rem);
+  gap: clamp(3.5rem, 7vw, 5rem);
 }
 
 .about-exp__item {
-  position: relative;
-  padding-left: 1.35rem;
   margin: 0;
 }
 
-.about-exp__item::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.35rem;
-  bottom: 0;
-  width: 1px;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.35) 0%,
-    rgba(255, 255, 255, 0.08) 100%
-  );
+.about-exp__card {
+  display: grid;
+  grid-template-columns: minmax(9.5rem, 0.2fr) minmax(0, 1.15fr) minmax(12rem, 0.34fr);
+  gap: clamp(1.75rem, 4vw, 3rem);
+  align-items: start;
 }
 
-.about-exp__row {
+.about-exp__aside {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1.25rem 2rem;
-  margin-bottom: 0.5rem;
+  flex-direction: column;
+  gap: 0.85rem;
 }
 
 .about-exp__role {
-  font-size: clamp(1.05rem, 1.45vw, 1.15rem);
-  font-weight: 500;
+  margin: 0;
+  font-size: clamp(1rem, 1.35vw, 1.1rem);
+  font-weight: 600;
   letter-spacing: -0.02em;
   color: #ffffff;
   line-height: 1.35;
-  margin: 0;
 }
 
-.about-exp__when {
-  flex-shrink: 0;
+.about-exp__field {
+  margin: 0;
   font-size: 0.8rem;
-  line-height: 1.45;
-  color: rgba(255, 255, 255, 0.4);
-  text-align: right;
-  margin: 0;
-}
-
-.about-exp__meta {
-  font-size: 0.875rem;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.48);
-  margin: 0 0 1rem;
+  color: rgba(255, 255, 255, 0.45);
 }
 
-.about-exp__company {
+.about-exp__field-label {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.about-exp__field-value {
+  display: block;
   color: rgba(255, 255, 255, 0.55);
 }
 
-.about-exp__sep {
-  margin: 0 0.35rem;
-  opacity: 0.6;
+.about-exp__desc {
+  margin: 0 auto;
+  justify-self: center;
+  width: min(100%, 34rem);
+  max-width: 34rem;
+  font-size: clamp(0.85rem, 1.1vw, 0.9rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+  padding: 0 clamp(0.5rem, 2vw, 1.5rem);
 }
 
-.about-exp__points {
-  list-style: none;
+.about-exp__visual {
   margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
+  justify-self: end;
+  width: 100%;
+  max-width: clamp(15rem, 20vw, 19rem);
 }
 
-.about-exp__points li {
-  font-size: clamp(0.875rem, 1.15vw, 0.95rem);
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.58);
-  padding-left: 0.1rem;
-}
-
-.about-exp__points strong {
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.82);
+.about-exp__visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 14px;
 }
 
 /* Legacy about / experience (otras páginas si las usan) */
@@ -910,8 +913,8 @@ section {
    SKILLS — Ruleta animada (referencia)
    ============================================ */
 
-.skills--marquee {
-  padding-top: clamp(3rem, 6vw, 5rem);
+.skills.skills--marquee {
+  padding-top: 0;
   padding-bottom: clamp(4rem, 8vw, 6rem);
 }
 
@@ -1876,14 +1879,24 @@ section {
     gap: 1.5rem;
   }
 
-  .about-exp__row {
-    flex-direction: column;
-    gap: 0.5rem;
+  .about-exp__card {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
-  .about-exp__when {
-    text-align: left;
-    white-space: normal;
+  .about-exp__visual {
+    justify-self: start;
+    max-width: 100%;
+  }
+
+  .about-exp__desc {
+    justify-self: start;
+    margin: 0;
+    padding: 0;
+  }
+
+  .about-exp__visual img {
+    max-width: 22rem;
   }
 
   .home-intro__grid {

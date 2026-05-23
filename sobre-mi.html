@@ -63,67 +63,72 @@
         </a>
       </header>
 
-      <div class="about-exp" aria-labelledby="about-exp-label">
-        <p id="about-exp-label" class="about-exp__label" data-i18n="experience.title">Experiencia</p>
+      <section class="about-exp" aria-labelledby="about-exp-title">
+        <header class="about-exp__header">
+          <h2 id="about-exp-title" class="about-exp__title" data-i18n="experience.title">Mi experiencia laboral</h2>
+          <p class="about-exp__subtitle" data-i18n="experience.subtitle">
+            Un recorrido por los roles en los que he aplicado desarrollo, diseño y trabajo con usuarios.
+          </p>
+        </header>
         <ul class="about-exp__list">
           <li class="about-exp__item">
-            <div class="about-exp__row">
-              <h3 class="about-exp__role" data-i18n="exp1.title">Desarrollador de Software</h3>
-              <p class="about-exp__when">
-                <span data-i18n="exp1.dates">Oct. 2025 — Abr. 2026</span>
-                <span data-i18n="exp1.duration">· 8 meses</span>
+            <article class="about-exp__card">
+              <div class="about-exp__aside">
+                <h3 class="about-exp__role" data-i18n="exp1.title">Desarrollador de Software</h3>
+                <p class="about-exp__field">
+                  <span class="about-exp__field-label" data-i18n="experience.companyLabel">Empresa:</span>
+                  <span class="about-exp__field-value" data-i18n="exp1.company">Empresa d'Inserció Solucions Socials Sostenibles (EISSS)</span>
+                </p>
+                <p class="about-exp__field">
+                  <span class="about-exp__field-label" data-i18n="experience.durationLabel">Duración:</span>
+                  <span class="about-exp__field-value" data-i18n="exp1.dates">Oct. 2025 — Abr. 2026</span>
+                </p>
+              </div>
+              <p class="about-exp__desc" data-i18n="exp1.description">
+                Diseño e implementación de interfaces funcionales con CSS, mejorando la usabilidad en aplicaciones de logística. Desarrollo de lógica de negocio en Java y Python, optimizando estructuras de datos entre backend y frontend. Monitorización del sistema y resolución de incidencias críticas para garantizar estabilidad y una experiencia fluida.
               </p>
-            </div>
-            <p class="about-exp__meta">
-              <span class="about-exp__company" data-i18n="exp1.company">Empresa d'Inserció Solucions Socials Sostenibles (EISS)</span>
-              <span class="about-exp__sep" aria-hidden="true">·</span>
-              <span data-i18n="exp1.location">Barcelona (Presencial)</span>
-            </p>
-            <ul class="about-exp__points">
-              <li>
-                <strong data-i18n="exp1.bullet1.label">Frontend & UX:</strong>
-                <span data-i18n="exp1.bullet1.text">Diseño e implementación de interfaces funcionales con CSS, mejorando la usabilidad de aplicaciones de logística.</span>
-              </li>
-              <li>
-                <strong data-i18n="exp1.bullet2.label">Lógica & Datos:</strong>
-                <span data-i18n="exp1.bullet2.text">Desarrollo de la lógica de negocio en Java y Python, optimizando estructuras de datos para conectar backend y frontend.</span>
-              </li>
-              <li>
-                <strong data-i18n="exp1.bullet3.label">Soporte Técnico:</strong>
-                <span data-i18n="exp1.bullet3.text">Monitorización del sistema y resolución de incidencias críticas, garantizando estabilidad y una experiencia fluida para el usuario.</span>
-              </li>
-            </ul>
+              <figure class="about-exp__visual">
+                <img
+                  src="imagenes/mobile.png"
+                  alt="Aplicación móvil desarrollada en EISSS"
+                  width="320"
+                  height="240"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </figure>
+            </article>
           </li>
           <li class="about-exp__item">
-            <div class="about-exp__row">
-              <h3 class="about-exp__role" data-i18n="exp2.title">Profesor de clases particulares</h3>
-              <p class="about-exp__when">
-                <span data-i18n="exp2.dates">2022 — 2024</span>
-                <span data-i18n="exp2.duration">· 2 años</span>
+            <article class="about-exp__card">
+              <div class="about-exp__aside">
+                <h3 class="about-exp__role" data-i18n="exp2.title">Profesor de clases particulares</h3>
+                <p class="about-exp__field">
+                  <span class="about-exp__field-label" data-i18n="experience.companyLabel">Empresa:</span>
+                  <span class="about-exp__field-value" data-i18n="exp2.company">Autónomo</span>
+                </p>
+                <p class="about-exp__field">
+                  <span class="about-exp__field-label" data-i18n="experience.durationLabel">Duración:</span>
+                  <span class="about-exp__field-value" data-i18n="exp2.dates">2022 — 2024</span>
+                </p>
+              </div>
+              <p class="about-exp__desc" data-i18n="exp2.description">
+                Clases particulares a medida reforzando materias y preparación de exámenes. Explicación de conceptos de forma clara y adaptada al ritmo de cada alumno. Gestión de agenda, seguimiento del progreso y organización del trabajo de forma autónoma.
               </p>
-            </div>
-            <p class="about-exp__meta">
-              <span class="about-exp__company" data-i18n="exp2.company">Autónomo</span>
-              <span class="about-exp__sep" aria-hidden="true">·</span>
-              <span data-i18n="exp2.location">Barcelona (Presencial)</span>
-            </p>
-            <ul class="about-exp__points">
-              <li>
-                <strong data-i18n="exp2.bullet1.label">Docencia:</strong>
-                <span data-i18n="exp2.bullet1.text">Clases particulares a medida, reforzando materias y preparación de exámenes.</span>
-              </li>
-              <li>
-                <strong data-i18n="exp2.bullet2.label">Comunicación:</strong>
-                <span data-i18n="exp2.bullet2.text">Explicación de conceptos de forma clara y adaptada al ritmo de cada alumno.</span>
-              </li>
-              <li>
-                <strong data-i18n="exp2.bullet3.label">Autonomía:</strong>
-                <span data-i18n="exp2.bullet3.text">Gestión de agenda, seguimiento del progreso y organización del trabajo sin supervisión directa.</span>
-              </li>
-            </ul>
+              <figure class="about-exp__visual">
+                <img
+                  src="imagenes/ir-a-clases-particulares.jpeg"
+                  alt="Clases particulares en Barcelona"
+                  width="320"
+                  height="240"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </figure>
+            </article>
           </li>
         </ul>
-      </div>
+      </section>
     </div>
   </section>
 
