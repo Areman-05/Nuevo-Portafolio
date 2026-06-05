@@ -320,10 +320,10 @@ body[data-page="home"] .main-nav.scrolled {
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
-  min-height: 4.5rem;
+  min-height: 5rem;
   max-width: var(--frame-inner-max, 1180px);
   margin: 0 auto;
-  padding: clamp(0.85rem, 1.8vw, 1.1rem) clamp(1.75rem, 4vw, 2.75rem);
+  padding: clamp(1.4rem, 3vw, 2rem) clamp(2.75rem, 6vw, 4rem) clamp(0.9rem, 1.8vw, 1.1rem);
 }
 
 .nav-minimal__brand {
@@ -441,7 +441,7 @@ body[data-page="home"] .main-nav.scrolled {
 .nav-minimal__panel {
   position: absolute;
   top: 100%;
-  right: clamp(1.75rem, 4vw, 2.75rem);
+  right: clamp(2.75rem, 6vw, 4rem);
   z-index: 10001;
   width: min(18rem, calc(100vw - 3rem));
   padding: 1.35rem 1.35rem 1.15rem;
@@ -1409,7 +1409,7 @@ section {
 }
 
 /* ============================================
-   MARCO ESTÉTICO — prueba en Proyectos
+   MARCO ESTÉTICO — páginas con page--framed
    ============================================ */
 
 @property --frame-angle {
@@ -1441,13 +1441,15 @@ section {
   }
 }
 
-body.page--framed[data-page="projects"] {
+body.page--framed {
+  --frame-pad-inline: clamp(2.75rem, 6vw, 4rem);
+  --frame-pad-top: clamp(1.4rem, 3vw, 2rem);
   background-color: var(--frame-bg);
   padding: var(--frame-gap);
   min-height: 100vh;
 }
 
-body.page--framed[data-page="projects"] .page-frame {
+body.page--framed .page-frame {
   --frame-angle: 0deg;
   position: relative;
   display: flex;
@@ -1476,7 +1478,7 @@ body.page--framed[data-page="projects"] .page-frame {
     frame-glow-breathe 9s ease-in-out infinite;
 }
 
-body.page--framed[data-page="projects"] .page-frame::after {
+body.page--framed .page-frame::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -1491,7 +1493,7 @@ body.page--framed[data-page="projects"] .page-frame::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body.page--framed[data-page="projects"] .page-frame {
+  body.page--framed .page-frame {
     --frame-angle: 160deg;
     animation: none;
     box-shadow:
@@ -1501,7 +1503,7 @@ body.page--framed[data-page="projects"] .page-frame::after {
   }
 }
 
-body.page--framed[data-page="projects"] .site-header {
+body.page--framed .site-header {
   position: sticky;
   top: 0;
   left: auto;
@@ -1510,30 +1512,141 @@ body.page--framed[data-page="projects"] .site-header {
   background-color: #000000;
 }
 
-body.page--framed[data-page="projects"] .site-header--minimal .main-nav {
+body.page--framed .site-header--minimal .main-nav {
   background: #000000;
   background-image: none;
 }
 
-body.page--framed[data-page="projects"] .site-header-spacer {
+body.page--framed .nav-minimal__bar {
+  min-height: 5rem;
+  padding-top: var(--frame-pad-top);
+  padding-bottom: clamp(0.9rem, 1.8vw, 1.1rem);
+  padding-inline: var(--frame-pad-inline);
+}
+
+body.page--framed .nav-minimal__panel {
+  right: var(--frame-pad-inline);
+}
+
+body.page--framed .site-header-spacer {
   display: none;
   height: 0 !important;
 }
 
-body.page--framed[data-page="projects"] .section-container {
+body.page--framed .section-container {
   max-width: var(--frame-inner-max);
-  padding-inline: clamp(1.75rem, 4vw, 3rem);
+  padding-inline: var(--frame-pad-inline);
 }
 
-body.page--framed[data-page="projects"] .projects-page {
+body.page--framed .projects-page {
   flex: 1;
   padding-top: clamp(1.5rem, 3vw, 2.25rem);
   padding-bottom: clamp(2rem, 4vw, 3rem);
 }
 
-body.page--framed[data-page="projects"] .site-footer {
+body.page--framed .contact-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  margin-top: 0;
+}
+
+body.page--framed .contact-split {
+  flex: 0 0 auto;
+  padding: clamp(1.25rem, 2.5vw, 2rem) 0 clamp(1rem, 2vw, 1.5rem);
+}
+
+body.page--framed .contact-split__inner {
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  align-items: stretch;
+}
+
+body.page--framed .contact-visual {
+  aspect-ratio: unset;
+  height: 100%;
+  min-height: 0;
+  border-radius: 8px;
+}
+
+body.page--framed .contact-visual img {
+  min-height: 100%;
+}
+
+body.page--framed .contact-panel {
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+  padding-top: 0;
+  justify-content: flex-start;
+}
+
+body.page--framed .contact-panel__title {
+  font-size: clamp(1.5rem, 2.8vw, 2.15rem);
+}
+
+body.page--framed .contact-panel__lead {
+  max-width: none;
+  margin-bottom: 0.15rem;
+  line-height: 1.55;
+}
+
+body.page--framed .contact-form--page {
+  gap: 0.85rem;
+  margin-top: 0;
+}
+
+body.page--framed .contact-form--page .form-group textarea {
+  min-height: 6.5rem;
+}
+
+body.page--framed .contact-form--page .form-group input,
+body.page--framed .contact-form--page .form-group textarea {
+  padding: 0.72rem 0.9rem;
+  font-size: 0.9rem;
+}
+
+body.page--framed .contact-form--page .form-group label {
+  font-size: 0.8125rem;
+}
+
+body.page--framed .contact-mid {
+  flex: 0 0 auto;
+  padding: clamp(1.25rem, 3vw, 2rem) var(--frame-pad-inline) clamp(0.5rem, 1.5vw, 1rem);
+}
+
+body.page--framed .contact-mid__text {
+  max-width: 30rem;
+  margin-bottom: 1rem;
+  line-height: 1.65;
+  font-size: clamp(0.88rem, 1.3vw, 0.98rem);
+}
+
+body.page--framed .contact-mid__nav {
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+body.page--framed .contact-end .contact-footer__word {
+  padding: clamp(1.25rem, 3vw, 2rem) var(--frame-pad-inline) 0;
+}
+
+body.page--framed .site-footer {
   margin-top: auto;
   width: 100%;
+  padding-inline: var(--frame-pad-inline);
+  border-radius: 0 0 var(--frame-radius) var(--frame-radius);
+}
+
+body.page--framed .contact-end {
+  position: relative;
+  margin-top: auto;
+  width: 100%;
+  overflow: hidden;
+}
+
+body.page--framed .contact-end .site-footer {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(-2rem, -5vw, -1rem);
   border-radius: 0 0 var(--frame-radius) var(--frame-radius);
 }
 
@@ -1880,21 +1993,23 @@ body.page--framed[data-page="projects"] .site-footer {
 }
 
 .contact-split {
-  padding: clamp(2.5rem, 5vw, 4.5rem) 0 clamp(3rem, 6vw, 5rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0 clamp(1.5rem, 3vw, 2rem);
 }
 
 .contact-split__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-  gap: clamp(2rem, 4vw, 4rem);
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  align-items: stretch;
 }
 
 .contact-visual {
   margin: 0;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: unset;
+  height: 100%;
+  min-height: 0;
   overflow: hidden;
-  border-radius: 4px;
+  border-radius: 8px;
   background: #0a0a0a;
 }
 
@@ -1909,8 +2024,9 @@ body.page--framed[data-page="projects"] .site-footer {
 .contact-panel {
   display: flex;
   flex-direction: column;
-  gap: clamp(1.25rem, 2.5vw, 1.75rem);
-  padding-top: 0.25rem;
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+  padding-top: 0;
+  justify-content: flex-start;
 }
 
 .contact-panel__title {
@@ -1922,24 +2038,24 @@ body.page--framed[data-page="projects"] .site-footer {
 }
 
 .contact-panel__lead {
-  font-size: clamp(0.9rem, 1.4vw, 1rem);
-  line-height: 1.65;
+  font-size: clamp(0.875rem, 1.3vw, 0.95rem);
+  line-height: 1.55;
   color: rgba(255, 255, 255, 0.55);
-  max-width: 34rem;
+  max-width: none;
   font-weight: 400;
 }
 
 .contact-form--page {
   display: flex;
   flex-direction: column;
-  gap: 1.15rem;
-  margin-top: 0.35rem;
+  gap: 0.85rem;
+  margin-top: 0;
 }
 
 .contact-form__row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.15rem;
+  gap: 0.85rem;
 }
 
 .contact-form--page .form-group {
@@ -1970,7 +2086,7 @@ body.page--framed[data-page="projects"] .site-footer {
 }
 
 .contact-form--page .form-group textarea {
-  min-height: 9rem;
+  min-height: 6.5rem;
 }
 
 .contact-form--page .form-group input:focus,
@@ -2001,15 +2117,15 @@ body.page--framed[data-page="projects"] .site-footer {
 }
 
 .contact-mid {
-  padding: clamp(3.5rem, 8vw, 6.5rem) 2rem clamp(2rem, 4vw, 3rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem) 2rem clamp(0.75rem, 2vw, 1.25rem);
   text-align: center;
 }
 
 .contact-mid__text {
-  max-width: 36rem;
-  margin: 0 auto 2rem;
-  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
-  line-height: 1.75;
+  max-width: 30rem;
+  margin: 0 auto 1rem;
+  font-size: clamp(0.88rem, 1.3vw, 0.98rem);
+  line-height: 1.65;
   color: rgba(255, 255, 255, 0.55);
   font-weight: 400;
 }
@@ -2018,7 +2134,7 @@ body.page--framed[data-page="projects"] .site-footer {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: clamp(1.5rem, 4vw, 2.75rem);
+  gap: clamp(1.25rem, 3vw, 2rem);
 }
 
 .contact-mid__nav a {
@@ -2285,7 +2401,18 @@ body.page--framed[data-page="projects"] .site-footer {
   .contact-content,
   .contact-split__inner {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2rem;
+  }
+
+  .contact-visual {
+    aspect-ratio: 1 / 1;
+    height: auto;
+    max-height: none;
+  }
+
+  body.page--framed .contact-visual {
+    aspect-ratio: 1 / 1;
+    height: auto;
   }
 
   .contact-form__row {
@@ -2405,9 +2532,11 @@ body.page--framed[data-page="projects"] .site-footer {
     column-gap: 0;
   }
 
-  body.page--framed[data-page="projects"] {
+  body.page--framed {
     --frame-gap: clamp(8px, 2.5vw, 14px);
     --frame-radius: clamp(14px, 4vw, 20px);
+    --frame-pad-inline: 2rem;
+    --frame-pad-top: 1.3rem;
   }
 
   .site-footer {
@@ -2421,8 +2550,10 @@ body.page--framed[data-page="projects"] .site-footer {
     line-height: 1.45;
   }
 
-  .nav-minimal__bar {
-    padding: 1rem 1.5rem;
+  body.page--framed .nav-minimal__bar {
+    padding-top: var(--frame-pad-top);
+    padding-bottom: 1rem;
+    padding-inline: var(--frame-pad-inline);
   }
 
   .nav-minimal__brand-name,
@@ -2436,9 +2567,9 @@ body.page--framed[data-page="projects"] .site-footer {
     height: 2.5rem;
   }
 
-  .nav-minimal__panel {
-    right: 1.5rem;
-    left: 1.5rem;
+  body.page--framed .nav-minimal__panel {
+    right: var(--frame-pad-inline);
+    left: var(--frame-pad-inline);
     width: auto;
   }
 
