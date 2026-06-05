@@ -201,7 +201,7 @@
       </div>
     </section>
 
-    <section id="habilidades" class="skills skills--grid" aria-labelledby="skills-grid-title">
+    <section id="habilidades" class="skills skills--marquee" aria-labelledby="skills-marquee-title">
       <div class="section-container skills-layout">
         <div class="skills-layout__intro">
           <div class="skills-layout__bulb" aria-hidden="true">
@@ -213,39 +213,84 @@
               <circle cx="23" cy="16" r="1" fill="currentColor"/>
             </svg>
           </div>
-          <h2 id="skills-grid-title" class="skills-layout__title" data-i18n="skills.heroTitle">Mis habilidades clave</h2>
+          <h2 id="skills-marquee-title" class="skills-layout__title" data-i18n="skills.heroTitle">Mis habilidades clave</h2>
           <p class="skills-layout__lead" data-i18n="skills.heroLead">
             Como desarrollador multiplataforma, trabajo en todo el ciclo para construir aplicaciones y webs responsivas.
           </p>
         </div>
-        <div class="skills-grid-henry">
-          <ul class="skills-grid-henry__col">
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg" alt="" width="28" height="28"><span>Kotlin</span></li>
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/swift/swift-original.svg" alt="" width="28" height="28"><span>Swift</span></li>
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" alt="" width="28" height="28"><span>Flutter</span></li>
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/android/android-plain.svg" alt="" width="28" height="28"><span>Jetpack Compose</span></li>
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="" width="28" height="28"><span>HTML / CSS</span></li>
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="" width="28" height="28"><span>JavaScript</span></li>
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="" width="28" height="28"><span>TypeScript</span></li>
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="" width="28" height="28"><span>React</span></li>
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" alt="" width="28" height="28"><span>Vite</span></li>
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="" width="28" height="28"><span>Java</span></li>
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="" width="28" height="28"><span>Python</span></li>
-          </ul>
-          <ul class="skills-grid-henry__col">
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="" width="28" height="28"><span>Node.js</span></li>
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="" width="28" height="28"><span>PHP</span></li>
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" alt="" width="28" height="28"><span>C#</span></li>
-            <li class="skill-card"><span class="skill-card__icon skill-card__icon--api" aria-hidden="true"></span><span>REST API</span></li>
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="" width="28" height="28"><span>SQL</span></li>
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" alt="" width="28" height="28"><span>MongoDB</span></li>
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" alt="" width="28" height="28"><span>Laravel</span></li>
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="" width="28" height="28"><span>Git</span></li>
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="" width="28" height="28"><span>GitHub</span></li>
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="" width="28" height="28"><span>Docker</span></li>
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="" width="28" height="28"><span>Visual Studio Code</span></li>
-            <li class="skill-card"><img class="skill-card__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/unity/unity-original.svg" alt="" width="28" height="28"><span>Unity</span></li>
-          </ul>
+        <div class="skills-marquee__columns">
+          <div class="skill-marquee skill-marquee--up">
+            <div class="skill-marquee__viewport">
+              <div class="skill-marquee__track">
+                <ul class="skill-marquee__list">
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg" alt="" width="28" height="28"><span>Kotlin</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/swift/swift-original.svg" alt="" width="28" height="28"><span>Swift</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" alt="" width="28" height="28"><span>Flutter</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/android/android-plain.svg" alt="" width="28" height="28"><span>Jetpack Compose</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/androidstudio/androidstudio-original.svg" alt="" width="28" height="28"><span>Android Studio</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/xcode/xcode-original.svg" alt="" width="28" height="28"><span>Xcode</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="" width="28" height="28"><span>HTML / CSS</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="" width="28" height="28"><span>JavaScript</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="" width="28" height="28"><span>TypeScript</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="" width="28" height="28"><span>React</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" alt="" width="28" height="28"><span>Vite</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="" width="28" height="28"><span>PHP</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" alt="" width="28" height="28"><span>C#</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="" width="28" height="28"><span>Python</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="" width="28" height="28"><span>Java</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="" width="28" height="28"><span>Node.js</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg" alt="" width="28" height="28"><span>Kotlin</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/swift/swift-original.svg" alt="" width="28" height="28"><span>Swift</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" alt="" width="28" height="28"><span>Flutter</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/android/android-plain.svg" alt="" width="28" height="28"><span>Jetpack Compose</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/androidstudio/androidstudio-original.svg" alt="" width="28" height="28"><span>Android Studio</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/xcode/xcode-original.svg" alt="" width="28" height="28"><span>Xcode</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="" width="28" height="28"><span>HTML / CSS</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="" width="28" height="28"><span>JavaScript</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="" width="28" height="28"><span>TypeScript</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="" width="28" height="28"><span>React</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" alt="" width="28" height="28"><span>Vite</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="" width="28" height="28"><span>PHP</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" alt="" width="28" height="28"><span>C#</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="" width="28" height="28"><span>Python</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="" width="28" height="28"><span>Java</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="" width="28" height="28"><span>Node.js</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="skill-marquee skill-marquee--down">
+            <div class="skill-marquee__viewport">
+              <div class="skill-marquee__track">
+                <ul class="skill-marquee__list">
+                  <li class="skill-marquee__card"><span class="skill-marquee__icon skill-marquee__icon--api" aria-hidden="true"></span><span>REST API</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="" width="28" height="28"><span>SQL</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" alt="" width="28" height="28"><span>MongoDB</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" alt="" width="28" height="28"><span>Laravel</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="" width="28" height="28"><span>Laravel Sail</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="" width="28" height="28"><span>Git</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="" width="28" height="28"><span>GitHub</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="" width="28" height="28"><span>Docker</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg" alt="" width="28" height="28"><span>Bash</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="" width="28" height="28"><span>Visual Studio Code</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/visualstudio/visualstudio-plain.svg" alt="" width="28" height="28"><span>Visual Studio</span></li>
+                  <li class="skill-marquee__card"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/unity/unity-original.svg" alt="" width="28" height="28"><span>Unity</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><span class="skill-marquee__icon skill-marquee__icon--api" aria-hidden="true"></span><span>REST API</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="" width="28" height="28"><span>SQL</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" alt="" width="28" height="28"><span>MongoDB</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" alt="" width="28" height="28"><span>Laravel</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="" width="28" height="28"><span>Laravel Sail</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="" width="28" height="28"><span>Git</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="" width="28" height="28"><span>GitHub</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="" width="28" height="28"><span>Docker</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg" alt="" width="28" height="28"><span>Bash</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="" width="28" height="28"><span>Visual Studio Code</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/visualstudio/visualstudio-plain.svg" alt="" width="28" height="28"><span>Visual Studio</span></li>
+                  <li class="skill-marquee__card" aria-hidden="true"><img class="skill-marquee__icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/unity/unity-original.svg" alt="" width="28" height="28"><span>Unity</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
