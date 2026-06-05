@@ -98,55 +98,41 @@
 
   <div class="page-shell">
   <main class="single-page">
-    <section id="presentacion" class="home-intro" aria-labelledby="home-intro-heading">
-      <div class="section-container home-intro__container">
-        <div class="home-intro__grid">
-          <p class="home-intro__tagline" data-i18n="about.tagline">
-            Transformando ideas en experiencias digitales interactivas.
-          </p>
-          <div class="home-intro__main">
-            <h2 id="home-intro-heading" class="home-intro__greeting" data-i18n="about.greeting">
-              Hola, soy Pablo — desarrollador multiplataforma apasionado por crear.
-            </h2>
-            <p class="home-intro__welcome" data-i18n="about.welcome">
-              Bienvenido a mi portfolio. Soy desarrollador multiplataforma (DAM), formado en La Salle Gràcia (Barcelona). Me muevo con soltura en back-end, desarrollo nativo y web para construir soluciones coherentes, con especial atención a la experiencia de usuario.
-            </p>
-            <hr class="home-intro__divider">
-            <dl class="home-intro__stats">
-              <div class="home-stat">
-                <dt class="home-stat__value">1</dt>
-                <dd class="home-stat__label" data-i18n="about.stat1.label">Año de experiencia</dd>
-              </div>
-              <div class="home-stat">
-                <dt class="home-stat__value">20+</dt>
-                <dd class="home-stat__label" data-i18n="about.stat2.label">Proyectos completados</dd>
-              </div>
-              <div class="home-stat">
-                <dt class="home-stat__value">18+</dt>
-                <dd class="home-stat__label" data-i18n="about.stat3.label">Tecnologías en mi stack</dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="sobre-mi" class="about about-page">
+    <section id="sobre-mi" class="about about-page" aria-labelledby="about-head-title">
       <div class="section-container about-layout">
-        <header class="about-head">
-          <h2 class="about-head__title" data-i18n="about.title">Sobre Mí</h2>
-          <div class="about-head__prose">
+        <header class="about-head about-head--unified">
+          <h2 id="about-head-title" class="about-head__title" data-i18n="about.title">Sobre Mí</h2>
+          <div class="about-head__intro-grid">
+            <p class="home-intro__tagline" data-i18n="about.tagline">
+              Transformando ideas en experiencias digitales interactivas.
+            </p>
             <p class="about-head__lead" data-i18n="about.lead">
-              Soy desarrollador multiplataforma (DAM), formado en La Salle Gràcia (Barcelona). Me siento cómodo en todo el ciclo del software —back-end, desarrollo nativo y web— porque entender cada parte del proyecto me ayuda a construir soluciones más coherentes.
+              Soy Pablo Arenas, desarrollador multiplataforma (DAM) formado en La Salle Gràcia (Barcelona). Trabajo en back-end, desarrollo nativo y web, con un enfoque en productos sólidos, mantenibles y alineados con los objetivos de cada proyecto.
             </p>
             <p class="about-head__text" data-i18n="about.p1">
-              Disfruto de la lógica de negocio, pero donde más disfruto es cuando el código se nota en la experiencia del usuario: pantallas claras, fluidas y fáciles de usar. Soy curioso, responsable y me adapto con rapidez a nuevos entornos y herramientas. Busco aportar en equipos reales, con especial interés en diseño UI/UX, sin cerrarme a otras vías del desarrollo.
+              Lo que más me motiva no es solo que el código funcione, sino que se sienta bien al usarlo: interfaces claras, flujos intuitivos y decisiones de diseño con sentido. Pienso en cómo se percibe cada pantalla —espaciado, jerarquía, ritmo— porque creo que la UI/UX es donde el desarrollo se hace visible para las personas.
             </p>
           </div>
-          <a href="./pdf/CV-Pablo-Arenas-2025.pdf" class="about-cv-link" download>
-            <span data-i18n="about.downloadCv">Descargar CV</span>
-            <span class="about-cv-link__arrow" aria-hidden="true">→</span>
-          </a>
+          <div class="about-head__meta-row">
+                <dl class="home-intro__stats">
+                  <div class="home-stat">
+                    <dt class="home-stat__value">1</dt>
+                    <dd class="home-stat__label" data-i18n="about.stat1.label">Año de experiencia</dd>
+                  </div>
+                  <div class="home-stat">
+                    <dt class="home-stat__value">20+</dt>
+                    <dd class="home-stat__label" data-i18n="about.stat2.label">Proyectos completados</dd>
+                  </div>
+                  <div class="home-stat">
+                    <dt class="home-stat__value">18+</dt>
+                    <dd class="home-stat__label" data-i18n="about.stat3.label">Tecnologías en mi stack</dd>
+                  </div>
+                </dl>
+                <a href="./pdf/CV-Pablo-Arenas-2025.pdf" class="about-cv-link" download>
+                  <span data-i18n="about.downloadCv">Descargar CV</span>
+                  <span class="about-cv-link__arrow" aria-hidden="true">→</span>
+                </a>
+          </div>
         </header>
 
         <section class="about-exp" aria-labelledby="about-exp-title">

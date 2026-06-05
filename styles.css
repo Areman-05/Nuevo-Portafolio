@@ -925,6 +925,57 @@ section {
   margin-bottom: 0;
 }
 
+.about-head--unified {
+  max-width: none;
+  width: 100%;
+}
+
+.about-head--unified .about-head__title {
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.about-head__intro-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: start;
+  width: 100%;
+  margin-bottom: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+
+.about-head__intro-grid .home-intro__tagline {
+  max-width: none;
+  padding-top: 0.2rem;
+}
+
+.about-head--unified .about-head__lead {
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0;
+}
+
+.about-head--unified .about-head__text {
+  color: rgba(255, 255, 255, 0.48);
+  margin: 0;
+}
+
+.about-head__meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem 2rem;
+}
+
+.about-head--unified .home-intro__stats {
+  flex: 1 1 18rem;
+  max-width: none;
+}
+
+.about-head--unified .about-cv-link {
+  margin-top: 0;
+  flex-shrink: 0;
+}
+
 .about-head__title {
   font-size: clamp(2.5rem, 5.5vw, 4.25rem);
   font-weight: 600;
@@ -942,18 +993,19 @@ section {
 }
 
 .about-head__lead {
-  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
-  line-height: 1.6;
+  font-size: clamp(0.92rem, 1.35vw, 1.05rem);
+  line-height: 1.65;
   color: rgba(255, 255, 255, 0.75);
   font-weight: 400;
   letter-spacing: -0.01em;
 }
 
 .about-head__text {
-  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
-  line-height: 1.6;
+  font-size: clamp(0.92rem, 1.35vw, 1.05rem);
+  line-height: 1.65;
   color: rgba(255, 255, 255, 0.5);
   font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
 .about-cv-link {
@@ -3049,7 +3101,8 @@ body.page--single .contact-end .site-footer {
     max-width: 22rem;
   }
 
-  .home-intro__grid {
+  .home-intro__grid,
+  .about-head__intro-grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
@@ -3061,6 +3114,11 @@ body.page--single .contact-end .site-footer {
 
   .home-intro__main {
     max-width: none;
+  }
+
+  .about-head__meta-row {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .home-intro__stats {
