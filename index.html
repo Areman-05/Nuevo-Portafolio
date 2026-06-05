@@ -63,31 +63,34 @@
   </header>
 
     <section id="inicio" class="hero hero--home">
-      <div class="hero-home__inner">
-        <div class="hero-home__copy">
-          <p class="hero-home__name" data-i18n="hero.eyebrow">Pablo Arenas</p>
-          <h1 class="hero-home__title">
-            <span data-i18n="hero.title1">Desarrollador</span>
-            <span data-i18n="hero.title2">Multiplataforma</span>
-          </h1>
-          <p class="hero-home__lead" data-i18n="hero.subtitle">
-            Creando soluciones tecnológicas innovadoras con código limpio y diseño centrado en el usuario.
-          </p>
-          <div class="hero-home__actions">
-            <a href="#proyectos" class="btn-primary" data-i18n="hero.ctaProjects">Ver Proyectos</a>
-            <a href="#contacto" class="btn-secondary" data-i18n="hero.ctaContact">Contactar</a>
-          </div>
-        </div>
+      <div class="hero-home__stage">
         <div class="hero-home__visual">
           <div class="hero-home__photo">
             <img
               src="imagenes/foto-perfil-2025.jpg"
               alt="Pablo Arenas"
               width="480"
-              height="480"
+              height="640"
               fetchpriority="high"
             >
           </div>
+        </div>
+        <div class="hero-home__title-block">
+          <h1 class="hero-home__title">
+            <span data-i18n="hero.title1">Desarrollador</span>
+            <span data-i18n="hero.title2">Multiplataforma</span>
+          </h1>
+        </div>
+        <div class="hero-home__intro-block">
+          <p class="hero-home__lead" data-i18n="hero.subtitle">
+            Creando soluciones tecnológicas innovadoras con código limpio y diseño centrado en el usuario.
+          </p>
+          <a href="#contacto" class="btn-hero-pill">
+            <span data-i18n="hero.ctaTalk">Hablemos</span>
+            <svg class="btn-hero-pill__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M7 17L17 7M17 7H9M17 7V15"/>
+            </svg>
+          </a>
         </div>
       </div>
     </section>
@@ -205,12 +208,10 @@
       <div class="section-container skills-layout">
         <div class="skills-layout__intro">
           <div class="skills-layout__bulb" aria-hidden="true">
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 4c-5.5 0-10 4.2-10 9.8 0 3.4 1.7 6.4 4.3 8.2V26h11.4v-3.9c2.6-1.8 4.3-4.8 4.3-8.2C30 8.2 25.5 4 20 4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-              <path d="M16 28h8v3.5c0 1.1-.9 2-2 2h-4c-1.1 0-2-.9-2-2V28z" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M14 18.5c2-2.2 4.8-3.2 6-3.2s4 1 6 3.2" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
-              <circle cx="17" cy="16" r="1" fill="currentColor"/>
-              <circle cx="23" cy="16" r="1" fill="currentColor"/>
+            <svg class="skills-layout__bulb-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 18h6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+              <path d="M10 21h4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+              <path d="M12 3a6 6 0 0 1 6 6c0 2.2-1.2 4.1-3 5.2V17H9v-2.8C7.2 13.1 6 11.2 6 9a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <h2 id="skills-marquee-title" class="skills-layout__title" data-i18n="skills.heroTitle">Mis habilidades clave</h2>
