@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, observerOptions);
 
   const animatedElements = document.querySelectorAll(
-    '.project-card, .work-card, .skill-category, .skills-marquee, .home-intro, .about-exp__item, .contact-split__inner, .about-head, .work-header'
+    '.project-card, .work-card, .skill-category, .skills-layout, .skill-card, .home-intro, .about-exp__item, .contact-split__inner, .about-head, .work-header'
   );
 
   animatedElements.forEach((el) => {

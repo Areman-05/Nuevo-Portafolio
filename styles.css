@@ -1348,6 +1348,94 @@ section {
   }
 }
 
+/* Skills grid estático — bordes grises (Henry) */
+.skills-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.skills-layout__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  max-width: 22rem;
+}
+
+.skills-layout__bulb {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 0;
+}
+
+.skills-layout__title {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+.skills-layout__lead {
+  font-size: clamp(0.9rem, 1.35vw, 1rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+}
+
+.skills-grid-henry {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.skills-grid-henry__col {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.85rem, 2vw, 1.1rem);
+}
+
+.skill-card {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.9rem 1.15rem;
+  background-color: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.skill-card__icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.skill-card__icon--api {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.skill-card__icon--api::before {
+  content: 'API';
+}
+
 /* Legacy skills grid */
 .skills-grid {
   display: grid;
@@ -1657,7 +1745,23 @@ body.page--framed .contact-end .site-footer {
 body.page--single {
   --page-pad-inline: clamp(2.75rem, 6vw, 4rem);
   --page-pad-top: clamp(1.4rem, 3vw, 2rem);
-  --page-max: 1060px;
+  --page-shell-base: var(--frame-outer-max, 1140px);
+  /* Mitad de margen gris lateral: caja más ancha */
+  --page-shell-max: min(100%, calc((100vw + var(--page-shell-base)) / 2));
+  --page-max: var(--frame-inner-max, 1060px);
+  background-color: var(--frame-bg, #121212);
+}
+
+body.page--single .page-top {
+  width: 100%;
+  background-color: #000000;
+}
+
+body.page--single .page-shell {
+  width: 100%;
+  max-width: var(--page-shell-max);
+  margin-inline: auto;
+  margin-bottom: clamp(16px, 2.5vw, 32px);
   background-color: #000000;
 }
 
@@ -1678,7 +1782,7 @@ body.page--single .site-header--minimal .main-nav {
 }
 
 body.page--single .nav-minimal__bar {
-  max-width: var(--page-max);
+  max-width: var(--page-shell-max);
   min-height: 5rem;
   padding-top: var(--page-pad-top);
   padding-bottom: clamp(0.9rem, 1.8vw, 1.1rem);
@@ -1699,18 +1803,17 @@ body.page--single .single-page > section {
   scroll-margin-top: 5.5rem;
 }
 
-body.page--single .single-page > section + section {
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-}
-
 body.page--single .hero--home {
   min-height: auto;
-  padding: clamp(3rem, 8vw, 6rem) var(--page-pad-inline) clamp(3rem, 6vw, 5rem);
+  padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 4vw, 2.5rem) clamp(3rem, 6vw, 5rem);
   overflow: visible;
+  background-color: #000000;
 }
 
 body.page--single .hero-home__inner {
-  max-width: var(--page-max);
+  max-width: var(--page-shell-max);
+  margin-inline: auto;
+  padding-inline: var(--page-pad-inline);
 }
 
 body.page--single .home-intro {
@@ -1721,7 +1824,7 @@ body.page--single .about-page {
   padding: clamp(3rem, 7vw, 5.5rem) 0;
 }
 
-body.page--single .skills--marquee {
+body.page--single .skills--grid {
   padding: clamp(3rem, 7vw, 5.5rem) 0;
 }
 
@@ -1738,26 +1841,66 @@ body.page--single .contact-split {
   padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(1.5rem, 3vw, 2rem);
 }
 
-body.page--single .contact-mid {
-  padding: clamp(1.5rem, 3vw, 2.5rem) var(--page-pad-inline) clamp(1rem, 2vw, 1.5rem);
-}
-
 body.page--single .contact-end {
   position: relative;
-  overflow: hidden;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: visible;
+  background-color: #000000;
+}
+
+body.page--single .contact-end .contact-mid {
+  padding: clamp(2.5rem, 6vw, 4.5rem) var(--page-pad-inline) clamp(2.5rem, 5vw, 3.5rem);
+  text-align: center;
+}
+
+body.page--single .contact-end .contact-mid__text {
+  max-width: 34rem;
+  margin: 0 auto clamp(1.5rem, 3.5vw, 2rem);
+  font-size: clamp(0.9rem, 1.35vw, 1rem);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.52);
+}
+
+body.page--single .contact-end .contact-mid__nav {
+  gap: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+body.page--single .contact-end .contact-mid__nav a {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.88);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+body.page--single .contact-end .contact-mid__nav a:hover {
+  color: #ffffff;
 }
 
 body.page--single .contact-end .contact-footer__word {
-  padding: clamp(1.25rem, 3vw, 2rem) var(--page-pad-inline) 0;
+  margin: 0;
+  padding: clamp(0.5rem, 1.5vw, 1rem) clamp(1rem, 3vw, 2rem) clamp(2.5rem, 5vw, 3.5rem);
+  font-size: clamp(5.5rem, 22vw, 14rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.07);
+  user-select: none;
+  pointer-events: none;
 }
 
 body.page--single .contact-end .site-footer {
   position: relative;
   z-index: 1;
-  margin-top: clamp(-2rem, -5vw, -1rem);
-  padding-inline: var(--page-pad-inline);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: clamp(-1.25rem, -3.5vw, -0.5rem);
+  padding: clamp(1.15rem, 2.2vw, 1.4rem) var(--page-pad-inline);
   border-radius: 0;
+  border-top: none;
+  background-color: var(--footer-bar-bg);
 }
 
 body.page--single .nav-minimal__toggle--solo,
@@ -1773,7 +1916,7 @@ body.page--single .contact-form--page .form-group textarea,
 body.page--single .work-card__media,
 body.page--single .about-exp__visual,
 body.page--single .about-exp__visual img,
-body.page--single .skill-marquee__card {
+body.page--single .skill-card {
   border-radius: 0;
 }
 
@@ -2648,6 +2791,19 @@ body.page--single .skill-marquee__card {
     max-width: none;
   }
 
+  .skills-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .skills-layout__intro {
+    max-width: none;
+  }
+
+  .skills-grid-henry {
+    grid-template-columns: 1fr;
+  }
+
   .projects-grid {
     grid-template-columns: 1fr;
   }
@@ -2669,6 +2825,11 @@ body.page--single .skill-marquee__card {
   body.page--single {
     --page-pad-inline: 2rem;
     --page-pad-top: 1.3rem;
+  }
+
+  body.page--single .page-shell {
+    max-width: min(calc(100% - clamp(8px, 1.5vw, 14px)), calc((100vw + 1140px) / 2));
+    margin-bottom: clamp(12px, 2vw, 20px);
   }
 
   body.page--single .nav-minimal__panel {
