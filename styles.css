@@ -1650,6 +1650,133 @@ body.page--framed .contact-end .site-footer {
   border-radius: 0 0 var(--frame-radius) var(--frame-radius);
 }
 
+/* ============================================
+   SINGLE PAGE — scroll vertical (estilo Henry)
+   ============================================ */
+
+body.page--single {
+  --page-pad-inline: clamp(2.75rem, 6vw, 4rem);
+  --page-pad-top: clamp(1.4rem, 3vw, 2rem);
+  --page-max: 1060px;
+  background-color: #000000;
+}
+
+body.page--single .site-header {
+  position: sticky;
+  top: 0;
+  left: auto;
+  right: auto;
+  width: 100%;
+  z-index: 10000;
+  background-color: #000000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+body.page--single .site-header--minimal .main-nav {
+  background: #000000;
+  background-image: none;
+}
+
+body.page--single .nav-minimal__bar {
+  max-width: var(--page-max);
+  min-height: 5rem;
+  padding-top: var(--page-pad-top);
+  padding-bottom: clamp(0.9rem, 1.8vw, 1.1rem);
+  padding-inline: var(--page-pad-inline);
+}
+
+body.page--single .nav-minimal__panel {
+  right: var(--page-pad-inline);
+  border-radius: 0;
+}
+
+body.page--single .section-container {
+  max-width: var(--page-max);
+  padding-inline: var(--page-pad-inline);
+}
+
+body.page--single .single-page > section {
+  scroll-margin-top: 5.5rem;
+}
+
+body.page--single .single-page > section + section {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+body.page--single .hero--home {
+  min-height: auto;
+  padding: clamp(3rem, 8vw, 6rem) var(--page-pad-inline) clamp(3rem, 6vw, 5rem);
+  overflow: visible;
+}
+
+body.page--single .hero-home__inner {
+  max-width: var(--page-max);
+}
+
+body.page--single .home-intro {
+  padding: clamp(3rem, 7vw, 5.5rem) 0;
+}
+
+body.page--single .about-page {
+  padding: clamp(3rem, 7vw, 5.5rem) 0;
+}
+
+body.page--single .skills--marquee {
+  padding: clamp(3rem, 7vw, 5.5rem) 0;
+}
+
+body.page--single .projects-page {
+  padding: clamp(3rem, 7vw, 5.5rem) 0;
+}
+
+body.page--single .contact-page {
+  display: flex;
+  flex-direction: column;
+}
+
+body.page--single .contact-split {
+  padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(1.5rem, 3vw, 2rem);
+}
+
+body.page--single .contact-mid {
+  padding: clamp(1.5rem, 3vw, 2.5rem) var(--page-pad-inline) clamp(1rem, 2vw, 1.5rem);
+}
+
+body.page--single .contact-end {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+body.page--single .contact-end .contact-footer__word {
+  padding: clamp(1.25rem, 3vw, 2rem) var(--page-pad-inline) 0;
+}
+
+body.page--single .contact-end .site-footer {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(-2rem, -5vw, -1rem);
+  padding-inline: var(--page-pad-inline);
+  border-radius: 0;
+}
+
+body.page--single .nav-minimal__toggle--solo,
+body.page--single .lang-toggle--flag,
+body.page--single .nav-minimal__links a,
+body.page--single .hero-home__photo,
+body.page--single .btn-primary,
+body.page--single .btn-secondary,
+body.page--single .btn-contact-send,
+body.page--single .contact-visual,
+body.page--single .contact-form--page .form-group input,
+body.page--single .contact-form--page .form-group textarea,
+body.page--single .work-card__media,
+body.page--single .about-exp__visual,
+body.page--single .about-exp__visual img,
+body.page--single .skill-marquee__card {
+  border-radius: 0;
+}
+
 .work-header {
   max-width: 42rem;
   margin-bottom: clamp(3rem, 6vw, 5rem);
@@ -2537,6 +2664,26 @@ body.page--framed .contact-end .site-footer {
     --frame-radius: clamp(14px, 4vw, 20px);
     --frame-pad-inline: 2rem;
     --frame-pad-top: 1.3rem;
+  }
+
+  body.page--single {
+    --page-pad-inline: 2rem;
+    --page-pad-top: 1.3rem;
+  }
+
+  body.page--single .nav-minimal__panel {
+    right: var(--page-pad-inline);
+    left: var(--page-pad-inline);
+    width: auto;
+  }
+
+  body.page--single .hero--home {
+    padding-top: clamp(2rem, 6vw, 3rem);
+  }
+
+  body.page--single .hero-home__inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 
   .site-footer {
