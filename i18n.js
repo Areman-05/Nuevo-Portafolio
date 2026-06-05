@@ -2,6 +2,11 @@ const STORAGE_KEY = 'portfolio-lang';
 const LANG_HTML = { esp: 'es', cat: 'ca', eng: 'en' };
 const LANG_ORDER = ['esp', 'cat', 'eng'];
 const LANG_LABELS = { esp: 'ESP', cat: 'CAT', eng: 'ENG' };
+const LANG_FLAGS = {
+  esp: { src: 'imagenes/flags/es.svg', alt: 'Español' },
+  cat: { src: 'imagenes/flags/cat.svg', alt: 'Català' },
+  eng: { src: 'imagenes/flags/gb.svg', alt: 'English' }
+};
 
 const translations = {
   esp: {
@@ -265,9 +270,17 @@ function applyLanguage(lang) {
 
   const langToggle = document.getElementById('lang-toggle');
   if (langToggle) {
-    langToggle.textContent = LANG_LABELS[lang];
+    const flag = LANG_FLAGS[lang];
+    const flagImg = langToggle.querySelector('.lang-toggle__flag');
+    if (flag && flagImg) {
+      flagImg.src = flag.src;
+      flagImg.alt = flag.alt;
+    } else if (!flagImg) {
+      langToggle.textContent = LANG_LABELS[lang];
+    }
     if (t['lang.aria']) {
-      langToggle.setAttribute('aria-label', `${t['lang.aria']}: ${LANG_LABELS[lang]}`);
+      const flagAlt = flag?.alt || LANG_LABELS[lang];
+      langToggle.setAttribute('aria-label', `${t['lang.aria']}: ${flagAlt}`);
     }
   }
 }
