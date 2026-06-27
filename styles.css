@@ -1343,34 +1343,38 @@ section {
 }
 
 .skill-marquee__track {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
   will-change: transform;
 }
 
 .skill-marquee--up .skill-marquee__track {
-  animation: skill-marquee-up 42s linear infinite;
+  --marquee-duration: 42s;
+  animation: skill-marquee-up var(--marquee-duration) linear infinite;
 }
 
 .skill-marquee--down .skill-marquee__track {
-  animation: skill-marquee-down 38s linear infinite;
-  /* Desfase ~media vuelta: evita que las tarjetas queden a la misma altura que la otra columna */
-  animation-delay: -19s;
+  --marquee-duration: 38s;
+  animation: skill-marquee-down var(--marquee-duration) linear infinite;
+  animation-delay: calc(var(--marquee-duration) * -0.5);
 }
 
 @keyframes skill-marquee-up {
   from {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translateY(-50%);
+    transform: translate3d(0, calc(-1 * var(--marquee-shift, 0px)), 0);
   }
 }
 
 @keyframes skill-marquee-down {
   from {
-    transform: translateY(-50%);
+    transform: translate3d(0, calc(-1 * var(--marquee-shift, 0px)), 0);
   }
   to {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -1442,7 +1446,7 @@ section {
     justify-content: center;
   }
 
-  .skill-marquee__card[aria-hidden='true'] {
+  .skill-marquee__list[data-marquee-clone] {
     display: none;
   }
 
@@ -2293,6 +2297,40 @@ body.page--single .contact-end .site-footer {
   max-width: none;
   margin-inline: 0;
   margin-top: clamp(2.5rem, 4.5vw, 3.75rem);
+}
+
+.work-showcase--row-bottom {
+  margin-top: clamp(2.5rem, 4.5vw, 3.75rem);
+}
+
+.work-card--static {
+  cursor: default;
+}
+
+.work-card--static:hover .work-card__media {
+  transform: none;
+}
+
+.work-card--static:not(.work-card--featured):hover .work-card__media img {
+  transform: none;
+}
+
+.work-card--static:hover .work-card__tagline {
+  color: inherit;
+}
+
+.work-card__media--photo img {
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.work-card--featured .work-card__media--featured.work-card__media--photo {
+  background-color: #c8bfb4;
+}
+
+.work-card--featured .work-card__media--photo img {
+  object-position: center 62%;
+  transform-origin: center 55%;
 }
 
 .work-card--featured {
