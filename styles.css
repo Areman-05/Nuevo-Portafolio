@@ -2287,10 +2287,6 @@ body.page--single .contact-end .site-footer {
   transform: none;
 }
 
-.work-showcase--row-top .work-card:hover .work-card__media img {
-  transform: scale(1.015);
-}
-
 .work-showcase--row-featured {
   display: block;
   width: 100%;
@@ -2311,8 +2307,8 @@ body.page--single .contact-end .site-footer {
   transform: none;
 }
 
-.work-card--static:not(.work-card--featured):hover .work-card__media img {
-  transform: none;
+.work-card--static:hover .work-card__media img {
+  transform: scale(1.015);
 }
 
 .work-card--static:hover .work-card__tagline {
@@ -2346,10 +2342,6 @@ body.page--single .contact-end .site-footer {
 
 .work-card--featured:hover .work-card__media {
   transform: none;
-}
-
-.work-card--featured:hover .work-card__media img {
-  transform: scale(1.015);
 }
 
 .work-card--featured .work-card__tagline {
