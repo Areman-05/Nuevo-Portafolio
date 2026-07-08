@@ -1867,7 +1867,7 @@ body.page--single {
   /* Mitad de margen gris lateral: caja más ancha */
   --page-shell-max: min(100%, calc((100vw + var(--page-shell-base)) / 2));
   --page-max: var(--frame-inner-max, 1060px);
-  --section-gap: clamp(2.25rem, 5vw, 3.25rem);
+  --section-gap: clamp(3rem, 6vw, 4.5rem);
   background-color: var(--frame-bg, #121212);
 }
 
@@ -2150,12 +2150,12 @@ body.page--single .contact-page {
 }
 
 body.page--single .contact-split {
-  padding-top: var(--section-gap);
+  padding-top: 0;
   padding-bottom: 0;
 }
 
 body.page--single .about-layout {
-  gap: clamp(2rem, 4vw, 3rem);
+  gap: var(--section-gap);
 }
 
 body.page--single .skills-layout {
@@ -3909,3 +3909,91 @@ body.page--project .project-detail__subheading {
       0 16px 48px rgba(0, 0, 0, 0.45);
   }
 }
+
+/* ================================
+   HOME — más proyectos
+   ================================ */
+
+.work-more {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+a.btn-contact-send {
+  display: inline-flex;
+  text-decoration: none;
+}
+
+/* ================================
+   PROJECTS UPCOMING — vista futura
+   ================================ */
+
+body.page--projects-upcoming .page-shell {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+body.page--projects-upcoming .projects-upcoming {
+  flex: 1;
+  padding: clamp(2rem, 4vw, 3rem) 0 clamp(3rem, 6vw, 4.5rem);
+}
+
+body.page--projects-upcoming .projects-upcoming__inner {
+  width: 100%;
+}
+
+body.page--projects-upcoming .projects-upcoming__head {
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  padding-bottom: clamp(1rem, 2.2vw, 1.4rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.page--projects-upcoming .projects-upcoming__title {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--color-text);
+  margin: 0 0 0.85rem;
+}
+
+body.page--projects-upcoming .projects-upcoming__lead {
+  margin: 0;
+  max-width: none;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+body.page--projects-upcoming .projects-upcoming__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+body.page--projects-upcoming .projects-upcoming__slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  border: 1px dashed rgba(255, 255, 255, 0.14);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+}
+
+body.page--projects-upcoming .projects-upcoming__slot-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+@media (max-width: 640px) {
+  body.page--projects-upcoming .projects-upcoming__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
