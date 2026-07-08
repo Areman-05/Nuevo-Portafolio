@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vigorly — Pablo Arenas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body data-page="vigorly" data-asset-prefix="../" class="page--single page--project">
+  <div class="page-shell">
+    <header class="site-header site-header--minimal site-header--project" id="site-header">
+      <nav class="main-nav nav-minimal" aria-label="Principal">
+        <div class="nav-minimal__bar">
+          <a
+            href="../index.html#proyectos"
+            class="project-back-btn"
+            data-i18n-aria="nav.back"
+            aria-label="Volver"
+          >
+            <svg class="project-back-btn__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </a>
+          <button
+            type="button"
+            class="nav-minimal__toggle nav-minimal__toggle--solo"
+            id="nav-menu-toggle"
+            aria-expanded="false"
+            aria-controls="nav-menu-panel"
+            aria-label="Abrir menú"
+          >
+            <span class="nav-minimal__burger" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+        </div>
+        <div class="nav-minimal__panel" id="nav-menu-panel" aria-hidden="true">
+          <ul class="nav-minimal__links">
+            <li><a href="../index.html#inicio" data-i18n="nav.home">HOME</a></li>
+            <li><a href="../index.html#sobre-mi" data-i18n="nav.about">SOBRE MÍ</a></li>
+            <li><a href="../index.html#proyectos" class="nav-link-active" data-i18n="nav.projects">PROYECTOS</a></li>
+            <li><a href="../index.html#contacto" data-i18n="nav.contact">CONTACTO</a></li>
+          </ul>
+          <div class="nav-minimal__panel-foot">
+            <button type="button" class="lang-toggle lang-toggle--flag lang-toggle--panel" id="lang-toggle" data-i18n-aria="lang.aria" aria-label="Idioma">
+              <img class="lang-toggle__flag" src="../imagenes/flags/es.svg" alt="" width="24" height="18" decoding="async">
+            </button>
+            <div class="nav-minimal__social">
+              <a href="https://github.com/Areman-05" target="_blank" rel="noopener noreferrer" class="nav-minimal__social-link" aria-label="GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+              </a>
+              <a href="https://www.linkedin.com/in/pablo-arenas-mancebo-6a719b354/" target="_blank" rel="noopener noreferrer" class="nav-minimal__social-link" aria-label="LinkedIn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 4.126 0 2.062 2.062 0 0 1-2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <button type="button" class="nav-minimal__backdrop" id="nav-menu-backdrop" aria-label="Cerrar menú" tabindex="-1" hidden></button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="project-detail">
+      <div class="section-container project-detail__inner">
+        <header class="project-detail__head">
+          <h1 class="project-detail__title">Vigorly</h1>
+          <p class="project-detail__subtitle">Tu pulso deportivo en un solo sitio: moverte, entrenar y medir progreso sin cambiar de app</p>
+        </header>
+
+        <div class="project-detail__body">
+          <article class="project-chapter project-chapter--duo">
+            <div class="project-chapter__prose">
+              <section class="project-detail__section">
+                <h2 class="project-detail__heading">Contexto</h2>
+                <p>Las apps de fitness suelen obligarte a elegir: o un panel de pasos, o un catálogo de rutinas, o un historial que no conversa con tus estadísticas. El resultado es fricción, métricas vacías en cuentas nuevas y pantallas que compiten por atención con gradientes y animaciones que impresionan en capturas pero cansan al quinto uso.</p>
+                <p>Vigorly nace para cerrar ese hueco: un compañero de entrenamiento local, legible y coherente de punta a punta. No es un feed social ni un mockup de dashboard: es una aplicación Android completa que lleva al usuario desde el registro hasta el perfil atlético, pasando por sesiones activas, historial cronológico y análisis semanal — todo conectado a la misma fuente de datos en el dispositivo.</p>
+              </section>
+            </div>
+            <figure class="project-chapter__figure">
+              <img src="../imagenes/Vigorly/Captura%20de%20pantalla%202026-07-08%20144503.png" alt="Vigorly — inicio con anillos de actividad y navegación inferior" loading="lazy">
+            </figure>
+          </article>
+
+          <article class="project-chapter project-chapter--duo project-chapter--duo-reverse">
+            <div class="project-chapter__prose">
+              <section class="project-detail__section">
+                <h2 class="project-detail__heading">Objetivo</h2>
+                <p>El proyecto demuestra que se puede diseñar y construir una experiencia de fitness fiable y usable a diario sin depender de un backend externo. Los objetivos concretos son:</p>
+                <ul class="project-detail__list">
+                  <li>Ofrecer claridad en dos segundos al abrir la app: saludo, anillos de actividad, meta diaria y entrenamiento recomendado.</li>
+                  <li>Permitir entrenar con intención mediante un catálogo filtrable de rutinas reales, sesión guiada por ejercicios y resumen al completar.</li>
+                  <li>Mantener honestidad en los datos: perfil atlético, nivel, rachas y estadísticas derivadas del historial; una cuenta nueva no muestra gráficos inventados.</li>
+                  <li>Separar con sentido identidad (Perfil) y rendimiento (Análisis), respondiendo preguntas distintas sin duplicar accesos.</li>
+                </ul>
+
+                <h3 class="project-detail__subheading">Enfoque de diseño / UX</h3>
+                <p>El principio rector es claridad antes que espectáculo. La estética toma referencias del lenguaje visual de apps de actividad consolidadas — anillos diarios, stats grandes, secciones con aire — pero adaptada a una app autónoma, sin ecosistemas cerrados.</p>
+                <p>La interfaz apuesta por:</p>
+                <ul class="project-detail__list">
+                  <li>Jerarquía tipográfica escalonada (DisplayStat, HeadlineLgMobile, LabelCaps): números grandes para lo importante, etiquetas en mayúsculas para el contexto.</li>
+                  <li>Tarjetas métricas en grid 2×2 en el dashboard para escaneo rápido.</li>
+                  <li>Estados vacíos con copy útil que explican qué aparecerá tras el primer entrenamiento, en lugar de ocultar secciones.</li>
+                  <li>Test tags en nodos clave para pruebas E2E sin contaminar la experiencia visual.</li>
+                </ul>
+                <p>El tono es profesional y cercano: la app guía, no presume.</p>
+              </section>
+            </div>
+            <figure class="project-chapter__figure">
+              <img src="../imagenes/Vigorly/Captura%20de%20pantalla%202026-07-08%20144517.png" alt="Vigorly — catálogo de entrenamientos con filtros y búsqueda" loading="lazy">
+            </figure>
+          </article>
+
+          <article class="project-chapter project-chapter--duo">
+            <div class="project-chapter__prose">
+              <section class="project-detail__section">
+                <h2 class="project-detail__heading">Decisiones clave de UI/UX y flujo</h2>
+
+                <div class="project-ux-accordion">
+                  <details class="project-ux-accordion__item" open>
+                    <summary class="project-ux-accordion__summary">
+                      <span class="project-ux-accordion__title">Auth vs. uso diario</span>
+                      <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
+                    </summary>
+                    <div class="project-ux-accordion__body">
+                      <p>Las pantallas de login, registro y onboarding usan fondo con gradiente completo: marcan la entrada y diferencian el “antes” de tener cuenta. El shell principal (cuatro tabs) usa un fondo más ligero y una top bar contextual — menos carga visual y scroll más cómodo en el uso repetido.</p>
+                    </div>
+                  </details>
+
+                  <details class="project-ux-accordion__item">
+                    <summary class="project-ux-accordion__summary">
+                      <span class="project-ux-accordion__title">Perfil ≠ Análisis</span>
+                      <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
+                    </summary>
+                    <div class="project-ux-accordion__body">
+                      <p>Fue una decisión explícita de producto, no solo de carpetas:</p>
+                      <pre class="project-detail__flow" aria-label="Tabla de decisiones de producto">Pregunta del usuario	Pantalla	Contenido
+¿Quién soy como deportista? ¿Qué he desbloqueado?
+Perfil
+Avatar, nivel, racha, escaparate de logros, radar atlético
+
+¿Cómo voy esta semana? ¿Cuál fue mi mejor día?
+Análisis (InsightsScreen)
+Media por sesión, minutos semanales, barras de actividad, progreso de meta</pre>
+                    </div>
+                  </details>
+
+                  <details class="project-ux-accordion__item">
+                    <summary class="project-ux-accordion__summary">
+                      <span class="project-ux-accordion__title">Anillos y datos reales</span>
+                      <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
+                    </summary>
+                    <div class="project-ux-accordion__body">
+                      <p>Los anillos de actividad (mover, ejercicio, estar activo) son el ancla visual del inicio. Un toque abre el detalle de actividad con calendario para revisar otros días. El radar atlético solo se dibuja cuando hay historial real; sin entrenamientos completados, el perfil muestra estados vacíos honestos.</p>
+                    </div>
+                  </details>
+
+                  <details class="project-ux-accordion__item">
+                    <summary class="project-ux-accordion__summary">
+                      <span class="project-ux-accordion__title">Fluidez como decisión de diseño</span>
+                      <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
+                    </summary>
+                    <div class="project-ux-accordion__body">
+                      <p>UiPerformance centraliza dos reglas: animaciones decorativas desactivadas en uso diario (decorativeMotionEnabled = false) y fondo ligero en el shell principal (useLightMainBackground = true). La actividad del día se actualiza en memoria al instante y se persiste en DataStore de forma espaciada para no penalizar scroll ni transiciones.</p>
+                    </div>
+                  </details>
+
+                  <details class="project-ux-accordion__item">
+                    <summary class="project-ux-accordion__summary">
+                      <span class="project-ux-accordion__title">Arquitectura y flujo de navegación</span>
+                      <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
+                    </summary>
+                    <div class="project-ux-accordion__body">
+                      <pre class="project-detail__flow" aria-label="Flujo de navegación">Splash → (Login | Registro) → Setup (asistente) → Shell principal (4 tabs)
+                                                      │
+        ┌─────────────────────────────────────────────┼─────────────────────────────┐
+        ▼                                             ▼                             ▼
+  Detalle actividad                          Detalle entreno → Sesión activa   Ajustes / Logros / Análisis
+  (desde Dashboard)                          → Resumen de sesión
+
+Cuatro destinos fijos en la bottom bar: Inicio · Entrenos · Historial · Perfil. El estado se restaura al cambiar de tab para alternar entre “¿cómo va mi día?” y “¿qué entreno?” sin perder contexto.</pre>
+                      <p>Rutas secundarias gestionadas con Navigation Compose y vigorlyNavGraph: detalle de entreno, sesión activa con controles play/pausa y avance por ejercicios, resumen post-sesión, detalle de historial, pantalla de logros (MilestonesScreen) y ajustes.</p>
+                    </div>
+                  </details>
+
+                  <details class="project-ux-accordion__item">
+                    <summary class="project-ux-accordion__summary">
+                      <span class="project-ux-accordion__title">Setup y recomendaciones</span>
+                      <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
+                    </summary>
+                    <div class="project-ux-accordion__body">
+                      <p>Tras registrarse, el asistente de setup recoge objetivo fitness, nivel de actividad, sesiones semanales, ubicación preferida y horario. Esas preferencias alimentan recomendaciones (WorkoutRecommender) y metas sin bloquear el acceso a la app principal.</p>
+                    </div>
+                  </details>
+                </div>
+              </section>
+            </div>
+            <figure class="project-chapter__figure">
+              <img src="../imagenes/Vigorly/Captura%20de%20pantalla%202026-07-08%20144617.png" alt="Vigorly — perfil atlético y resumen de progreso" loading="lazy">
+            </figure>
+          </article>
+
+          <article class="project-chapter project-chapter--vigorly-wrap">
+            <!-- Arriba: texto a ancho completo -->
+            <section class="project-detail__section vigorly-wrap__top">
+              <h2 class="project-detail__heading">Desarrollo / ingeniería</h2>
+
+              <h3 class="project-detail__subheading">Stack y patrones</h3>
+              <p><strong>UI:</strong> Kotlin, Jetpack Compose, Material 3, Coil para imágenes de rutinas.</p>
+              <p><strong>Arquitectura:</strong> MVVM con capa presentation/feature/ por dominio (dashboard, perfil, ajustes...) y grafo de navegación centralizado.</p>
+              <p><strong>Datos:</strong> VigorlyRepository + DataStore Preferences con codecs JSON para cuentas, historial, sesión y preferencias. Sin servidor propio: registro e inicio con email/contraseña funcionan íntegramente en local.</p>
+              <p><strong>Actividad:</strong> DailyActivityTracker usa reconocimiento de actividad y sensor de pasos cuando hay permiso; métricas del día reflejadas en la UI al instante.</p>
+              <p><strong>Auth opcional:</strong> Google Sign-In vía Credentials / Google ID, condicionado a configuración OAuth en el dispositivo.</p>
+              <p><strong>i18n:</strong> español (base), inglés, catalán, alemán y francés, configurable desde Ajustes.</p>
+              <p><strong>Release:</strong> R8, shrink de recursos y reglas ProGuard específicas.</p>
+            </section>
+
+            <!-- Medio: imagen a la izquierda + texto a la derecha -->
+            <div class="vigorly-wrap__middle">
+              <figure class="project-chapter__figure vigorly-wrap__figure">
+                <img src="../imagenes/Vigorly/Captura%20de%20pantalla%202026-07-08%20144544.png" alt="Vigorly — sesión activa con reproducción y métricas" loading="lazy">
+              </figure>
+
+              <div class="vigorly-wrap__right">
+                <section class="project-detail__section">
+                  <h3 class="project-detail__subheading">Catálogo y contenido</h3>
+                  <p>Las ~43 rutinas del catálogo (WorkoutCatalog / WorkoutCatalogAll) están embebidas en la app — no se descargan de una API. Incluyen tipos como fuerza, HIIT, yoga, natación, etc., con bloques, ejercicios, duración estimada y calorías.</p>
+                  <p>Los logros (~30 hitos en MilestoneCatalog) se desbloquean por constancia, volumen y variedad a partir del historial real.</p>
+                </section>
+
+                <section class="project-detail__section vigorly-wrap__right-bottom">
+                  <h3 class="project-detail__subheading">Calidad</h3>
+                  <p>Mas de 30 clases de tests unitarios (auth, codecs, calculadoras de racha, nivel, perfil atlético, recomendador, navegación...) y suite E2E instrumentada (VigorlyAppInstrumentedTest) que valida flujo de sesión, las cuatro tabs, ajustes, accesos desde Perfil a Análisis y Logros, y persistencia de idioma.</p>
+                </section>
+              </div>
+            </div>
+
+          </article>
+
+          <article class="project-chapter project-chapter--prose">
+            <section class="project-detail__section">
+              <h2 class="project-detail__heading">Qué demuestra este proyecto</h2>
+              <ul class="project-detail__list">
+                <li>Diseño de producto digital con flujo completo de onboarding a análisis, no solo pantallas sueltas.</li>
+                <li>UX de fitness con decisiones explícitas: separación Perfil/Análisis, estados vacíos honestos, anillos como lenguaje visual.</li>
+                <li>Ingeniería Android moderna con Compose, MVVM, navegación tipada y persistencia local robusta.</li>
+                <li>Rendimiento consciente: fondos diferenciados, animaciones decorativas off, I/O de actividad espaciada.</li>
+                <li>Datos íntegros: estadísticas y radar calculados del historial; catálogo local pero sesiones y progreso reales del usuario.</li>
+                <li>Cultura de pruebas: cobertura unitaria amplia + E2E con test tags y harness de cuenta semilla.</li>
+              </ul>
+            </section>
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <footer class="contact-end contact-end--project" aria-label="Pie de página">
+      <div class="contact-mid" aria-label="Presentación">
+        <a
+          href="https://github.com/Areman-05/Vigorly"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="project-github-cta"
+          aria-label="Ver repositorio en GitHub"
+        >Ver repositorio en GitHub</a>
+        <nav class="contact-mid__nav" aria-label="Enlaces rápidos">
+          <a href="../index.html#inicio" data-i18n="contact.midHome">Inicio</a>
+          <a href="../index.html#proyectos" data-i18n="contact.midProjects">Proyectos</a>
+          <a href="../index.html#sobre-mi" data-i18n="contact.midAbout">Sobre mí</a>
+        </nav>
+      </div>
+      <div class="site-footer site-footer--project">
+        <p class="site-footer__copy" data-i18n="footer.rights">&copy; 2026 Pablo Arenas Mancebo. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../i18n.js"></script>
+  <script src="../script.js"></script>
+</body>
+</html>
+

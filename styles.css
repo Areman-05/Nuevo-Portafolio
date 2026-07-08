@@ -3573,6 +3573,97 @@ body.page--project .project-chapter__figure {
   z-index: 1;
 }
 
+/* Capturas verticales (móvil) — Vigorly */
+body[data-page="vigorly"] .project-chapter--duo,
+body[data-page="vigorly"] .project-chapter--duo-reverse {
+  grid-template-columns: minmax(0, 1fr) minmax(0, min(19rem, 42%));
+  gap: clamp(1.8rem, 3.8vw, 2.9rem);
+  align-items: start;
+}
+
+body[data-page="vigorly"] .project-chapter__figure {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: min(19rem, 100%);
+  margin-inline: auto;
+  justify-self: center;
+  padding: 16px;
+  align-self: center;
+}
+
+/* Vigorly: "Desarrollo / ingeniería" con armonía (imagen a la izquierda, centrada) */
+body[data-page="vigorly"] .project-chapter--vigorly-stack {
+  align-items: center;
+}
+
+body[data-page="vigorly"] .project-chapter--vigorly-stack .project-chapter__prose {
+  max-width: none;
+}
+
+body[data-page="vigorly"] .project-chapter--vigorly-stack .project-chapter__figure {
+  max-width: min(19rem, 100%);
+  padding: 16px;
+  align-self: center;
+}
+
+body[data-page="vigorly"] .project-chapter__figure img {
+  max-height: min(34rem, 72vh);
+  width: auto;
+  max-width: 100%;
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+body[data-page="vigorly"] .project-detail__body {
+  gap: clamp(2.1rem, 4.4vw, 3.1rem);
+}
+
+/* Vigorly: texto "alrededor de la imagen" (arriba full, medio wrap, abajo full) */
+body[data-page="vigorly"] .project-chapter--vigorly-wrap {
+  display: block;
+}
+
+body[data-page="vigorly"] .vigorly-wrap__middle {
+  display: grid;
+  grid-template-columns: minmax(0, min(19rem, 42%)) 1fr;
+  column-gap: clamp(1.2rem, 2.2vw, 1.8rem);
+  align-items: center;
+  margin-top: clamp(1.35rem, 2.6vw, 2rem);
+}
+
+body[data-page="vigorly"] .vigorly-wrap__right {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.05rem, 2.2vw, 1.55rem);
+}
+
+body[data-page="vigorly"] .vigorly-wrap__bottom {
+  clear: both;
+  margin-top: clamp(1.35rem, 2.6vw, 2rem);
+}
+
+/* Vigorly: cuando "Calidad" va dentro del lado derecho */
+body[data-page="vigorly"] .vigorly-wrap__right-bottom {
+  margin-top: 0;
+}
+
+body[data-page="vigorly"] .vigorly-wrap__figure {
+  float: none;
+  width: 100%;
+  max-width: min(19rem, 100%);
+  margin: 0;
+  padding: 16px;
+}
+
+body[data-page="vigorly"] .vigorly-wrap__figure img {
+  max-height: min(34rem, 72vh);
+  width: auto;
+  max-width: 100%;
+}
+
 .project-ux-accordion {
   display: flex;
   flex-direction: column;
@@ -3895,6 +3986,43 @@ body.page--project .project-detail__subheading {
 
   .project-chapter--prose {
     max-width: none;
+  }
+
+  body[data-page="vigorly"] .project-chapter--duo,
+  body[data-page="vigorly"] .project-chapter--duo-reverse {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-page="vigorly"] .project-chapter__figure {
+    max-width: 100%;
+  }
+
+  body[data-page="vigorly"] .project-chapter__figure img {
+    max-height: min(28rem, 62vh);
+  }
+
+  /* En móvil: imagen arriba y texto debajo (sin float) */
+  body[data-page="vigorly"] .vigorly-wrap__figure {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 1rem 0;
+    padding: 14px;
+    display: block;
+  }
+
+  body[data-page="vigorly"] .vigorly-wrap__middle {
+    display: block;
+    overflow: visible;
+  }
+
+  body[data-page="vigorly"] .vigorly-wrap__bottom {
+    clear: none;
+    margin-top: 1rem;
+  }
+
+  body[data-page="vigorly"] .vigorly-wrap__middle {
+    margin-top: 0;
   }
 }
 
