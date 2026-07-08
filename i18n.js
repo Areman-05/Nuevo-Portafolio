@@ -14,6 +14,8 @@ const translations = {
     'meta.title.about': 'Sobre Mí — Pablo Arenas',
     'meta.title.projects': 'Proyectos — Pablo Arenas',
     'meta.title.contact': 'Contacto — Pablo Arenas',
+    'meta.title.azimut': 'Azimut Estructuras — Pablo Arenas',
+    'nav.back': '← Volver',
     'nav.home': 'HOME',
     'nav.about': 'SOBRE MÍ',
     'nav.projects': 'PROYECTOS',
@@ -63,6 +65,7 @@ const translations = {
     'proj.taskpulse.tagline': 'App de notas y tareas',
     'proj.vigorly.tagline': 'App de fitness · Jetpack Compose',
     'proj.workflowdesk.tagline': 'Gestor offline · clientes, proyectos y Kanban · WPF',
+    'proj.azimut.tagline': 'Sitio corporativo · arquitectura modular y construcción sostenible',
     'proj.worldscope.desc': 'Explorador global de países con datos, filtros y vista clara para descubrir información geográfica.',
     'proj.cinetrack.desc': 'Plataforma para seguir películas, descubrir títulos y mantener tu colección personal organizada.',
     'proj.taskpulse.desc': 'App Android para organizar tareas y notas con calendario, recordatorios, archivo automático y exportación local.',
@@ -85,7 +88,7 @@ const translations = {
     'form.subject': 'Asunto*',
     'form.message': 'Mensaje*',
     'form.submit': 'Enviar ahora →',
-    'footer.rights': '© 2025 Pablo Arenas Mancebo. Todos los derechos reservados.',
+    'footer.rights': '© 2026 Pablo Arenas Mancebo. Todos los derechos reservados.',
     'footer.home': 'Inicio',
     'lang.aria': 'Idioma'
   },
@@ -94,6 +97,8 @@ const translations = {
     'meta.title.about': 'Sobre Mi — Pablo Arenas',
     'meta.title.projects': 'Projectes — Pablo Arenas',
     'meta.title.contact': 'Contacte — Pablo Arenas',
+    'meta.title.azimut': 'Azimut Estructuras — Pablo Arenas',
+    'nav.back': '← Tornar',
     'nav.home': 'HOME',
     'nav.about': 'SOBRE MI',
     'nav.projects': 'PROJECTES',
@@ -143,6 +148,7 @@ const translations = {
     'proj.taskpulse.tagline': 'App de notes i tasques',
     'proj.vigorly.tagline': 'App de fitness · Jetpack Compose',
     'proj.workflowdesk.tagline': 'Gestor offline · clients, projectes i Kanban · WPF',
+    'proj.azimut.tagline': 'Lloc corporatiu · arquitectura modular i construcció sostenible',
     'proj.worldscope.desc': 'Explorador global de països amb dades, filtres i vista clara per descobrir informació geogràfica.',
     'proj.cinetrack.desc': 'Plataforma per seguir pel·lícules, descobrir títols i mantenir la teva col·lecció personal organitzada.',
     'proj.taskpulse.desc': 'App Android per organitzar tasques i notes amb calendari, recordatoris, arxiu automàtic i exportació local.',
@@ -165,7 +171,7 @@ const translations = {
     'form.subject': 'Assumpte*',
     'form.message': 'Missatge*',
     'form.submit': 'Enviar ara →',
-    'footer.rights': '© 2025 Pablo Arenas Mancebo. Tots els drets reservats.',
+    'footer.rights': '© 2026 Pablo Arenas Mancebo. Tots els drets reservats.',
     'footer.home': 'Inici',
     'lang.aria': 'Idioma'
   },
@@ -174,6 +180,8 @@ const translations = {
     'meta.title.about': 'About Me — Pablo Arenas',
     'meta.title.projects': 'Projects — Pablo Arenas',
     'meta.title.contact': 'Contact — Pablo Arenas',
+    'meta.title.azimut': 'Azimut Estructuras — Pablo Arenas',
+    'nav.back': '← Back',
     'nav.home': 'HOME',
     'nav.about': 'ABOUT ME',
     'nav.projects': 'PROJECTS',
@@ -223,6 +231,7 @@ const translations = {
     'proj.taskpulse.tagline': 'Notes and tasks app',
     'proj.vigorly.tagline': 'Fitness app · Jetpack Compose',
     'proj.workflowdesk.tagline': 'Offline manager · clients, projects and Kanban · WPF',
+    'proj.azimut.tagline': 'Corporate website · modular architecture and sustainable construction',
     'proj.worldscope.desc': 'Global country explorer with data, filters and a clear view to discover geographic information.',
     'proj.cinetrack.desc': 'Platform to track movies, discover titles and keep your personal collection organized.',
     'proj.taskpulse.desc': 'Android app to organize tasks and notes with calendar, reminders, automatic archiving and local export.',
@@ -245,7 +254,7 @@ const translations = {
     'form.subject': 'Subject*',
     'form.message': 'Message*',
     'form.submit': 'Send Now →',
-    'footer.rights': '© 2025 Pablo Arenas Mancebo. All rights reserved.',
+    'footer.rights': '© 2026 Pablo Arenas Mancebo. All rights reserved.',
     'footer.home': 'Home',
     'lang.aria': 'Language'
   }
@@ -259,6 +268,8 @@ function getStoredLang() {
 function applyLanguage(lang) {
   const t = translations[lang];
   if (!t) return;
+
+  const assetPrefix = document.body.dataset.assetPrefix || '';
 
   document.documentElement.lang = LANG_HTML[lang];
 
@@ -274,12 +285,26 @@ function applyLanguage(lang) {
     }
   });
 
+  document.querySelectorAll('[data-i18n-alt]').forEach((el) => {
+    const key = el.getAttribute('data-i18n-alt');
+    if (t[key] !== undefined) {
+      el.alt = t[key];
+    }
+  });
+
+  document.querySelectorAll('[data-i18n-aria]').forEach((el) => {
+    const key = el.getAttribute('data-i18n-aria');
+    if (t[key] !== undefined) {
+      el.setAttribute('aria-label', t[key]);
+    }
+  });
+
   const langToggle = document.getElementById('lang-toggle');
   if (langToggle) {
     const flag = LANG_FLAGS[lang];
     const flagImg = langToggle.querySelector('.lang-toggle__flag');
     if (flag && flagImg) {
-      flagImg.src = flag.src;
+      flagImg.src = assetPrefix + flag.src;
       flagImg.alt = flag.alt;
     } else if (!flagImg) {
       langToggle.textContent = LANG_LABELS[lang];
@@ -305,6 +330,14 @@ function setLanguage(lang) {
 }
 
 function initI18n() {
+  if (window.AZIMUT_I18N_PATCH) {
+    Object.entries(window.AZIMUT_I18N_PATCH).forEach(([lang, keys]) => {
+      if (translations[lang]) {
+        Object.assign(translations[lang], keys);
+      }
+    });
+  }
+
   const lang = getStoredLang();
   applyLanguage(lang);
 

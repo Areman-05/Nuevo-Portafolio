@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const siteHeader = document.getElementById('site-header');
   const headerSpacer = document.querySelector('.site-header-spacer');
   const isSinglePage = document.body.classList.contains('page--single');
+  const isProjectPage = document.body.classList.contains('page--project');
 
   const getScrollOffset = () => (siteHeader ? siteHeader.offsetHeight : nav?.offsetHeight || 0);
 
@@ -90,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  if (isSinglePage && sections.length) {
+  if (isSinglePage && !isProjectPage && sections.length) {
     const spy = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -109,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const updateNavTheme = () => {
-    if (!isSinglePage || !siteHeader) return;
+    if (!isSinglePage || isProjectPage || !siteHeader) return;
     const heroSection = document.getElementById('inicio');
     if (!heroSection) return;
     const pastHero = heroSection.getBoundingClientRect().bottom <= siteHeader.offsetHeight + 20;
@@ -168,6 +169,55 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   initSkillMarquees();
+
+  const initProjectGallery = () => {
+    const section = document.querySelector('.project-detail__gallery-section');
+    const gallery = section?.querySelector('.project-gallery');
+    if (!gallery || !section) return;
+
+    const items = [...gallery.querySelectorAll('.project-gallery__item')];
+    let pending = items.length;
+
+    const syncVisibility = () => {
+      const visible = items.some((item) => !item.hidden);
+      section.hidden = !visible;
+    };
+
+    if (!pending) {
+      section.hidden = true;
+      return;
+    }
+
+    items.forEach((item) => {
+      const img = item.querySelector('img');
+      const finish = () => {
+        pending -= 1;
+        if (pending <= 0) syncVisibility();
+      };
+
+      if (!img) {
+        item.hidden = true;
+        finish();
+        return;
+      }
+
+      const onError = () => {
+        item.hidden = true;
+        finish();
+      };
+
+      img.addEventListener('error', onError, { once: true });
+
+      if (img.complete) {
+        if (!img.naturalWidth) onError();
+        else finish();
+      } else {
+        img.addEventListener('load', finish, { once: true });
+      }
+    });
+  };
+
+  initProjectGallery();
 
   let marqueeResizeTick = false;
   window.addEventListener(
