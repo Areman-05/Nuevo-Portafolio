@@ -219,6 +219,120 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initProjectGallery();
 
+  const initAppProjectReveals = () => {
+    if (!document.body.classList.contains('page--project-app')) return;
+
+    const nodes = [...document.querySelectorAll('[data-reveal]')];
+    if (!nodes.length) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) {
+      nodes.forEach((node) => node.classList.add('is-revealed'));
+      return;
+    }
+
+    const hero = document.querySelector('.app-hero[data-reveal]');
+    if (hero) {
+      requestAnimationFrame(() => hero.classList.add('is-revealed'));
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.08,
+      }
+    );
+
+    nodes.forEach((node) => {
+      if (node === hero) return;
+      observer.observe(node);
+    });
+  };
+
+  initAppProjectReveals();
+
+  const initAppShowcases = () => {
+    document.querySelectorAll('[data-app-showcase]').forEach((root) => {
+      const slides = [...root.querySelectorAll('[data-showcase-slide]')];
+      if (slides.length < 2) return;
+
+      const titleEl = root.querySelector('[data-showcase-title]');
+      const textEl = root.querySelector('[data-showcase-text]');
+      const counterEl = root.querySelector('[data-showcase-counter]');
+      const dotsEl = root.querySelector('[data-showcase-dots]');
+      const prevBtn = root.querySelector('[data-showcase-prev]');
+      const nextBtn = root.querySelector('[data-showcase-next]');
+      let index = Math.max(
+        0,
+        slides.findIndex((slide) => slide.classList.contains('is-active'))
+      );
+
+      const setSlide = (nextIndex) => {
+        index = (nextIndex + slides.length) % slides.length;
+
+        slides.forEach((slide, i) => {
+          const active = i === index;
+          slide.classList.toggle('is-active', active);
+          slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+        });
+
+        const active = slides[index];
+        if (titleEl) titleEl.textContent = active.dataset.title || '';
+        if (textEl) textEl.textContent = active.dataset.text || '';
+        if (counterEl) counterEl.textContent = `${index + 1} / ${slides.length}`;
+
+        if (dotsEl) {
+          [...dotsEl.querySelectorAll('.app-showcase__dot')].forEach((dot, i) => {
+            dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
+          });
+        }
+      };
+
+      if (dotsEl) {
+        dotsEl.replaceChildren();
+        slides.forEach((slide, i) => {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'app-showcase__dot';
+          dot.setAttribute('role', 'tab');
+          dot.setAttribute('aria-label', slide.dataset.title || `Vista ${i + 1}`);
+          dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
+          dot.addEventListener('click', () => setSlide(i));
+          dotsEl.appendChild(dot);
+        });
+      }
+
+      prevBtn?.addEventListener('click', () => setSlide(index - 1));
+      nextBtn?.addEventListener('click', () => setSlide(index + 1));
+
+      root.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          setSlide(index - 1);
+        }
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          setSlide(index + 1);
+        }
+      });
+
+      if (!root.hasAttribute('tabindex')) {
+        root.setAttribute('tabindex', '0');
+      }
+
+      setSlide(index);
+    });
+  };
+
+  initAppShowcases();
+
   let marqueeResizeTick = false;
   window.addEventListener(
     'resize',
