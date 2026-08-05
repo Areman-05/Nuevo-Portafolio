@@ -314,6 +314,8 @@ function applyLanguage(lang) {
     }
   });
 
+  document.dispatchEvent(new CustomEvent('portfolio:langchange', { detail: { lang } }));
+
   const langToggle = document.getElementById('lang-toggle');
   if (langToggle) {
     const flag = LANG_FLAGS[lang];

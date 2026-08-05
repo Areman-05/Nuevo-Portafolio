@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
 </head>
-<body data-page="azimut" data-asset-prefix="../" class="page--single page--project">
+<body data-page="azimut" data-asset-prefix="../" class="page--single page--project page--project-web">
   <div class="page-shell">
     <header class="site-header site-header--minimal site-header--project" id="site-header">
       <nav class="main-nav nav-minimal" aria-label="Principal">
@@ -63,173 +63,238 @@
               </a>
             </div>
           </div>
+          <button type="button" class="nav-minimal__backdrop" id="nav-menu-backdrop" aria-label="Cerrar menú" tabindex="-1" hidden></button>
         </div>
-        <button type="button" class="nav-minimal__backdrop" id="nav-menu-backdrop" aria-label="Cerrar menú" tabindex="-1" hidden></button>
       </nav>
     </header>
 
     <main class="project-detail">
       <div class="section-container project-detail__inner">
-        <header class="project-detail__head">
-          <h1 class="project-detail__title" data-i18n="azimut.title">Azimut Estructuras</h1>
-          <p class="project-detail__subtitle" data-i18n="azimut.subtitle">Sitio corporativo · Arquitectura modular premium y construcción sostenible</p>
+        <header class="web-hero" data-reveal>
+          <div class="web-hero__copy">
+            <p class="web-hero__eyebrow" data-i18n="azimut.eyebrow">Sitio corporativo · Web premium</p>
+            <h1 class="web-hero__title" data-i18n="azimut.title">Azimut Estructuras</h1>
+            <p class="web-hero__subtitle" data-i18n="azimut.subtitle">Arquitectura modular y construcción sostenible: una presencia digital creíble de punta a punta.</p>
+            <ul class="web-hero__tags" aria-label="Stack">
+              <li>Next.js</li>
+              <li>TypeScript</li>
+              <li>Tailwind</li>
+              <li>Framer Motion</li>
+            </ul>
+          </div>
+
+          <div class="web-hero__stage" aria-label="Vista previa del sitio">
+            <div class="web-hero__glow" aria-hidden="true"></div>
+            <figure class="web-frame web-frame--hero">
+              <div class="web-frame__chrome" aria-hidden="true">
+                <span class="web-frame__dots"><i></i><i></i><i></i></span>
+                <span class="web-frame__url">azimut.es</span>
+              </div>
+              <div class="web-frame__screen">
+                <img src="../imagenes/azimut/captura-04.png" alt="" width="1200" height="750" fetchpriority="high" decoding="async" data-i18n-alt="azimut.gallery.alt1">
+              </div>
+            </figure>
+          </div>
         </header>
 
         <div class="project-detail__body">
-          <article class="project-chapter project-chapter--duo">
-            <div class="project-chapter__prose">
-              <section class="project-detail__section">
-                <h2 class="project-detail__heading" data-i18n="azimut.context.title">Contexto</h2>
-                <p data-i18n="azimut.context.p1">Azimut Estructuras es un proyecto de portfolio que simula la presencia digital de un estudio boutique de arquitectura modular y construcción sostenible en España. No es un template genérico de agencia: es un recorrido completo de marca, desde la primera impresión hasta la conversión, pensado para demostrar criterio en diseño, experiencia de usuario y desarrollo frontend.</p>
-                <p data-i18n="azimut.context.p2">La premisa del proyecto era responder a una pregunta concreta: ¿cómo debería sentirse en la web un estudio de construcción premium que vende precisión, materiales nobles y compromiso ambiental? El resultado es un sitio corporativo ficticio pero creíble, con contenido coherente, estética propia y una arquitectura técnica sólida detrás.</p>
-              </section>
-            </div>
-            <figure class="project-chapter__figure">
-              <img src="../imagenes/azimut/captura-01.png" alt="" width="1200" height="750" loading="lazy" data-i18n-alt="azimut.gallery.alt1">
-            </figure>
+          <article class="web-block web-block--prose" data-reveal>
+            <section class="project-detail__section">
+              <h2 class="project-detail__heading" data-i18n="azimut.context.title">Contexto</h2>
+              <p data-i18n="azimut.context.p1">Simula la web de un estudio boutique de arquitectura modular y construcción sostenible. No es un template de agencia: es un recorrido de marca completo — de la primera impresión a la conversión — para demostrar criterio en diseño, UX y frontend.</p>
+            </section>
           </article>
 
-          <article class="project-chapter project-chapter--prose">
+          <article class="web-block web-block--prose" data-reveal>
             <section class="project-detail__section">
               <h2 class="project-detail__heading" data-i18n="azimut.objective.title">Objetivo</h2>
-              <p data-i18n="azimut.objective.intro">Diseñar y desarrollar una experiencia digital que transmita confianza, solvencia técnica y sensibilidad estética, sin caer en los clichés del sector (fotos de stock genéricas, layouts saturados, tipografías impersonales). El usuario debe poder:</p>
+              <p data-i18n="azimut.objective.intro">Transmitir confianza y sensibilidad estética sin clichés del sector. El visitante debe poder:</p>
               <ul class="project-detail__list">
                 <li data-i18n="azimut.objective.li1">Entender en segundos qué hace el estudio y en qué se diferencia.</li>
                 <li data-i18n="azimut.objective.li2">Explorar una cartera de obras con profundidad real.</li>
-                <li data-i18n="azimut.objective.li3">Conocer al equipo, los servicios y el enfoque sostenible.</li>
-                <li data-i18n="azimut.objective.li4">Llegar al contacto de forma natural, sin fricción.</li>
+                <li data-i18n="azimut.objective.li3">Llegar al contacto sin fricción, tras explorar y confiar.</li>
               </ul>
-              <p data-i18n="azimut.objective.outro">Todo ello sin backend: contenido estático, rendimiento alto y listo para desplegar.</p>
-            </section>
-
-            <section class="project-detail__section">
-              <h2 class="project-detail__heading" data-i18n="azimut.identity.title">Identidad visual y sistema de diseño</h2>
-              <p data-i18n="azimut.identity.p1">La paleta parte de una base carbón y crema con acento terracota (#c75b3a). Es una decisión deliberada: evoca materiales naturales (piedra, arcilla, madera) y el mundo de la construcción, pero con un tratamiento contemporáneo y minimalista. El alto contraste refuerza la sensación de solidez y premium.</p>
-              <p data-i18n="azimut.identity.p2">La tipografía combina Barlow Condensed para titulares — mayúsculas, tracking ajustado, escala generosa — y DM Sans para cuerpo de texto. La jerarquía es clara: los titulares impactan como piezas editoriales; el texto corrido mantiene legibilidad y calma.</p>
-              <p data-i18n="azimut.identity.p3">Las secciones alternan tres variantes de fondo (crema, arena y carbón), lo que crea ritmo visual en scroll largo sin romper la coherencia. Los acentos terracota aparecen con moderación: etiquetas, palabras clave en el hero, estados activos y selección de texto.</p>
             </section>
           </article>
 
-          <article class="project-chapter project-chapter--duo">
-            <div class="project-chapter__prose">
-              <section class="project-detail__section">
-                <h2 class="project-detail__heading" data-i18n="azimut.ux.title">Decisiones de UI y UX</h2>
+          <section
+            class="app-showcase web-showcase"
+            data-reveal
+            data-app-showcase
+            aria-roledescription="carrusel"
+            aria-label="Recorrido de pantallas de Azimut"
+          >
+            <button type="button" class="app-showcase__arrow app-showcase__arrow--prev" data-showcase-prev aria-label="Vista anterior">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
 
-                <div class="project-ux-accordion">
-                  <details class="project-ux-accordion__item" open>
-                    <summary class="project-ux-accordion__summary">
-                      <span class="project-ux-accordion__title" data-i18n="azimut.ux.hero.title">Hero a pantalla completa</span>
-                      <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
-                    </summary>
-                    <div class="project-ux-accordion__body">
-                      <p data-i18n="azimut.ux.hero.p">La home abre con un hero casi a viewport completo: imagen arquitectónica con overlay oscuro, titular en tres líneas y dos CTAs diferenciados (Ver proyectos / Solicitar presupuesto). La jerarquía guía al visitante hacia exploración o conversión desde el primer segundo. Una animación sutil de entrada (fade + desplazamiento) da vida sin distraer.</p>
-                    </div>
-                  </details>
+            <div class="app-showcase__panel web-showcase__panel">
+              <div class="app-showcase__copy">
+                <p class="app-showcase__eyebrow" data-i18n="azimut.tour.eyebrow">Recorrido UI</p>
+                <p class="app-showcase__counter" data-showcase-counter aria-live="polite">1 / 4</p>
+                <h2 class="app-showcase__title" data-showcase-title data-i18n="azimut.tour.s1.title">Home</h2>
+                <p class="app-showcase__text" data-showcase-text data-i18n="azimut.tour.s1.text">Hero a viewport, propuesta de valor y CTAs claros: explorar obras o pedir presupuesto.</p>
+                <div class="app-showcase__dots" data-showcase-dots role="tablist" aria-label="Vistas"></div>
+              </div>
 
-                  <details class="project-ux-accordion__item">
-                    <summary class="project-ux-accordion__summary">
-                      <span class="project-ux-accordion__title" data-i18n="azimut.ux.nav.title">Navegación clara y persistente</span>
-                      <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
-                    </summary>
-                    <div class="project-ux-accordion__body">
-                      <p data-i18n="azimut.ux.nav.p">Cabecera fija con blur y borde ligero. En desktop, menú horizontal; en móvil, menú desplegable animado. La navegación cubre el recorrido completo: proyectos, servicios, nosotros y contacto. En la home, anclas internas (#servicios, #proceso, #certificaciones) permiten saltar a secciones sin recargar.</p>
-                    </div>
-                  </details>
-
-                  <details class="project-ux-accordion__item">
-                    <summary class="project-ux-accordion__summary">
-                      <span class="project-ux-accordion__title" data-i18n="azimut.ux.home.title">Home como narrativa de marca</span>
-                      <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
-                    </summary>
-                    <div class="project-ux-accordion__body">
-                      <p data-i18n="azimut.ux.home.p">En lugar de una landing de una sola pantalla, la home es un storytelling en capas: cifras de impacto, vista previa de servicios, proyectos destacados, pilares de sostenibilidad, certificaciones, colaboradores, proceso en cuatro pasos, testimonios y CTA final. Cada bloque responde a una objeción o interés distinto del visitante (¿tienen experiencia?, ¿son sostenibles?, ¿cómo trabajan?, ¿qué dicen otros clientes?).</p>
-                    </div>
-                  </details>
-
-                  <details class="project-ux-accordion__item">
-                    <summary class="project-ux-accordion__summary">
-                      <span class="project-ux-accordion__title" data-i18n="azimut.ux.portfolio.title">Portfolio filtrable con detalle rico</span>
-                      <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
-                    </summary>
-                    <div class="project-ux-accordion__body">
-                      <p data-i18n="azimut.ux.portfolio.p">El listado de 20 proyectos incluye filtros por categoría (residencial, comercial, modular) con transiciones suaves al cambiar. Cada obra tiene ficha propia: galería, reto/solución, ficha técnica (superficie, plazos, materiales, sostenibilidad) y proyectos relacionados. La estructura imita cómo un estudio real presentaría su obra, no solo una cuadrícula de imágenes.</p>
-                    </div>
-                  </details>
-
-                  <details class="project-ux-accordion__item">
-                    <summary class="project-ux-accordion__summary">
-                      <span class="project-ux-accordion__title" data-i18n="azimut.ux.pages.title">Páginas de servicios, equipo y contacto</span>
-                      <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
-                    </summary>
-                    <div class="project-ux-accordion__body">
-                      <p data-i18n="azimut.ux.pages.p">Los servicios se presentan en tres líneas de negocio claras (arquitectura modular, construcción sostenible, reformas premium), cada una con imagen, descripción y enlace al formulario. Nosotros humaniza la marca con grid de equipo, valores y métricas. Contacto cierra el funnel: formulario validado, datos de contacto, mapa embebido y FAQ en acordeón para resolver dudas antes de escribir.</p>
-                    </div>
-                  </details>
-
-                  <details class="project-ux-accordion__item">
-                    <summary class="project-ux-accordion__summary">
-                      <span class="project-ux-accordion__title" data-i18n="azimut.ux.motion.title">Microinteracciones y motion</span>
-                      <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
-                    </summary>
-                    <div class="project-ux-accordion__body">
-                      <p data-i18n="azimut.ux.motion.p">Framer Motion se usa con criterio: entradas al hacer scroll (whileInView, una sola vez), transiciones de página, filtros del portfolio y menú móvil. El movimiento acompaña la lectura; no compite con ella.</p>
-                    </div>
-                  </details>
-
-                  <details class="project-ux-accordion__item">
-                    <summary class="project-ux-accordion__summary">
-                      <span class="project-ux-accordion__title" data-i18n="azimut.ux.a11y.title">Accesibilidad y detalle</span>
-                      <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
-                    </summary>
-                    <div class="project-ux-accordion__body">
-                      <p data-i18n="azimut.ux.a11y.p">Skip link para saltar al contenido, landmarks ARIA en navegación, formularios etiquetados, roles en filtros tipo tabs. Son decisiones que no se ven en capturas, pero reflejan un enfoque profesional del producto digital.</p>
-                    </div>
-                  </details>
-                </div>
-              </section>
+              <div class="web-showcase__stage">
+                <figure
+                  class="web-frame web-frame--showcase app-showcase__slide is-active"
+                  data-showcase-slide
+                  data-title="Home"
+                  data-text="Hero a viewport, propuesta de valor y CTAs claros: explorar obras o pedir presupuesto."
+                  data-i18n-title="azimut.tour.s1.title"
+                  data-i18n-text="azimut.tour.s1.text"
+                >
+                  <div class="web-frame__chrome" aria-hidden="true">
+                    <span class="web-frame__dots"><i></i><i></i><i></i></span>
+                    <span class="web-frame__url">azimut.es</span>
+                  </div>
+                  <div class="web-frame__screen">
+                    <img src="../imagenes/azimut/captura-04.png" alt="" width="1200" height="750" loading="lazy" data-i18n-alt="azimut.gallery.alt1">
+                  </div>
+                </figure>
+                <figure
+                  class="web-frame web-frame--showcase app-showcase__slide"
+                  data-showcase-slide
+                  data-title="Portfolio"
+                  data-text="20 obras filtrables por categoría, con grid limpio y fichas técnicas reales."
+                  data-i18n-title="azimut.tour.s2.title"
+                  data-i18n-text="azimut.tour.s2.text"
+                  aria-hidden="true"
+                >
+                  <div class="web-frame__chrome" aria-hidden="true">
+                    <span class="web-frame__dots"><i></i><i></i><i></i></span>
+                    <span class="web-frame__url">azimut.es/proyectos</span>
+                  </div>
+                  <div class="web-frame__screen">
+                    <img src="../imagenes/azimut/captura-02.png" alt="" width="1200" height="750" loading="lazy" data-i18n-alt="azimut.gallery.alt2">
+                  </div>
+                </figure>
+                <figure
+                  class="web-frame web-frame--showcase app-showcase__slide"
+                  data-showcase-slide
+                  data-title="Detalle de obra"
+                  data-text="Ficha rica: reto, solución y contexto. La obra se presenta como caso, no como mosaico vacío."
+                  data-i18n-title="azimut.tour.s3.title"
+                  data-i18n-text="azimut.tour.s3.text"
+                  aria-hidden="true"
+                >
+                  <div class="web-frame__chrome" aria-hidden="true">
+                    <span class="web-frame__dots"><i></i><i></i><i></i></span>
+                    <span class="web-frame__url">azimut.es/proyectos</span>
+                  </div>
+                  <div class="web-frame__screen">
+                    <img src="../imagenes/azimut/captura-01.png" alt="" width="1200" height="750" loading="lazy" data-i18n-alt="azimut.gallery.alt3">
+                  </div>
+                </figure>
+                <figure
+                  class="web-frame web-frame--showcase app-showcase__slide"
+                  data-showcase-slide
+                  data-title="Contacto"
+                  data-text="Cierre del funnel: formulario claro, tipología de proyecto y respuesta en 24–48 h."
+                  data-i18n-title="azimut.tour.s4.title"
+                  data-i18n-text="azimut.tour.s4.text"
+                  aria-hidden="true"
+                >
+                  <div class="web-frame__chrome" aria-hidden="true">
+                    <span class="web-frame__dots"><i></i><i></i><i></i></span>
+                    <span class="web-frame__url">azimut.es/contacto</span>
+                  </div>
+                  <div class="web-frame__screen">
+                    <img src="../imagenes/azimut/captura-03.png" alt="" width="1200" height="750" loading="lazy" data-i18n-alt="azimut.gallery.alt4">
+                  </div>
+                </figure>
+              </div>
             </div>
-            <figure class="project-chapter__figure">
-              <img src="../imagenes/azimut/captura-02.png" alt="" width="1200" height="750" loading="lazy" data-i18n-alt="azimut.gallery.alt2">
-            </figure>
-          </article>
 
-          <article class="project-chapter project-chapter--duo project-chapter--duo-reverse">
-            <div class="project-chapter__prose">
-              <section class="project-detail__section">
-                <h2 class="project-detail__heading" data-i18n="azimut.ia.title">Arquitectura de la información</h2>
-                <pre class="project-detail__flow" aria-label="Flujo de navegación" data-i18n="azimut.ia.flow">Home → Proyectos → Detalle de obra
-     → Servicios → Contacto
-     → Nosotros  → Contacto
-     → Contacto (conversión)</pre>
-                <p data-i18n="azimut.ia.p">El flujo prioriza exploración (portfolio, servicios) y confianza (equipo, certificaciones, testimonios) antes de conversión (formulario). Los CTAs están repartidos en puntos naturales del recorrido, no solo al final.</p>
-              </section>
-            </div>
-            <figure class="project-chapter__figure">
-              <img src="../imagenes/azimut/captura-03.png" alt="" width="1200" height="750" loading="lazy" data-i18n-alt="azimut.gallery.alt3">
-            </figure>
-          </article>
+            <button type="button" class="app-showcase__arrow app-showcase__arrow--next" data-showcase-next aria-label="Vista siguiente">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
+          </section>
 
-          <article class="project-chapter project-chapter--duo">
-            <figure class="project-chapter__figure">
-              <img src="../imagenes/azimut/captura-04.png" alt="" width="1200" height="750" loading="lazy" data-i18n-alt="azimut.gallery.alt4">
-            </figure>
-            <div class="project-chapter__prose">
-              <section class="project-detail__section">
-                <h2 class="project-detail__heading" data-i18n="azimut.tech.title">Desarrollo (capa técnica)</h2>
-                <p data-i18n="azimut.tech.p1">Construido con Next.js 16 (App Router), TypeScript, Tailwind CSS v4 y Framer Motion. El contenido vive en módulos tipados (projects, services, team, faq…), con tests unitarios (Vitest) y E2E (Playwright). Las páginas de proyecto se generan en build time (SSG), con SEO estructurado (JSON-LD, sitemap, Open Graph) e imágenes optimizadas. Pipeline de CI en GitHub Actions.</p>
-                <p data-i18n="azimut.tech.p2">La separación entre datos, componentes y configuración permite escalar el contenido sin tocar la UI, y viceversa.</p>
-              </section>
-            </div>
-          </article>
-
-          <article class="project-chapter project-chapter--prose">
+          <article class="web-block web-block--prose" data-reveal>
             <section class="project-detail__section">
-              <h2 class="project-detail__heading" data-i18n="azimut.shows.title">Qué demuestra este proyecto</h2>
+              <h2 class="project-detail__heading" data-i18n="azimut.ux.title">Decisiones de UI/UX</h2>
+              <p class="web-block__lead" data-i18n="azimut.ux.lead">El detalle vive aquí — para quien quiera profundizar.</p>
+
+              <div class="project-ux-accordion">
+                <details class="project-ux-accordion__item">
+                  <summary class="project-ux-accordion__summary">
+                    <span class="project-ux-accordion__title" data-i18n="azimut.ux.hero.title">Hero a pantalla completa</span>
+                    <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
+                  </summary>
+                  <div class="project-ux-accordion__body">
+                    <p data-i18n="azimut.ux.hero.p">Hero casi a viewport: imagen arquitectónica, titular fuerte y dos CTAs (explorar / convertir). La jerarquía guía desde el primer segundo.</p>
+                  </div>
+                </details>
+
+                <details class="project-ux-accordion__item">
+                  <summary class="project-ux-accordion__summary">
+                    <span class="project-ux-accordion__title" data-i18n="azimut.ux.home.title">Home como narrativa</span>
+                    <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
+                  </summary>
+                  <div class="project-ux-accordion__body">
+                    <p data-i18n="azimut.ux.home.p">Storytelling en capas: cifras, servicios, obras, sostenibilidad, proceso y CTA. Cada bloque responde a una objeción del visitante.</p>
+                  </div>
+                </details>
+
+                <details class="project-ux-accordion__item">
+                  <summary class="project-ux-accordion__summary">
+                    <span class="project-ux-accordion__title" data-i18n="azimut.ux.portfolio.title">Portfolio filtrable</span>
+                    <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
+                  </summary>
+                  <div class="project-ux-accordion__body">
+                    <p data-i18n="azimut.ux.portfolio.p">20 obras con filtros por categoría y ficha propia: galería, reto/solución, datos técnicos y relacionados.</p>
+                  </div>
+                </details>
+
+                <details class="project-ux-accordion__item">
+                  <summary class="project-ux-accordion__summary">
+                    <span class="project-ux-accordion__title" data-i18n="azimut.ux.identity.title">Identidad visual</span>
+                    <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
+                  </summary>
+                  <div class="project-ux-accordion__body">
+                    <p data-i18n="azimut.ux.identity.p">Carbón + crema + terracota. Barlow Condensed en titulares y DM Sans en cuerpo. Fondos en ritmo (crema, arena, carbón) sin romper coherencia.</p>
+                  </div>
+                </details>
+
+                <details class="project-ux-accordion__item">
+                  <summary class="project-ux-accordion__summary">
+                    <span class="project-ux-accordion__title" data-i18n="azimut.ux.motion.title">Motion y accesibilidad</span>
+                    <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
+                  </summary>
+                  <div class="project-ux-accordion__body">
+                    <p data-i18n="azimut.ux.motion.p">Framer Motion con criterio; skip link, landmarks ARIA y formularios etiquetados. El movimiento acompaña la lectura.</p>
+                  </div>
+                </details>
+              </div>
+            </section>
+          </article>
+
+          <article class="web-block web-block--prose" data-reveal>
+            <section class="project-detail__section">
+              <h2 class="project-detail__heading" data-i18n="azimut.tech.title">Ingeniería</h2>
               <ul class="project-detail__list">
-                <li data-i18n="azimut.shows.li1">Capacidad de diseñar una identidad visual coherente para un sector exigente.</li>
-                <li data-i18n="azimut.shows.li2">Criterio en UX de sitio corporativo: jerarquía, narrativa, conversión y exploración.</li>
-                <li data-i18n="azimut.shows.li3">Dominio de frontend moderno con código mantenible, tipado y tests.</li>
-                <li data-i18n="azimut.shows.li4">Atención al detalle: motion, accesibilidad, SEO y rendimiento, no solo la capa visual.</li>
+                <li data-i18n="azimut.tech.li1">Stack: Next.js 16, TypeScript, Tailwind v4, Framer Motion.</li>
+                <li data-i18n="azimut.tech.li2">Contenido: módulos tipados (projects, services, team, faq…).</li>
+                <li data-i18n="azimut.tech.li3">Calidad: Vitest + Playwright · SSG · SEO (JSON-LD, sitemap, OG).</li>
+                <li data-i18n="azimut.tech.li4">CI: GitHub Actions · datos y UI desacoplados.</li>
+              </ul>
+            </section>
+          </article>
+
+          <article class="web-block web-block--prose" data-reveal>
+            <section class="project-detail__section">
+              <h2 class="project-detail__heading" data-i18n="azimut.shows.title">Qué demuestra</h2>
+              <ul class="project-detail__list">
+                <li data-i18n="azimut.shows.li1">Identidad visual coherente para un sector exigente.</li>
+                <li data-i18n="azimut.shows.li2">UX corporativa: jerarquía, narrativa y conversión.</li>
+                <li data-i18n="azimut.shows.li3">Frontend moderno tipado, testeado y listo para desplegar.</li>
               </ul>
             </section>
           </article>
@@ -245,8 +310,9 @@
           rel="noopener noreferrer"
           class="project-github-cta"
           data-i18n="azimut.github.cta"
+          data-i18n-aria="azimut.github.aria"
           aria-label="Ver repositorio en GitHub"
-        ></a>
+        >Ver repositorio en GitHub</a>
         <nav class="contact-mid__nav" aria-label="Enlaces rápidos">
           <a href="../index.html#inicio" data-i18n="contact.midHome">Inicio</a>
           <a href="../index.html#proyectos" data-i18n="contact.midProjects">Proyectos</a>

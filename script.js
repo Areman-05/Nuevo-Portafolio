@@ -220,7 +220,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initProjectGallery();
 
   const initAppProjectReveals = () => {
-    if (!document.body.classList.contains('page--project-app')) return;
+    const isProjectCase =
+      document.body.classList.contains('page--project-app') ||
+      document.body.classList.contains('page--project-web');
+    if (!isProjectCase) return;
 
     const nodes = [...document.querySelectorAll('[data-reveal]')];
     if (!nodes.length) return;
@@ -231,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const hero = document.querySelector('.app-hero[data-reveal]');
+    const hero = document.querySelector('.app-hero[data-reveal], .web-hero[data-reveal]');
     if (hero) {
       requestAnimationFrame(() => hero.classList.add('is-revealed'));
     }
@@ -274,6 +277,17 @@ document.addEventListener('DOMContentLoaded', () => {
         slides.findIndex((slide) => slide.classList.contains('is-active'))
       );
 
+      const resolveSlideCopy = (slide) => {
+        const titleKey = slide.getAttribute('data-i18n-title');
+        const textKey = slide.getAttribute('data-i18n-text');
+        const lang = localStorage.getItem('portfolio-lang') || 'esp';
+        const dict = window.AZIMUT_I18N_PATCH?.[lang] || null;
+        return {
+          title: (titleKey && dict?.[titleKey]) || slide.dataset.title || '',
+          text: (textKey && dict?.[textKey]) || slide.dataset.text || '',
+        };
+      };
+
       const setSlide = (nextIndex) => {
         index = (nextIndex + slides.length) % slides.length;
 
@@ -284,12 +298,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const active = slides[index];
-        if (titleEl) titleEl.textContent = active.dataset.title || '';
-        if (textEl) textEl.textContent = active.dataset.text || '';
+        const copy = resolveSlideCopy(active);
+        if (titleEl) {
+          titleEl.textContent = copy.title;
+          const titleKey = active.getAttribute('data-i18n-title');
+          if (titleKey) titleEl.setAttribute('data-i18n', titleKey);
+        }
+        if (textEl) {
+          textEl.textContent = copy.text;
+          const textKey = active.getAttribute('data-i18n-text');
+          if (textKey) textEl.setAttribute('data-i18n', textKey);
+        }
         if (counterEl) counterEl.textContent = `${index + 1} / ${slides.length}`;
 
         if (dotsEl) {
           [...dotsEl.querySelectorAll('.app-showcase__dot')].forEach((dot, i) => {
+            const label = resolveSlideCopy(slides[i]).title || `Vista ${i + 1}`;
+            dot.setAttribute('aria-label', label);
             dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
           });
         }
@@ -311,6 +336,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       prevBtn?.addEventListener('click', () => setSlide(index - 1));
       nextBtn?.addEventListener('click', () => setSlide(index + 1));
+
+      document.addEventListener('portfolio:langchange', () => setSlide(index));
 
       root.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') {
