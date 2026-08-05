@@ -360,6 +360,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initAppShowcases();
 
+  const initDevicePlaceholders = () => {
+    document.querySelectorAll('.app-device__placeholder img').forEach((img) => {
+      const markBroken = () => img.setAttribute('data-broken', 'true');
+      img.addEventListener('error', markBroken, { once: true });
+      if (img.complete && !img.naturalWidth) markBroken();
+    });
+  };
+
+  initDevicePlaceholders();
+
   let marqueeResizeTick = false;
   window.addEventListener(
     'resize',

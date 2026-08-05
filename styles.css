@@ -3799,6 +3799,38 @@ body.page--project-app .app-device__screen img {
   object-position: top center;
 }
 
+body.page--project-app .app-device__placeholder {
+  background:
+    linear-gradient(160deg, rgba(1, 183, 99, 0.12), rgba(0, 0, 0, 0.4) 55%, #0a0a0a);
+}
+
+body.page--project-app .app-device__placeholder::after {
+  content: attr(data-placeholder);
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  pointer-events: none;
+}
+
+body.page--project-app .app-device__placeholder img {
+  position: relative;
+  z-index: 1;
+}
+
+body.page--project-app .app-device__placeholder img[data-broken="true"] {
+  display: none;
+}
+
 body.page--project-app .app-device--hero {
   z-index: 3;
   width: var(--device-hero-w);

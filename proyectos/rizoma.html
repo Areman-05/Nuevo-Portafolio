@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rizoma — Pablo Arenas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body data-page="rizoma" data-asset-prefix="../" class="page--single page--project page--project-app">
+  <div class="page-shell">
+    <header class="site-header site-header--minimal site-header--project" id="site-header">
+      <nav class="main-nav nav-minimal" aria-label="Principal">
+        <div class="nav-minimal__bar">
+          <a
+            href="../index.html#proyectos"
+            class="project-back-btn"
+            data-i18n-aria="nav.back"
+            aria-label="Volver"
+          >
+            <svg class="project-back-btn__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </a>
+          <button
+            type="button"
+            class="nav-minimal__toggle nav-minimal__toggle--solo"
+            id="nav-menu-toggle"
+            aria-expanded="false"
+            aria-controls="nav-menu-panel"
+            aria-label="Abrir menú"
+          >
+            <span class="nav-minimal__burger" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+        </div>
+        <div class="nav-minimal__panel" id="nav-menu-panel" aria-hidden="true">
+          <ul class="nav-minimal__links">
+            <li><a href="../index.html#inicio" data-i18n="nav.home">HOME</a></li>
+            <li><a href="../index.html#sobre-mi" data-i18n="nav.about">SOBRE MÍ</a></li>
+            <li><a href="../index.html#proyectos" class="nav-link-active" data-i18n="nav.projects">PROYECTOS</a></li>
+            <li><a href="../index.html#contacto" data-i18n="nav.contact">CONTACTO</a></li>
+          </ul>
+          <div class="nav-minimal__panel-foot">
+            <button type="button" class="lang-toggle lang-toggle--flag lang-toggle--panel" id="lang-toggle" data-i18n-aria="lang.aria" aria-label="Idioma">
+              <img class="lang-toggle__flag" src="../imagenes/flags/es.svg" alt="" width="24" height="18" decoding="async">
+            </button>
+            <div class="nav-minimal__social">
+              <a href="https://github.com/Areman-05" target="_blank" rel="noopener noreferrer" class="nav-minimal__social-link" aria-label="GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+              </a>
+              <a href="https://www.linkedin.com/in/pablo-arenas-mancebo-6a719b354/" target="_blank" rel="noopener noreferrer" class="nav-minimal__social-link" aria-label="LinkedIn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 4.126 0 2.062 2.062 0 0 1-2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <button type="button" class="nav-minimal__backdrop" id="nav-menu-backdrop" aria-label="Cerrar menú" tabindex="-1" hidden></button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="project-detail">
+      <div class="section-container project-detail__inner">
+        <header class="app-hero" data-reveal>
+          <div class="app-hero__copy">
+            <p class="app-hero__eyebrow">App móvil · Boutique botánica local-first</p>
+            <h1 class="app-hero__title">Rizoma</h1>
+            <p class="app-hero__subtitle">Tu pulso botánico en un solo sitio: descubrir, comprar y cuidar sin cambiar de app.</p>
+            <ul class="app-hero__tags" aria-label="Stack">
+              <li>Expo</li>
+              <li>React Native</li>
+              <li>TypeScript</li>
+              <li>NativeWind</li>
+            </ul>
+          </div>
+
+          <div class="app-hero__stage" aria-label="Vista previa de la app">
+            <div class="app-hero__glow" aria-hidden="true"></div>
+            <figure class="app-device app-device--side app-device--left" data-reveal-child style="--reveal-delay: 80ms">
+              <div class="app-device__bezel">
+                <span class="app-device__island" aria-hidden="true"></span>
+                <div class="app-device__screen app-device__placeholder" data-placeholder="02 · Inicio">
+                  <img src="../imagenes/Rizoma/captura-02.png" alt="Rizoma — inicio" width="390" height="844" decoding="async">
+                </div>
+              </div>
+            </figure>
+            <figure class="app-device app-device--hero" data-reveal-child style="--reveal-delay: 0ms">
+              <div class="app-device__bezel">
+                <span class="app-device__island" aria-hidden="true"></span>
+                <div class="app-device__screen app-device__placeholder" data-placeholder="01 · Splash">
+                  <img src="../imagenes/Rizoma/captura-01.png" alt="Rizoma — splash de marca" width="390" height="844" fetchpriority="high" decoding="async">
+                </div>
+              </div>
+            </figure>
+            <figure class="app-device app-device--side app-device--right" data-reveal-child style="--reveal-delay: 140ms">
+              <div class="app-device__bezel">
+                <span class="app-device__island" aria-hidden="true"></span>
+                <div class="app-device__screen app-device__placeholder" data-placeholder="05 · Mi Jardín">
+                  <img src="../imagenes/Rizoma/captura-05.png" alt="Rizoma — Mi Jardín" width="390" height="844" decoding="async">
+                </div>
+              </div>
+            </figure>
+          </div>
+        </header>
+
+        <div class="project-detail__body">
+          <article class="app-block app-block--prose" data-reveal>
+            <section class="project-detail__section">
+              <h2 class="project-detail__heading">Contexto</h2>
+              <p>Las apps de plantas suelen fragmentar el viaje: tienda por un lado, wishlist por otro, riego en otra herramienta. Rizoma cierra ese hueco con una app móvil completa (Expo + React Native) — de registro a pedido y Mi Jardín — local-first, coherente y defendible como producto de portfolio.</p>
+            </section>
+          </article>
+
+          <article class="app-block app-block--prose" data-reveal>
+            <section class="project-detail__section">
+              <h2 class="project-detail__heading">Objetivo</h2>
+              <p>Demostrar una boutique botánica usable sin backend externo:</p>
+              <ul class="project-detail__list">
+                <li>Claridad al abrir: promos, categorías y caminos a explorar, Match y Scan.</li>
+                <li>Comprar con intención: ficha, carrito, checkout por pasos y pedido con timeline.</li>
+                <li>Separar compra y cuidado (Mi Jardín); demos etiquetadas, sin métricas inventadas.</li>
+              </ul>
+            </section>
+          </article>
+
+          <section
+            class="app-showcase"
+            data-reveal
+            data-app-showcase
+            aria-roledescription="carrusel"
+            aria-label="Recorrido de pantallas de Rizoma"
+          >
+            <button type="button" class="app-showcase__arrow app-showcase__arrow--prev" data-showcase-prev aria-label="Vista anterior">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+
+            <div class="app-showcase__panel">
+              <div class="app-showcase__copy">
+                <p class="app-showcase__eyebrow">Recorrido UI</p>
+                <p class="app-showcase__counter" data-showcase-counter aria-live="polite">1 / 5</p>
+                <h2 class="app-showcase__title" data-showcase-title>Splash</h2>
+                <p class="app-showcase__text" data-showcase-text>Umbral de marca antes del shell: identidad verde y tono de boutique botánica desde el primer frame.</p>
+                <div class="app-showcase__dots" data-showcase-dots role="tablist" aria-label="Vistas"></div>
+              </div>
+
+              <div class="app-showcase__stage">
+                <figure
+                  class="app-device app-device--spotlight app-showcase__slide is-active"
+                  data-showcase-slide
+                  data-title="Splash"
+                  data-text="Umbral de marca antes del shell: identidad verde y tono de boutique botánica desde el primer frame."
+                >
+                  <div class="app-device__bezel">
+                    <span class="app-device__island" aria-hidden="true"></span>
+                    <div class="app-device__screen app-device__placeholder" data-placeholder="01 · Splash">
+                      <img src="../imagenes/Rizoma/captura-01.png" alt="Rizoma — splash de marca" width="390" height="844" loading="lazy">
+                    </div>
+                  </div>
+                </figure>
+                <figure
+                  class="app-device app-device--spotlight app-showcase__slide"
+                  data-showcase-slide
+                  data-title="Inicio"
+                  data-text="Saludo, promos y categorías. En pocos segundos sabes qué explorar, hacer Match o Scan."
+                  aria-hidden="true"
+                >
+                  <div class="app-device__bezel">
+                    <span class="app-device__island" aria-hidden="true"></span>
+                    <div class="app-device__screen app-device__placeholder" data-placeholder="02 · Inicio">
+                      <img src="../imagenes/Rizoma/captura-02.png" alt="Rizoma — inicio" width="390" height="844" loading="lazy">
+                    </div>
+                  </div>
+                </figure>
+                <figure
+                  class="app-device app-device--spotlight app-showcase__slide"
+                  data-showcase-slide
+                  data-title="Ficha"
+                  data-text="Dock unificado: cantidad, añadir al carrito y Mi Jardín. Cuidados (luz, riego, dificultad) sin ruido."
+                  aria-hidden="true"
+                >
+                  <div class="app-device__bezel">
+                    <span class="app-device__island" aria-hidden="true"></span>
+                    <div class="app-device__screen app-device__placeholder" data-placeholder="03 · Ficha">
+                      <img src="../imagenes/Rizoma/captura-03.png" alt="Rizoma — ficha con dock" width="390" height="844" loading="lazy">
+                    </div>
+                  </div>
+                </figure>
+                <figure
+                  class="app-device app-device--spotlight app-showcase__slide"
+                  data-showcase-slide
+                  data-title="Pedido"
+                  data-text="Timeline tipo delivery: Preparando → Enviado → En reparto → Entregado. El post-compra vive en la misma app."
+                  aria-hidden="true"
+                >
+                  <div class="app-device__bezel">
+                    <span class="app-device__island" aria-hidden="true"></span>
+                    <div class="app-device__screen app-device__placeholder" data-placeholder="04 · Pedido">
+                      <img src="../imagenes/Rizoma/captura-04.png" alt="Rizoma — pedido con timeline" width="390" height="844" loading="lazy">
+                    </div>
+                  </div>
+                </figure>
+                <figure
+                  class="app-device app-device--spotlight app-showcase__slide"
+                  data-showcase-slide
+                  data-title="Mi Jardín"
+                  data-text="Colección local y riego: el puente entre compra y cuidado, con empty states que empujan al siguiente paso."
+                  aria-hidden="true"
+                >
+                  <div class="app-device__bezel">
+                    <span class="app-device__island" aria-hidden="true"></span>
+                    <div class="app-device__screen app-device__placeholder" data-placeholder="05 · Mi Jardín">
+                      <img src="../imagenes/Rizoma/captura-05.png" alt="Rizoma — Mi Jardín" width="390" height="844" loading="lazy">
+                    </div>
+                  </div>
+                </figure>
+              </div>
+            </div>
+
+            <button type="button" class="app-showcase__arrow app-showcase__arrow--next" data-showcase-next aria-label="Vista siguiente">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
+          </section>
+
+          <article class="app-block app-block--prose" data-reveal>
+            <section class="project-detail__section">
+              <h2 class="project-detail__heading">Decisiones de UI/UX</h2>
+              <p class="app-block__lead">El detalle vive aquí — para quien quiera profundizar.</p>
+
+              <div class="project-ux-accordion">
+                <details class="project-ux-accordion__item">
+                  <summary class="project-ux-accordion__summary">
+                    <span class="project-ux-accordion__title">Claridad antes que espectáculo</span>
+                    <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
+                  </summary>
+                  <div class="project-ux-accordion__body">
+                    <p>Verde marca #01B763, tipografía Inter y tokens propios. Tarjetas escaneables, empty states útiles y splash como umbral de marca. La app guía; no presume de efectos.</p>
+                  </div>
+                </details>
+
+                <details class="project-ux-accordion__item">
+                  <summary class="project-ux-accordion__summary">
+                    <span class="project-ux-accordion__title">Shell de 5 tabs</span>
+                    <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
+                  </summary>
+                  <div class="project-ux-accordion__body">
+                    <p>Inicio · Carrito · Favoritos · Chat · Perfil. El catálogo completo vive en Explore como ruta dedicada, para no saturar la barra inferior.</p>
+                  </div>
+                </details>
+
+                <details class="project-ux-accordion__item">
+                  <summary class="project-ux-accordion__summary">
+                    <span class="project-ux-accordion__title">Compra ≠ cuidado</span>
+                    <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
+                  </summary>
+                  <div class="project-ux-accordion__body">
+                    <p><strong>Compra</strong> (catálogo, carrito, pedidos) y <strong>Mi Jardín</strong> (riego, colección) responden preguntas distintas. Misma fuente de datos, pantallas sin mezclar.</p>
+                  </div>
+                </details>
+
+                <details class="project-ux-accordion__item">
+                  <summary class="project-ux-accordion__summary">
+                    <span class="project-ux-accordion__title">Checkout y timeline</span>
+                    <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
+                  </summary>
+                  <div class="project-ux-accordion__body">
+                    <p>Checkout por pasos con CTA visible; al confirmar, pedido con timeline delivery (auto-avance demo). El relato post-compra no se rompe.</p>
+                  </div>
+                </details>
+
+                <details class="project-ux-accordion__item">
+                  <summary class="project-ux-accordion__summary">
+                    <span class="project-ux-accordion__title">Match, Scan y Chat</span>
+                    <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
+                  </summary>
+                  <div class="project-ux-accordion__body">
+                    <p>Motores locales transparentes (plantMatch, runPlantScan) y chat con hilos/auto-reply. Demuestran descubrimiento y soporte sin fingir ML en la nube.</p>
+                  </div>
+                </details>
+
+                <details class="project-ux-accordion__item">
+                  <summary class="project-ux-accordion__summary">
+                    <span class="project-ux-accordion__title">Flujo de navegación</span>
+                    <span class="project-ux-accordion__chevron" aria-hidden="true"></span>
+                  </summary>
+                  <div class="project-ux-accordion__body">
+                    <p>Splash → auth → onboarding → shell. Desde ahí: ficha (+ jardín), checkout → pedido, o Match / Scan. Gate post-splash testeable (authGate).</p>
+                  </div>
+                </details>
+              </div>
+            </section>
+          </article>
+
+          <article class="app-block app-block--prose" data-reveal>
+            <section class="project-detail__section">
+              <h2 class="project-detail__heading">Ingeniería</h2>
+              <ul class="project-detail__list">
+                <li>Stack: Expo 57, React Native, NativeWind 4, Expo Router, Lucide.</li>
+                <li>Estado: Context (Auth, Shop, Garden, Chat, Onboarding) · AsyncStorage versionado.</li>
+                <li>Datos: catálogo embebido (~50 plantas), carrito/wishlist/pedidos/jardín en local.</li>
+                <li>Auth: email local + Google Sign-In opcional · checkout y Scan/Match/Chat simulados (demo consciente).</li>
+                <li>Calidad: TypeScript estricto · 11 suites / 36 tests Jest de dominio.</li>
+              </ul>
+            </section>
+          </article>
+
+          <article class="app-block app-block--prose" data-reveal>
+            <section class="project-detail__section">
+              <h2 class="project-detail__heading">Qué demuestra</h2>
+              <ul class="project-detail__list">
+                <li>Producto cerrado: onboarding → pedido → jardín, no pantallas sueltas.</li>
+                <li>UX de boutique con decisiones explícitas y demos honestas.</li>
+                <li>Móvil moderno (Expo Router, Context, persistencia) con tests de dominio.</li>
+              </ul>
+            </section>
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <footer class="contact-end contact-end--project" aria-label="Pie de página">
+      <div class="contact-mid" aria-label="Presentación">
+        <a
+          href="https://github.com/Areman-05/Rizoma"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="project-github-cta"
+          aria-label="Ver repositorio en GitHub"
+        >Ver repositorio en GitHub</a>
+        <nav class="contact-mid__nav" aria-label="Enlaces rápidos">
+          <a href="../index.html#inicio" data-i18n="contact.midHome">Inicio</a>
+          <a href="../index.html#proyectos" data-i18n="contact.midProjects">Proyectos</a>
+          <a href="../index.html#sobre-mi" data-i18n="contact.midAbout">Sobre mí</a>
+        </nav>
+      </div>
+      <div class="site-footer site-footer--project">
+        <p class="site-footer__copy" data-i18n="footer.rights">&copy; 2026 Pablo Arenas Mancebo. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../i18n.js"></script>
+  <script src="../script.js"></script>
+</body>
+</html>
