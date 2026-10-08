@@ -36,12 +36,24 @@ export default function ProjectsSection({
     const reveal = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          entry.target.classList.toggle("card-in", entry.isIntersecting)
+          if (!entry.isIntersecting) return
+          entry.target.classList.add("card-in")
+          reveal.unobserve(entry.target)
         })
       },
-      { threshold: 0.2 }
+      { threshold: 0.12, rootMargin: "0px 0px -5% 0px" },
     )
-    sections.forEach((sec) => reveal.observe(sec))
+    sections.forEach((sec) => {
+      const rect = sec.getBoundingClientRect()
+      const inView =
+        rect.bottom > 0 &&
+        rect.top < (window.innerHeight || document.documentElement.clientHeight)
+      if (inView) {
+        sec.classList.add("card-in")
+        return
+      }
+      reveal.observe(sec)
+    })
 
     return () => {
       observer.disconnect()
@@ -75,7 +87,7 @@ export default function ProjectsSection({
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover grayscale opacity-80 mix-blend-screen transition-all duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0"
+                  className="h-full w-full object-cover opacity-90 transition-all duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:opacity-100"
                 />
               </div>
 
