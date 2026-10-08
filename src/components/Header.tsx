@@ -36,6 +36,8 @@ function ScrambledLabel({
 export default function Header() {
   const handleNavClick = () => {
     sound.playSelect()
+    // Misma ruta o cambio de view: siempre aterrizar al inicio de la pantalla
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" })
   }
 
   const navItems = [
