@@ -24,9 +24,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run build
-      # SPA fallback: /ethos, /work, /nodes al recargar
-      - run: cp dist/index.html dist/404.html
+      # Publica build en dist/ y docs/; deja la raíz lista si Pages usa branch /
+      - run: npm run pages
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

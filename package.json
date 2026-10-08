@@ -4,9 +4,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/ensure-dev-index.mjs",
     "dev": "vite",
     "build": "vite build",
-    "pages": "vite build && node -e \"const fs=require('fs');const path=require('path');const rimraf=(d)=>{if(fs.existsSync(d))fs.rmSync(d,{recursive:true})};rimraf('docs');fs.cpSync('dist','docs',{recursive:true});fs.copyFileSync('docs/index.html','docs/404.html');\"",
+    "pages": "node scripts/pages.mjs",
     "preview": "vite preview",
     "format": "oxfmt"
   },
