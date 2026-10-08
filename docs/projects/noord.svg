@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" fill="none">
+  <rect width="1600" height="1000" fill="#141311"/>
+  <g stroke="#56544e" stroke-width="1">
+    <path d="M80 200 H1520"/><path d="M80 400 H1520"/><path d="M80 600 H1520"/><path d="M80 800 H1520"/>
+    <path d="M320 80 V920"/><path d="M640 80 V920"/><path d="M960 80 V920"/><path d="M1280 80 V920"/>
+  </g>
+  <rect x="640" y="400" width="320" height="200" fill="#8f1018" fill-opacity="0.25" stroke="#8f1018"/>
+  <text x="80" y="860" fill="#f0ede6" font-family="ui-monospace, monospace" font-size="56" letter-spacing="6">LABORATORIO NOORD</text>
+  <text x="80" y="920" fill="#828079" font-family="ui-monospace, monospace" font-size="24" letter-spacing="6">ÁMSTERDAM · 2026</text>
+</svg>
