@@ -1,5 +1,7 @@
 import { Project, UrbanNode } from "../types"
 
+const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`
+
 export const PROJECTS: Project[] = [
   {
     id: "aura-poblenou",
@@ -11,10 +13,8 @@ export const PROJECTS: Project[] = [
     discipline: "Dirección de Arte y Arquitectura Frontend",
     city: "Barcelona (22@)",
     year: "2025",
-    image:
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmNtaWszb2cwaXRmODZoeWpvbzE2aHExbzBzaDJvMTMzdXgxbjUwaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKo6fiHVzGijHpe/giphy.gif",
-    secondaryImage:
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXN5MndzZ3QzYnhvM3dwaTZqYmdvNDdyOWJwZnZwdnpnbHJxaGNxNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT9Ighs4iLqYyKzIHK/giphy.gif",
+    image: asset("projects/aura.svg"),
+    secondaryImage: asset("projects/noord.svg"),
     client: "Institut d'Arquitectura Avançada de Catalunya / 22@ Collectif",
     role: "Frontend Engineer Principal y Diseñador Digital",
     summary:
@@ -51,10 +51,8 @@ export const PROJECTS: Project[] = [
     discipline: "Frontend Generativo y Sistemas UX",
     city: "Tokio (Shibuya)",
     year: "2025",
-    image:
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmYxeWdxOXo1djhmNzZna2kyeTN3eXRzZW45cWNyNXVnbTV1aHhhOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT9Ighs4iLqYyKzIHK/giphy.gif",
-    secondaryImage:
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmNtaWszb2cwaXRmODZoeWpvbzE2aHExbzBzaDJvMTMzdXgxbjUwaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKo6fiHVzGijHpe/giphy.gif",
+    image: asset("projects/tokio.svg"),
+    secondaryImage: asset("projects/aura.svg"),
     client: "Katamaran Sound & Type Foundry (Tokio / Shibuya)",
     role: "Especialista Frontend UX y Tecnólogo Creativo",
     summary:
@@ -91,10 +89,8 @@ export const PROJECTS: Project[] = [
     discipline: "Dirección de Diseño y Frontend Headless",
     city: "Nueva York (Lower East Side)",
     year: "2024",
-    image:
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3J1MzJtdzBxaHByd3M5MzN3czE0bWZ3NDVnaDkxcTljcWNwdXQxNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26tnb7hlpeCJiavM4/giphy.gif",
-    secondaryImage:
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2RtcW9wcDZwaDR3YXdvcHZocW05NW5vd3A4bmM0dTVwaWNwdXA4bmM0dTVwaWNwdXpvZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0HlMG1EX2H38cZeE/giphy.gif",
+    image: asset("projects/monolith.svg"),
+    secondaryImage: asset("projects/tokio.svg"),
     client: "Monolith Garments / SoHo Studio",
     role: "Líder de UX/UI y Frontend Principal",
     summary:
@@ -131,10 +127,8 @@ export const PROJECTS: Project[] = [
     discipline: "Sistemas de Diseño y Frontend Interactivo",
     city: "Ámsterdam (Noord)",
     year: "2026",
-    image:
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2RtcW9wcDZwaDR3YXdvcHZocW05NW5vd3A4bmM0dTVwaWNwdXpvZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0HlMG1EX2H38cZeE/giphy.gif",
-    secondaryImage:
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3J1MzJtdzBxaHByd3M5MzN3czE0bWZ3NDVnaDkxcTljcWNwdXQxNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26tnb7hlpeCJiavM4/giphy.gif",
+    image: asset("projects/noord.svg"),
+    secondaryImage: asset("projects/monolith.svg"),
     client: "Atelier Noord / Het Archief",
     role: "Líder de Desarrollo Frontend Creativo",
     summary:
@@ -178,8 +172,7 @@ export const URBAN_NODES: UrbanNode[] = [
       "Techno Underground",
       "UI Espacial",
     ],
-    image:
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmNtaWszb2cwaXRmODZoeWpvbzE2aHExbzBzaDJvMTMzdXgxbjUwaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKo6fiHVzGijHpe/giphy.gif",
+    image: asset("projects/aura.svg"),
   },
   {
     id: "nyc",
@@ -200,7 +193,6 @@ export const URBAN_NODES: UrbanNode[] = [
       "Anti-Corporativo",
       "Deploys Nocturnos",
     ],
-    image:
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3J1MzJtdzBxaHByd3M5MzN3czE0bWZ3NDVnaDkxcTljcWNwdXQxNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26tnb7hlpeCJiavM4/giphy.gif",
+    image: asset("projects/monolith.svg"),
   },
 ]
