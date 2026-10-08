@@ -1,22 +1,11 @@
-import { useEffect, useState } from "react"
 import { sound } from "../utils/audio"
 import Process from "../components/Process"
 
 export default function Home() {
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
   return (
     <>
       <div className="relative flex min-h-[calc(100vh-8rem)] items-center justify-center overflow-hidden pt-10">
-      <div
-        className={`grid w-full max-w-6xl grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center transition-all duration-1000 ${
-          mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-        }`}
-      >
+      <div className="grid w-full max-w-6xl grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center animate-in">
         <div className="relative z-10 flex flex-col items-end gap-7 pr-3 font-mono text-xs uppercase leading-none text-[#d8d5ce] sm:gap-10 sm:pr-8 sm:text-sm md:pr-14 md:text-base">
           <span className="self-center tracking-[0.5em]">DIS E ÑO</span>
           <span className="self-end tracking-[0.3em]">INTER FAZ</span>
