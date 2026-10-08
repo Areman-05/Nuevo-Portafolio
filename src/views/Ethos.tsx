@@ -76,11 +76,13 @@ void main(){
 function BlurPortrait() {
   const canvas = useRef<HTMLCanvasElement>(null)
   const target = useRef({ x: 0.5, y: 0.5, h: 0 })
+  const [glReady, setGlReady] = useState(false)
 
   useEffect(() => {
     const cv = canvas.current!
-    const gl = cv.getContext("webgl")
+    const gl = cv.getContext("webgl", { alpha: false, antialias: false })
     if (!gl) return
+
     const sh = (type: number, src: string) => {
       const o = gl.createShader(type)!
       gl.shaderSource(o, src)
@@ -98,28 +100,44 @@ function BlurPortrait() {
     gl.enableVertexAttribArray(loc)
     gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0)
     const u = (n: string) => gl.getUniformLocation(pr, n)
-    const tex = gl.createTexture()
+    const tex = gl.createTexture()!
+    gl.uniform1i(u("t"), 0)
+
     let ready = false
     const img = new Image()
+    img.decoding = "async"
     img.onload = () => {
+      gl.activeTexture(gl.TEXTURE0)
       gl.bindTexture(gl.TEXTURE_2D, tex)
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 0)
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img)
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR)
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR)
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE)
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
       ready = true
+      setGlReady(true)
     }
+    img.onerror = () => setGlReady(false)
     img.src = PHOTO
+
     const cur = { x: 0.5, y: 0.5, h: 0 }
     let raf = 0
     const draw = (now: number) => {
-      const w = cv.clientWidth * devicePixelRatio, hh = cv.clientHeight * devicePixelRatio
-      if (cv.width !== w || cv.height !== hh) { cv.width = w; cv.height = hh; gl.viewport(0, 0, w, hh) }
+      const w = Math.max(1, Math.floor(cv.clientWidth * devicePixelRatio))
+      const hh = Math.max(1, Math.floor(cv.clientHeight * devicePixelRatio))
+      if (cv.width !== w || cv.height !== hh) {
+        cv.width = w
+        cv.height = hh
+        gl.viewport(0, 0, w, hh)
+      }
       const t = target.current
       cur.x += (t.x - cur.x) * 0.08
       cur.y += (t.y - cur.y) * 0.08
       cur.h += (t.h - cur.h) * 0.06
       if (ready) {
+        gl.activeTexture(gl.TEXTURE0)
+        gl.bindTexture(gl.TEXTURE_2D, tex)
         gl.uniform2f(u("m"), cur.x, cur.y)
         gl.uniform1f(u("h"), cur.h)
         gl.uniform1f(u("time"), now / 1000)
@@ -139,15 +157,35 @@ function BlurPortrait() {
   }
 
   return (
-    <canvas
-      ref={canvas}
-      role="img"
-      aria-label="Retrato de Pablo"
+    <div
+      className="relative aspect-[993/1568] w-full cursor-crosshair"
       onMouseMove={move}
-      onMouseEnter={(e) => { move(e); target.current.h = 1 }}
-      onMouseLeave={() => (target.current.h = 0)}
-      className="block aspect-[993/1568] w-full cursor-crosshair"
-    />
+      onMouseEnter={(e) => {
+        move(e)
+        target.current.h = 1
+      }}
+      onMouseLeave={() => {
+        target.current.h = 0
+      }}
+    >
+      {/* Fallback borroso como en Figma si WebGL tarda o falla */}
+      <img
+        src={PHOTO}
+        alt="Retrato de Pablo"
+        className={`absolute inset-0 h-full w-full object-cover object-top grayscale contrast-125 blur-[6px] transition-opacity duration-500 ${
+          glReady ? "opacity-0" : "opacity-100"
+        }`}
+        draggable={false}
+      />
+      <canvas
+        ref={canvas}
+        role="img"
+        aria-label="Retrato de Pablo"
+        className={`absolute inset-0 block h-full w-full transition-opacity duration-500 ${
+          glReady ? "opacity-100" : "opacity-0"
+        }`}
+      />
+    </div>
   )
 }
 
