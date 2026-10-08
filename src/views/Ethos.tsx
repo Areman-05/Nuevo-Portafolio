@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 
-const PHOTO = "/pablo.png"
+const PHOTO = `${import.meta.env.BASE_URL}pablo.png`
 
 const SOFT_SKILLS = [
   ["Escucha", "Antes de diseñar, entiendo. Las mejores soluciones salen de las preguntas correctas."],

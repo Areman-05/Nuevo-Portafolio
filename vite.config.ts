@@ -4,6 +4,8 @@ import tailwindcss from "@tailwindcss/vite"
 import path from "node:path"
 
 export default defineConfig({
+  // GitHub Pages del repo: https://areman-05.github.io/Nuevo-Portafolio/
+  base: "/Nuevo-Portafolio/",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

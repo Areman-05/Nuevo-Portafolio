@@ -5,15 +5,18 @@ import Work from "./views/Work"
 import Ethos from "./views/Ethos"
 import Nodes from "./views/Nodes"
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    Component: Layout,
-    children: [
-      { index: true, Component: Home },
-      { path: "work", Component: Work },
-      { path: "ethos", Component: Ethos },
-      { path: "nodes", Component: Nodes },
-    ],
-  },
-])
+export const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      Component: Layout,
+      children: [
+        { index: true, Component: Home },
+        { path: "work", Component: Work },
+        { path: "ethos", Component: Ethos },
+        { path: "nodes", Component: Nodes },
+      ],
+    },
+  ],
+  { basename: "/Nuevo-Portafolio" },
+)
