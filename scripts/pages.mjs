@@ -63,11 +63,13 @@ for (const file of ["pablo.png", ".nojekyll"]) {
 // SPA fallback en la raíz (mismo HTML que index)
 copyFileSync(join(dist, "index.html"), join(root, "404.html"))
 
-const distProjects = join(dist, "projects")
-const rootProjects = join(root, "projects")
-if (existsSync(distProjects)) {
-  wipe(rootProjects)
-  cpSync(distProjects, rootProjects, { recursive: true })
+for (const folder of ["projects", "work"]) {
+  const from = join(dist, folder)
+  const to = join(root, folder)
+  if (existsSync(from)) {
+    wipe(to)
+    cpSync(from, to, { recursive: true })
+  }
 }
 
 // index.html de producción en la raíz (lo que GitHub Pages sirve)

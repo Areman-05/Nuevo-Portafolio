@@ -78,11 +78,8 @@ function Line({ parts, index }: { parts: Part[]; index: number }) {
 
 export default function Process() {
   return (
-    <section className="relative overflow-hidden py-32 font-mono text-[#d8d5ce] md:py-48">
+    <section className="relative overflow-hidden pt-16 pb-32 font-mono text-[#d8d5ce] md:pt-24 md:pb-48">
       <div className="px-6 md:px-12">
-        <span className="mb-16 block font-serif text-lg italic lowercase tracking-widest text-[#8f1018] md:text-2xl">
-          el proceso.
-        </span>
         <h2 className="flex flex-col gap-[1.5vw] text-[11vw] uppercase leading-[0.95] tracking-[0.06em] md:text-[7.5vw]">
           {LINES.map((parts, i) => (
             <Line key={i} parts={parts} index={i} />
