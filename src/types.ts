@@ -16,7 +16,7 @@ export interface Project {
   uxSolution: string
   tokens: string[]
   stack: string[]
-  metrics: { label: string value: string }[]
+  metrics: { label: string; value: string }[]
 }
 
 export interface UrbanNode {
