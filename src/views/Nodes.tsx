@@ -20,16 +20,15 @@ export default function Nodes() {
             Contacto
           </span>
           <h1 className="mt-8 max-w-3xl text-3xl uppercase leading-tight tracking-tight text-[#f0ede6] sm:text-4xl md:text-5xl">
-            Las buenas ideas empiezan
+            Busco un equipo donde
             <span className="block text-[#8f1018]">
-              con una conversación clara.
+              diseño y código vayan juntos.
             </span>
           </h1>
         </div>
 
         <p className="max-w-sm self-end text-xs leading-6 text-[#828079] md:col-span-3 md:col-start-10">
-          Cuéntame qué quieres construir, qué problema necesitas resolver o en
-          qué punto se encuentra tu producto.
+          Abierto a puestos de frontend developer o UX/UI en agencias y estudios de Barcelona, y a proyectos freelance. Escríbeme y te respondo en 24—48 h.
         </p>
       </div>
 
@@ -69,7 +68,7 @@ export default function Nodes() {
               Disponibilidad
             </span>
             <p className="mt-3 text-xs leading-6 text-[#828079]">
-              Abierto a colaboraciones seleccionadas y nuevos retos en 2026.
+              Abierto a incorporación en agencia o estudio en 2026.
             </p>
           </div>
           <div>
