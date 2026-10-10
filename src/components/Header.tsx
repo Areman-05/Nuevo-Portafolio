@@ -34,15 +34,15 @@ function ScrambledLabel({
 }
 
 export default function Header() {
+  // Also covers clicking the link of the page you are already on
   const handleNavClick = () => {
     sound.playSelect()
-    // Misma ruta o cambio de view: siempre aterrizar al inicio de la pantalla
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" })
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" })
   }
 
   const navItems = [
+    { name: "Trabajo", path: "/work" },
     { name: "Sobre mí", path: "/ethos" },
-    { name: "Galería", path: "/work" },
     { name: "Contacto", path: "/nodes" },
   ]
 
@@ -56,7 +56,7 @@ export default function Header() {
             aria-label="Pablo Arenas Mancebo"
             onClick={handleNavClick}
             onMouseEnter={() => sound.playTick()}
-            className="group flex items-center font-mono text-xs leading-none tracking-normal sm:text-sm md:text-base"
+            className="group -my-4 flex items-center py-4 font-mono text-xs leading-none tracking-normal sm:text-sm md:text-base"
           >
             <ScrambledLabel label="Pablo Arenas Mancebo" itemIndex={3} />
           </NavLink>
@@ -74,7 +74,7 @@ export default function Header() {
               onClick={handleNavClick}
               onMouseEnter={() => sound.playTick()}
               className={({ isActive }) =>
-                `group flex items-center whitespace-nowrap cursor-pointer transition-colors ${
+                `group -mx-2 -my-4 flex items-center whitespace-nowrap px-2 py-4 cursor-pointer transition-colors ${
                   isActive
                     ? "text-white"
                     : "text-[#828079] hover:text-[#f0ede6]"
