@@ -1,25 +1,16 @@
-import { useState } from "react"
+import { useNavigate } from "react-router"
 import ProjectsSection from "../components/ProjectsSection"
-import ProjectModal from "../components/ProjectModal"
-import { PROJECTS } from "../data/portfolioData"
-import { Project } from "../types"
+import { CASES } from "../data/cases"
 
 export default function Work() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const navigate = useNavigate()
 
   return (
-    <div className="animate-in fade-in duration-700">
-      <div className="pt-12 md:pt-24 pb-32">
-        <ProjectsSection
-          projects={PROJECTS}
-          onSelectProject={(project) => setSelectedProject(project)}
-          onHoverProject={() => {}}
-        />
-      </div>
-
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
+    <div data-no-reveal className="relative left-1/2 -mt-24 w-screen -translate-x-1/2">
+      <ProjectsSection
+        projects={CASES}
+        onSelectProject={(project) => navigate(`/work/${project.id}`)}
+        onHoverProject={() => {}}
       />
     </div>
   )
