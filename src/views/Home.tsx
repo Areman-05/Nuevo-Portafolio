@@ -1,279 +1,149 @@
-import { sound } from "../utils/audio"
-import Process from "../components/Process"
+import { useEffect, useRef, useState } from "react"
+
+const u = (id: string) =>
+  `https://images.unsplash.com/${id}?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&w=900`
+
+type Word = { text: string; cls?: string; img?: string; shape?: string; side?: "l" | "r" }
+
+const LINES: { word: Word; end?: boolean }[] = [
+  { word: { text: "Si puedes", img: u("photo-1693648793394-0b76b7eb042e"), shape: "shape-circle", side: "r" } },
+  { end: true, word: { text: "diseñar", cls: "text-[#828079]", img: u("photo-1498075702571-ecb018f3752d"), shape: "shape-arch", side: "l" } },
+  { end: true, word: { text: "una cosa," } },
+  { word: { text: "puedes", cls: "home-outline", img: u("photo-1714765761465-e7a4974fa05b"), shape: "shape-tall", side: "r" } },
+  { end: true, word: { text: "diseñarlo", img: u("photo-1717155970253-b7a4bcfaf7d8"), shape: "shape-diamond", side: "l" } },
+  { word: { text: "todo.", cls: "text-[#8f1018]", img: u("photo-1554104683-c7063687d649"), shape: "shape-wide", side: "r" } },
+]
+
+function HoverWord({ w, delay }: { w: Word; delay: number }) {
+  const [on, setOn] = useState(false)
+  const media = w.img && (
+    <span data-cursor-skip className={`home-media ${w.shape} ${on ? "is-on" : ""}`}>
+      <img src={w.img} alt="" loading="lazy" />
+    </span>
+  )
+  return (
+    <span className="flex items-center gap-[2vw]" onMouseEnter={() => setOn(true)} onMouseLeave={() => setOn(false)}>
+      {w.side === "l" && media}
+      <span className="block overflow-hidden pt-[0.1em] pb-[0.04em]">
+        <span className={`home-word q block cursor-default ${w.cls ?? ""}`} style={{ transitionDelay: `${delay}s` }}>
+          {w.text}
+        </span>
+      </span>
+      {w.side === "r" && media}
+    </span>
+  )
+}
+
+// Letters grow near the cursor, like a magnifier sliding over the sign
+function Magnify({ text }: { text: string }) {
+  const refs = useRef<(HTMLSpanElement | null)[]>([])
+  const move = (e: React.MouseEvent) => {
+    refs.current.forEach((el) => {
+      if (!el) return
+      const r = el.getBoundingClientRect()
+      const d = Math.abs(e.clientX - (r.left + r.width / 2))
+      const k = Math.max(0, 1 - d / (r.width * 2.2))
+      el.style.transform = `scale(${1 + k * k * 0.32})`
+    })
+  }
+  const leave = () => refs.current.forEach((el) => el && (el.style.transform = ""))
+  return (
+    <span onMouseMove={move} onMouseLeave={leave} className="inline-flex" aria-label={text}>
+      {text.split("").map((ch, i) => (
+        <span
+          key={i}
+          ref={(el) => {
+            refs.current[i] = el
+          }}
+          aria-hidden="true"
+          className="inline-block origin-bottom transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        >
+          {ch}
+        </span>
+      ))}
+    </span>
+  )
+}
 
 export default function Home() {
+  const [ready, setReady] = useState(false)
+
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setReady(true))
+    const io = new IntersectionObserver(
+      (es) => es.forEach((e) => e.isIntersecting && e.target.classList.add("is-in")),
+      { threshold: 0.4 },
+    )
+    document.querySelectorAll(".q-line").forEach((el) => io.observe(el))
+    return () => {
+      cancelAnimationFrame(id)
+      io.disconnect()
+    }
+  }, [])
+
   return (
-    <>
-      <div className="relative flex min-h-[calc(100vh-8rem)] items-center justify-center overflow-hidden pt-10">
-      <div className="grid w-full max-w-6xl grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center animate-in">
-        <div className="relative z-10 flex flex-col items-end gap-7 pr-3 font-mono text-xs uppercase leading-none text-[#d8d5ce] sm:gap-10 sm:pr-8 sm:text-sm md:pr-14 md:text-base">
-          <span className="self-center tracking-[0.5em]">DIS E ÑO</span>
-          <span className="self-end tracking-[0.3em]">INTER FAZ</span>
-          <span className="self-center tracking-[0.42em]">EXPE RIENCIA</span>
-        </div>
-
-        <div
-          className="group relative h-72 w-44 cursor-crosshair overflow-visible sm:h-96 sm:w-60 md:h-[28rem] md:w-72"
-          onMouseEnter={() => sound.playTick()}
-          onClick={() => sound.playSelect()}
-        >
-          <svg
-            viewBox="0 0 240 384"
-            role="img"
-            aria-label="Composición abstracta animada en negro y gris"
-            className="h-full w-full bg-[#030303] transition-all duration-700 group-hover:scale-[1.015] group-hover:contrast-125"
-          >
-            <defs>
-              <linearGradient id="chrome-ring" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stopColor="#111" />
-                <stop offset="0.22" stopColor="#8c8c8c" />
-                <stop offset="0.38" stopColor="#1a1a1a" />
-                <stop offset="0.64" stopColor="#d0d0d0" />
-                <stop offset="0.78" stopColor="#292929" />
-                <stop offset="1" stopColor="#090909" />
-              </linearGradient>
-              <radialGradient id="eclipse" cx="38%" cy="32%">
-                <stop offset="0" stopColor="#666" />
-                <stop offset="0.12" stopColor="#252525" />
-                <stop offset="0.64" stopColor="#070707" />
-                <stop offset="0.86" stopColor="#010101" />
-                <stop offset="1" stopColor="#383838" />
-              </radialGradient>
-              <filter
-                id="field-distortion"
-                x="-30%"
-                y="-30%"
-                width="160%"
-                height="160%"
-                colorInterpolationFilters="sRGB"
-              >
-                <feTurbulence
-                  type="fractalNoise"
-                  baseFrequency="0.008 0.026"
-                  numOctaves="3"
-                  seed="8"
-                  result="noise"
-                >
-                  <animate
-                    attributeName="baseFrequency"
-                    values="0.008 0.026;0.014 0.018;0.006 0.032;0.008 0.026"
-                    dur="12s"
-                    repeatCount="indefinite"
-                  />
-                </feTurbulence>
-                <feDisplacementMap
-                  in="SourceGraphic"
-                  in2="noise"
-                  scale="18"
-                  xChannelSelector="R"
-                  yChannelSelector="B"
-                >
-                  <animate
-                    attributeName="scale"
-                    values="10;26;14;30;10"
-                    dur="10s"
-                    repeatCount="indefinite"
-                  />
-                </feDisplacementMap>
-              </filter>
-              <filter id="soft-glow" x="-80%" y="-80%" width="260%" height="260%">
-                <feGaussianBlur stdDeviation="6" result="blur" />
-                <feMerge>
-                  <feMergeNode in="blur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-              <filter id="grain">
-                <feTurbulence
-                  type="fractalNoise"
-                  baseFrequency="0.8"
-                  numOctaves="3"
-                  seed="4"
-                />
-                <feColorMatrix
-                  type="matrix"
-                  values="0.25 0 0 0 0
-                          0 0.25 0 0 0
-                          0 0 0.25 0 0
-                          0 0 0 0.42 0"
-                />
-              </filter>
-            </defs>
-
-            <rect width="240" height="384" fill="#030303" />
-            <ellipse
-              cx="120"
-              cy="192"
-              rx="102"
-              ry="166"
-              fill="none"
-              stroke="#555"
-              strokeWidth="0.6"
-              opacity="0.22"
-            />
-            <g filter="url(#field-distortion)">
-              {Array.from({ length: 13 }).map((_, index) => (
-                <ellipse
-                  key={index}
-                  cx="120"
-                  cy="192"
-                  rx={28 + index * 7.4}
-                  ry={54 + index * 10.2}
-                  fill="none"
-                  stroke={index % 3 === 0 ? "#b4b4b4" : "#575757"}
-                  strokeWidth={index % 3 === 0 ? "1" : "0.55"}
-                  opacity={0.72 - index * 0.035}
-                >
-                  <animate
-                    attributeName="rx"
-                    values={`${26 + index * 7.4};${34 + index * 7.4};${28 + index * 7.4};${26 + index * 7.4}`}
-                    dur={`${6.5 + index * 0.32}s`}
-                    repeatCount="indefinite"
-                  />
-                </ellipse>
-              ))}
-              <path
-                d="M120 25 C167 68 205 122 200 194 C196 267 161 329 120 359 C78 329 43 267 40 194 C35 122 73 68 120 25 Z"
-                fill="none"
-                stroke="url(#chrome-ring)"
-                strokeWidth="5"
-                opacity="0.8"
-              >
-                <animateTransform
-                  attributeName="transform"
-                  type="rotate"
-                  values="-3 120 192;4 120 192;-3 120 192"
-                  dur="13s"
-                  repeatCount="indefinite"
-                />
-              </path>
-            </g>
-
-            <g filter="url(#soft-glow)" opacity="0.6">
-              <ellipse
-                cx="120"
-                cy="192"
-                rx="66"
-                ry="92"
-                fill="none"
-                stroke="#777"
-                strokeWidth="1.5"
-              >
-                <animate
-                  attributeName="rx"
-                  values="62;69;64;62"
-                  dur="5s"
-                  repeatCount="indefinite"
-                />
-              </ellipse>
-            </g>
-
-            <ellipse
-              cx="120"
-              cy="192"
-              rx="55"
-              ry="79"
-              fill="url(#eclipse)"
-              stroke="url(#chrome-ring)"
-              strokeWidth="2.4"
-            >
-              <animate
-                attributeName="ry"
-                values="76;84;78;76"
-                dur="7s"
-                repeatCount="indefinite"
-              />
-            </ellipse>
-            <ellipse
-              cx="120"
-              cy="192"
-              rx="43"
-              ry="65"
-              fill="#010101"
-              opacity="0.92"
-            >
-              <animate
-                attributeName="rx"
-                values="40;46;42;40"
-                dur="6s"
-                repeatCount="indefinite"
-              />
-            </ellipse>
-
-            <path
-              d="M39 192 C75 171 166 170 202 192 C165 217 76 216 39 192 Z"
-              fill="none"
-              stroke="url(#chrome-ring)"
-              strokeWidth="3.5"
-              opacity="0.9"
-            >
-              <animateTransform
-                attributeName="transform"
-                type="rotate"
-                values="0 120 192;9 120 192;0 120 192"
-                dur="8s"
-                repeatCount="indefinite"
-              />
-            </path>
-            <line
-              x1="120"
-              x2="120"
-              y1="32"
-              y2="352"
-              stroke="#b7b7b7"
-              strokeWidth="0.7"
-              opacity="0.32"
-            >
-              <animate
-                attributeName="opacity"
-                values="0.08;0.42;0.08"
-                dur="3.5s"
-                repeatCount="indefinite"
-              />
-            </line>
-            <g opacity="0.28">
-              <path
-                d="M20 112 H220 M20 272 H220"
-                stroke="#8a8a8a"
-                strokeWidth="0.5"
-                strokeDasharray="2 7"
-              >
-                <animate
-                  attributeName="stroke-dashoffset"
-                  values="0;36"
-                  dur="4s"
-                  repeatCount="indefinite"
-                />
-              </path>
-            </g>
-            <rect
-              width="240"
-              height="384"
-              filter="url(#grain)"
-              opacity="0.38"
-              className="mix-blend-screen"
-            />
-          </svg>
-
-          <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-5 font-mono text-[10px] font-medium uppercase tracking-[0.28em] text-[#8f1018] sm:gap-7 sm:text-xs">
-            <span className="-translate-x-8 whitespace-nowrap">
-              Desarrollador web
+    <div className={`home font-mono text-[#d8d5ce] ${ready ? "is-ready" : ""}`}>
+      <section className="pb-40">
+        {/* Name: same type and left/right rhythm as the quote */}
+        <div className="flex min-h-[calc(100vh-6rem)] flex-col justify-center">
+          <p className="flex flex-col text-[15vw] uppercase leading-[0.9] tracking-[0.06em] text-[#f0ede6] md:text-[11vw]">
+            <span className="block -mt-[0.35em] overflow-hidden pt-[0.45em]">
+              <span className="home-word block"><Magnify text="Pablo" /></span>
             </span>
-            <span className="translate-x-7">Barcelona</span>
-            <span className="-translate-x-2">2026</span>
+            <span className="block self-end -mt-[0.35em] overflow-hidden pt-[0.45em]">
+              <span className="home-word block" style={{ transitionDelay: ".12s" }}>
+                <Magnify text="Arenas" /><span className="text-[#8f1018]">.</span>
+              </span>
+            </span>
+          </p>
+          <div className="home-fade mt-10 flex items-center gap-4 text-xs uppercase tracking-[0.4em] text-[#828079]">
+            <span className="h-px w-12 bg-[#8f1018]" />
+            Diseño y programo interfaces que se entienden solas
           </div>
-          <div className="pointer-events-none absolute inset-0 border border-white/15 transition-all duration-700 group-hover:scale-[1.025] group-hover:border-white/30" />
         </div>
 
-        <div className="relative z-10 flex flex-col items-start gap-7 pl-3 font-mono text-xs uppercase leading-none text-[#d8d5ce] sm:gap-10 sm:pl-8 sm:text-sm md:pl-14 md:text-base">
-          <span className="self-center tracking-[0.42em]">CÓ D IGO</span>
-          <span className="self-start tracking-[0.32em]">SIS TEMA</span>
-          <span className="self-center tracking-[0.54em]">FU TURO</span>
+        {/* Quote */}
+        <h1 className="mt-24 flex flex-col gap-[1.2vw] text-[11vw] uppercase leading-[0.95] tracking-[0.06em] md:mt-40 md:text-[7.5vw]">
+          {LINES.map((l, i) => (
+            <span key={i} className={`q-line flex ${l.end ? "justify-end" : ""}`}>
+              <HoverWord w={l.word} delay={i * 0.1} />
+            </span>
+          ))}
+        </h1>
+
+        <div className="mt-16 flex items-center justify-end gap-4 text-xs uppercase tracking-[0.4em] text-[#828079]">
+          Massimo Vignelli, 2010
+          <span className="h-px w-12 bg-[#8f1018]" />
         </div>
-      </div>
+      </section>
+
+      <style>{`
+        .home-word { transform: translateY(110%); transition: transform 1.2s cubic-bezier(0.19,1,0.22,1); }
+        .is-ready .home-word:not(.q) , .q-line.is-in .home-word { transform: none; }
+        .home-fade { opacity: 0; transition: opacity 1.2s ease .8s; }
+        .is-ready .home-fade { opacity: 1; }
+        .home-media {
+          position: relative; display: block; height: 0.8em; width: 0; overflow: hidden; opacity: 0;
+          filter: grayscale(1) contrast(1.15) brightness(0.85);
+          transition: width .9s cubic-bezier(.77,0,.175,1), clip-path .9s cubic-bezier(.77,0,.175,1), opacity .5s ease, transform .9s cubic-bezier(.19,1,.22,1);
+        }
+        .home-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: home-drift 9s ease-in-out infinite alternate; }
+        .home-media.is-on { opacity: 1; }
+        .shape-circle { clip-path: circle(0% at 50% 50%); }
+        .shape-circle.is-on { width: .8em; clip-path: circle(50% at 50% 50%); }
+        .shape-arch { clip-path: inset(100% 0 0 0 round 999px 999px 0 0); }
+        .shape-arch.is-on { width: 1.1em; clip-path: inset(0 0 0 0 round 999px 999px 0 0); }
+        .shape-tall { clip-path: inset(0 0 100% 0); transform: rotate(-6deg); }
+        .shape-tall.is-on { width: .6em; clip-path: inset(0 0 0 0); transform: rotate(0); }
+        .shape-diamond { clip-path: polygon(50% 50%,50% 50%,50% 50%,50% 50%); }
+        .shape-diamond.is-on { width: .8em; clip-path: polygon(50% 0,100% 50%,50% 100%,0 50%); }
+        .shape-wide { clip-path: inset(0 100% 0 0); }
+        .shape-wide.is-on { width: 2.2em; clip-path: inset(0 0 0 0); }
+        @keyframes home-drift { 0% { transform: scale(1.1); } 100% { transform: scale(1.35) translate(-4%,3%); } }
+        .home-outline { color: transparent; -webkit-text-stroke: 1px #d8d5ce; transition: -webkit-text-stroke-color .5s; }
+        .home-outline:hover { -webkit-text-stroke-color: #8f1018; }
+        @media (prefers-reduced-motion: reduce) { .home-word, .home-fade, .home-media { transition: none; } .home-media img { animation: none; } }
+      `}</style>
     </div>
-    
-    <Process />
-    </>
   )
 }
