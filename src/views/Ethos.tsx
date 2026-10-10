@@ -2,24 +2,42 @@ import { useEffect, useRef, useState } from "react"
 
 const PHOTO = `${import.meta.env.BASE_URL}pablo.png`
 
-const SOFT_SKILLS = [
-  ["Escucha", "Antes de diseñar, entiendo. Las mejores soluciones salen de las preguntas correctas."],
-  ["Criterio", "Saber qué quitar. Defiendo decisiones con argumentos, no con gustos."],
-  ["Curiosidad", "Aprendo rápido y fuera de mi zona: arquitectura, tipografía, código, cine."],
-  ["Constancia", "Pulo el último detalle aunque nadie lo pida. Ahí está la diferencia."],
-]
-
 const EXPERIENCE = [
-  ["2024 — actualidad", "DAM · Desarrollo de Aplicaciones Multiplataforma", "La Salle Gràcia, Barcelona"],
-  ["2026 — actualidad", "DAM", "La Salle Gràcia, Barcelona"],
+  {
+    role: "Desarrollador de software",
+    company: "Solucions Socials Sostenibles",
+    date: "oct 2025 — may 2026",
+    desc: "Diseño e implementación de interfaces funcionales para plataformas logísticas. Desarrollo de lógica de negocio conectando frontend y backend con estructuras de datos optimizadas."
+  }
 ]
 
-const TOOL_GROUPS: [string, [string, string | null][]][] = [
-  ["diseño", [["Figma", "figma"], ["Axure", null]]],
-  ["web", [["HTML", "html5"], ["CSS", "css"], ["JavaScript", "javascript"], ["TypeScript", "typescript"], ["React", "react"], ["Vite", "vite"]]],
-  ["móvil", [["Kotlin", "kotlin"], ["Flutter", "flutter"], ["React Native", "react"]]],
-  ["back", [["Node.js", "nodedotjs"], ["MySQL", "mysql"]]],
-  ["flujo", [["Git", "git"], ["GitHub", "github"], ["VS Code", null]]],
+const EDUCATION = [
+  {
+    title: "Desarrollo de Aplicaciones Multiplataforma",
+    place: "La Salle Gràcia",
+    date: "2024 — Actualidad",
+  },
+  {
+    title: "Desarrollo de Aplicaciones Web",
+    place: "La Salle Gràcia",
+    date: "2026 — Actualidad",
+  },
+]
+
+// Tools and languages
+const STACK = [
+  { name: "Figma", slug: "figma" },
+  { name: "Framer", slug: "framer" },
+  { name: "React", slug: "react" },
+  { name: "Tailwind", slug: "tailwindcss" },
+  { name: "TypeScript", slug: "typescript" },
+  { name: "JavaScript", slug: "javascript" },
+  { name: "HTML5", slug: "html5" },
+  { name: "CSS3", slug: "css3" },
+  { name: "Kotlin", slug: "kotlin" },
+  { name: "Python", slug: "python" },
+  { name: "Java", slug: "java" },
+  { name: "Git", slug: "git" },
 ]
 
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -46,9 +64,9 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 
 function Letters({ text, className = "" }: { text: string; className?: string }) {
   return (
-    <span className={`about-letters inline-block ${className}`}>
+    <span className={`inline-block ${className}`}>
       {text.split("").map((c, i) => (
-        <span key={i} className="about-letter inline-block">{c === " " ? "\u00a0" : c}</span>
+        <span key={i} className="inline-block transition-transform duration-500 hover:-translate-y-2 hover:text-[#8f1018]">{c === " " ? "\u00a0" : c}</span>
       ))}
     </span>
   )
@@ -76,13 +94,11 @@ void main(){
 function BlurPortrait() {
   const canvas = useRef<HTMLCanvasElement>(null)
   const target = useRef({ x: 0.5, y: 0.5, h: 0 })
-  const [glReady, setGlReady] = useState(false)
 
   useEffect(() => {
     const cv = canvas.current!
-    const gl = cv.getContext("webgl", { alpha: false, antialias: false })
+    const gl = cv.getContext("webgl")
     if (!gl) return
-
     const sh = (type: number, src: string) => {
       const o = gl.createShader(type)!
       gl.shaderSource(o, src)
@@ -100,44 +116,28 @@ function BlurPortrait() {
     gl.enableVertexAttribArray(loc)
     gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0)
     const u = (n: string) => gl.getUniformLocation(pr, n)
-    const tex = gl.createTexture()!
-    gl.uniform1i(u("t"), 0)
-
+    const tex = gl.createTexture()
     let ready = false
     const img = new Image()
-    img.decoding = "async"
     img.onload = () => {
-      gl.activeTexture(gl.TEXTURE0)
       gl.bindTexture(gl.TEXTURE_2D, tex)
-      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 0)
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img)
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR)
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR)
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE)
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
       ready = true
-      setGlReady(true)
     }
-    img.onerror = () => setGlReady(false)
     img.src = PHOTO
-
     const cur = { x: 0.5, y: 0.5, h: 0 }
     let raf = 0
     const draw = (now: number) => {
-      const w = Math.max(1, Math.floor(cv.clientWidth * devicePixelRatio))
-      const hh = Math.max(1, Math.floor(cv.clientHeight * devicePixelRatio))
-      if (cv.width !== w || cv.height !== hh) {
-        cv.width = w
-        cv.height = hh
-        gl.viewport(0, 0, w, hh)
-      }
+      const w = cv.clientWidth * devicePixelRatio, hh = cv.clientHeight * devicePixelRatio
+      if (cv.width !== w || cv.height !== hh) { cv.width = w; cv.height = hh; gl.viewport(0, 0, w, hh) }
       const t = target.current
       cur.x += (t.x - cur.x) * 0.08
       cur.y += (t.y - cur.y) * 0.08
       cur.h += (t.h - cur.h) * 0.06
       if (ready) {
-        gl.activeTexture(gl.TEXTURE0)
-        gl.bindTexture(gl.TEXTURE_2D, tex)
         gl.uniform2f(u("m"), cur.x, cur.y)
         gl.uniform1f(u("h"), cur.h)
         gl.uniform1f(u("time"), now / 1000)
@@ -157,223 +157,113 @@ function BlurPortrait() {
   }
 
   return (
-    <div
-      className="relative aspect-[993/1568] w-full cursor-crosshair"
+    <canvas
+      ref={canvas}
+      role="img"
+      aria-label="Retrato de Pablo"
       onMouseMove={move}
-      onMouseEnter={(e) => {
-        move(e)
-        target.current.h = 1
-      }}
-      onMouseLeave={() => {
-        target.current.h = 0
-      }}
-    >
-      {/* Fallback borroso como en Figma si WebGL tarda o falla */}
-      <img
-        src={PHOTO}
-        alt="Retrato de Pablo"
-        className={`absolute inset-0 h-full w-full object-cover object-top grayscale contrast-125 blur-[6px] transition-opacity duration-500 ${
-          glReady ? "opacity-0" : "opacity-100"
-        }`}
-        draggable={false}
-      />
-      <canvas
-        ref={canvas}
-        role="img"
-        aria-label="Retrato de Pablo"
-        className={`absolute inset-0 block h-full w-full transition-opacity duration-500 ${
-          glReady ? "opacity-100" : "opacity-0"
-        }`}
-      />
+      onMouseEnter={(e) => { move(e); target.current.h = 1 }}
+      onMouseLeave={() => (target.current.h = 0)}
+      className="block aspect-[993/1568] w-full cursor-crosshair filter grayscale mix-blend-lighten opacity-80"
+    />
+  )
+}
+
+function SectionTitle({ num, title }: { num: string, title: string }) {
+  return (
+    <div className="mb-16 md:mb-24 flex items-baseline gap-6 border-b border-[#1a1a1a] pb-6">
+      <span className="text-[10px] tracking-[0.35em] text-[#8f1018] font-bold">{num}</span>
+      <h2 className="text-3xl uppercase tracking-widest text-[#56544e]">{title}</h2>
     </div>
   )
 }
 
 export default function Ethos() {
   return (
-    <div className="animate-in fade-in duration-700 font-mono text-[#d8d5ce]">
-      <section className="grid grid-cols-1 gap-16 pt-12 md:grid-cols-12 md:pt-24">
-        <div className="md:col-span-7">
-          <span className="mb-12 block font-serif text-lg italic lowercase tracking-widest text-[#8f1018] md:text-2xl">sobre mí.</span>
-          <h1 className="text-[16vw] uppercase leading-[0.85] tracking-[0.02em] md:text-[9vw]">
-            <Reveal><Letters text="Hola," /></Reveal>
-            <Reveal delay={0.1}>
-              <Letters text="soy " />
-              <span className="font-serif italic normal-case tracking-normal text-[#8f1018]"><Letters text="Pablo." /></span>
-            </Reveal>
-          </h1>
-          <Reveal delay={0.3} className="mt-16 max-w-xl">
-            <p className="text-lg leading-relaxed tracking-wide md:text-xl">
-              Diseñador UX/UI y desarrollador frontend. Trabajo en el punto donde el diseño deja de ser una imagen y se
-              convierte en algo que se usa, se toca y responde.
+    <div className="animate-in fade-in duration-700 font-mono text-[#d8d5ce] px-6 md:px-12 pb-40">
+      <section className="grid grid-cols-1 gap-16 pt-32 md:grid-cols-12 md:pt-48 min-h-screen">
+        <div className="md:col-span-7 flex flex-col justify-center">
+          <Reveal>
+            <h1 className="text-[12vw] uppercase leading-[0.9] tracking-[0.02em] md:text-[7vw]">
+              <span className="block text-[#56544e]">Diseño</span>
+              <span className="block text-[#f0ede6]">y programo.</span>
+              <span className="mt-4 block text-[#8f1018]">Con criterio.</span>
+            </h1>
+          </Reveal>
+          
+          <Reveal delay={0.2} className="mt-16 max-w-xl">
+            <p className="text-lg leading-relaxed tracking-wide md:text-xl text-[#828079]">
+              Empecé programando y acabé obsesionado con por qué algunas interfaces se entienden solas y otras no. Me formo en desarrollo multiplataforma y web en La Salle Gràcia, y hoy trabajo justo en ese cruce: diseño pensando en cómo se construye, y programo pensando en quien lo va a usar.
+              <span className="mt-6 block">Me inspira la señalética de Barcelona: sistemas que orientan a miles de personas sin decir una palabra de más. Eso intento hacer en cada pantalla.</span>
             </p>
           </Reveal>
         </div>
-        <div className="md:col-span-4 md:col-start-9 md:mt-40">
+        <div className="md:col-span-4 md:col-start-9 md:mt-20">
           <BlurPortrait />
         </div>
       </section>
 
-      {/* Manifiesto: persona + diseñador */}
-      <section className="mt-48 md:mt-72">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
-          <div className="md:col-span-2">
-            <span className="block font-serif text-7xl italic leading-none text-[#8f1018] md:text-8xl">i.</span>
-            <span className="mt-4 block text-[10px] uppercase tracking-[0.35em] text-[#56544e]">persona</span>
-          </div>
-          <p className="about-prose text-3xl leading-[1.15] tracking-wide md:col-span-9 md:text-5xl">
-            Vivo en Barcelona y me fijo en <em>cómo</em> están hechas las cosas: una señal en el metro, el ritmo de
-            una fachada, el peso de una letra. Tranquilo, observador y <em>obsesivo</em> con lo que casi nadie ve.
-          </p>
-        </div>
-
-        <div className="mt-40 grid grid-cols-1 gap-10 md:grid-cols-12">
-          <p className="about-prose order-2 text-3xl leading-[1.15] tracking-wide text-[#828079] md:order-1 md:col-span-8 md:col-start-3 md:text-right md:text-5xl">
-            Diseño desde <em>quien</em> usa, no desde la pantalla. Cada decisión tiene un porqué y cada
-            interacción una <em>intención</em>; lo demás, sobra.
-          </p>
-          <div className="order-1 md:order-2 md:col-span-2 md:text-right">
-            <span className="block font-serif text-7xl italic leading-none text-[#8f1018] md:text-8xl">ii.</span>
-            <span className="mt-4 block text-[10px] uppercase tracking-[0.35em] text-[#56544e]">diseñador</span>
-          </div>
-        </div>
-      </section>
-
-      {/* Cómo trabajo: acordeón tipográfico */}
-      <section className="mt-56">
-        <div className="mb-16 flex items-baseline justify-between">
-          <span className="font-serif text-2xl italic lowercase tracking-widest text-[#8f1018] md:text-3xl">cómo trabajo.</span>
-          <span className="text-[10px] uppercase tracking-[0.35em] text-[#56544e]">0{SOFT_SKILLS.length} principios</span>
-        </div>
-        {SOFT_SKILLS.map(([t, d], i) => (
-          <div key={t} className={`about-skill group flex flex-col py-2 ${i % 2 ? "items-end text-right" : ""}`}>
-            <div className="flex items-baseline gap-6">
-              <span className="text-[10px] tracking-[0.3em] text-[#56544e] transition-colors duration-500 group-hover:text-[#8f1018]">0{i + 1}</span>
-              <h3 className="about-skill-title text-[13vw] uppercase leading-[0.95] tracking-[0.04em] md:text-[7vw]">{t}</h3>
-            </div>
-            <div className="about-skill-body grid">
-              <p className="overflow-hidden">
-                <span className="block max-w-md pb-6 text-sm leading-relaxed tracking-wide text-[#d8d5ce] md:text-base">{d}</span>
-              </p>
-            </div>
-          </div>
-        ))}
-      </section>
-
-      {/* Trayectoria */}
-      <section className="mt-56">
-        <span className="mb-16 block font-serif text-2xl italic lowercase tracking-widest text-[#8f1018] md:text-3xl">trayectoria.</span>
-        <div className="flex flex-col gap-20">
-          {EXPERIENCE.map(([y, r, c]) => {
-            const [from, to] = y.split(" — ")
-            return (
-              <div key={y + r} className="group grid grid-cols-1 items-end gap-6 md:grid-cols-12">
-                <span className="about-year text-[22vw] leading-[0.8] tracking-tight md:col-span-6 md:text-[11vw]">{from}</span>
-                <div className="md:col-span-6 md:pb-4">
-                  <span className="block text-[10px] uppercase tracking-[0.35em] text-[#8f1018]">→ {to}</span>
-                  <span className="mt-3 block text-xl uppercase tracking-[0.08em] md:text-2xl">{r}</span>
-                  <span className="mt-1 block font-serif text-lg italic text-[#828079]">{c}</span>
+      <section className="mt-40 md:mt-64 max-w-5xl mx-auto">
+        <SectionTitle num="01" title="Experiencia" />
+        <div className="flex flex-col gap-12 md:gap-20">
+          {EXPERIENCE.map((exp, i) => (
+            <Reveal key={i} delay={i * 0.1}>
+              <div className="group grid grid-cols-1 gap-4 md:grid-cols-12 md:gap-8 items-start">
+                <div className="md:col-span-3">
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-[#56544e] group-hover:text-[#8f1018] transition-colors">{exp.date}</span>
+                </div>
+                <div className="md:col-span-9 flex flex-col gap-4">
+                  <h3 className="text-2xl md:text-4xl uppercase tracking-wide text-[#f0ede6] group-hover:text-[#8f1018] transition-colors">
+                    {exp.role}
+                  </h3>
+                  <span className="font-serif italic text-xl text-[#56544e]">{exp.company}</span>
+                  <p className="max-w-2xl text-base leading-relaxed text-[#828079] mt-2">
+                    {exp.desc}
+                  </p>
                 </div>
               </div>
-            )
-          })}
-        </div>
-      </section>
-
-      {/* Herramientas */}
-      <section className="mt-56 pb-40">
-        <div className="mb-20 flex items-baseline justify-between">
-          <span className="font-serif text-2xl italic lowercase tracking-widest text-[#8f1018] md:text-3xl">herramientas.</span>
-          <span className="text-[10px] uppercase tracking-[0.35em] text-[#56544e]">lo que uso a diario</span>
-        </div>
-        <div className="grid grid-cols-2 gap-x-8 gap-y-20 md:grid-cols-5 md:gap-x-10">
-          {TOOL_GROUPS.map(([g, items], gi) => (
-            <div key={g} className={gi % 2 ? "md:mt-24" : ""}>
-              <div className="mb-8 flex items-baseline gap-3">
-                <span className="font-serif text-5xl italic leading-none text-[#3a3935] md:text-6xl">{gi + 1}</span>
-                <span className="text-[10px] uppercase tracking-[0.35em] text-[#828079]">{g}</span>
-              </div>
-              <ul className="flex flex-col gap-4">
-                {items.map(([name, slug]) => (
-                  <li key={name} className="tool-item group relative flex items-center gap-3 text-base uppercase tracking-[0.14em] text-[#828079] md:text-lg">
-                    <span className="flex h-5 w-5 shrink-0 items-center justify-center">
-                      {slug ? (
-                        <span className="relative h-full w-full">
-                          <img src={`https://cdn.simpleicons.org/${slug}/3a3935`} alt="" className="absolute inset-0 h-full w-full transition-opacity duration-300 group-hover:opacity-0" />
-                          <img src={`https://cdn.simpleicons.org/${slug}/8f1018`} alt="" className="absolute inset-0 h-full w-full opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                        </span>
-                      ) : (
-                        <span className="font-serif text-lg italic normal-case text-[#3a3935] transition-colors duration-300 group-hover:text-[#8f1018]">{name[0]}</span>
-                      )}
-                    </span>
-                    <span className="transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2 group-hover:text-[#f0ede6]">{name}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
-      <style>{`
-        .about-sharp {
-          -webkit-mask-image: radial-gradient(circle var(--r) at var(--x, 50%) var(--y, 50%), #000 55%, transparent 100%);
-          mask-image: radial-gradient(circle var(--r) at var(--x, 50%) var(--y, 50%), #000 55%, transparent 100%);
-        }
-        @property --r { syntax: '<length>'; inherits: true; initial-value: 0px; }
-        .about-letter {
-          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s;
-        }
-        .about-letter:hover {
-          transform: translateY(-0.08em) skewX(-8deg);
-          color: #8f1018;
-        }
-        .about-prose em {
-          font-family: var(--font-serif, Georgia, serif);
-          font-style: italic;
-          color: #f0ede6;
-          background: linear-gradient(#8f1018, #8f1018) no-repeat 0 92% / 0 1px;
-          transition: background-size 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .about-prose em:hover { background-size: 100% 1px; }
-        .about-skill-body { grid-template-rows: 0fr; transition: grid-template-rows 0.7s cubic-bezier(0.16,1,0.3,1); }
-        .about-skill:hover .about-skill-body { grid-template-rows: 1fr; }
-        .about-skill-title {
-          color: transparent;
-          -webkit-text-stroke: 1px #56544e;
-          background: linear-gradient(#f0ede6, #f0ede6) no-repeat 0 0 / 0% 100%;
-          -webkit-background-clip: text;
-          background-clip: text;
-          transition: background-size 0.9s cubic-bezier(0.77,0,0.175,1), -webkit-text-stroke-color 0.5s;
-        }
-        .about-skill:nth-child(odd) .about-skill-title { background-position: 100% 0; }
-        .about-skill:hover .about-skill-title { background-size: 100% 100%; -webkit-text-stroke-color: #f0ede6; }
-        .about-year {
-          color: transparent;
-          -webkit-text-stroke: 1px #3a3935;
-          transition: -webkit-text-stroke-color 0.6s, color 0.6s;
-        }
-        .group:hover .about-year { color: #8f1018; -webkit-text-stroke-color: #8f1018; }
-        .process-outline-soft { color: transparent; -webkit-text-stroke: 1px #d8d5ce; }
-        .about-marquee-track { animation: about-marquee 30s linear infinite; }
-        .about-marquee:hover .about-marquee-track { animation-play-state: paused; }
-        @keyframes about-marquee { to { transform: translateX(-100%); } }
-        .about-aurora {
-          background:
-            radial-gradient(40% 30% at 30% 30%, rgba(143,16,24,0.35), transparent 70%),
-            radial-gradient(45% 35% at 70% 60%, rgba(216,213,206,0.28), transparent 70%),
-            radial-gradient(35% 30% at 40% 85%, rgba(6,6,6,0.6), transparent 70%);
-          filter: blur(40px);
-          mix-blend-mode: soft-light;
-          animation: about-aurora 14s ease-in-out infinite alternate;
-        }
-        @keyframes about-aurora {
-          0% { transform: translate(-6%, -4%) rotate(0deg) scale(1); }
-          50% { transform: translate(5%, 3%) rotate(8deg) scale(1.1); }
-          100% { transform: translate(-3%, 6%) rotate(-6deg) scale(1.05); }
-        }
-        .about-portrait { transition: --r 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-      `}</style>
+      <section className="mt-40 md:mt-64 max-w-5xl mx-auto">
+        <SectionTitle num="02" title="Formación" />
+        <div className="flex flex-col gap-8 md:gap-12">
+          {EDUCATION.map((edu, i) => (
+            <Reveal key={i} delay={i * 0.1}>
+              <div className="group flex flex-col md:flex-row md:items-baseline justify-between border-b border-[#1a1a1a] pb-8 gap-4 hover:border-[#8f1018] transition-colors">
+                <h3 className="text-xl md:text-2xl uppercase tracking-widest text-[#d8d5ce] group-hover:translate-x-4 transition-transform duration-500">
+                  {edu.title}
+                </h3>
+                <div className="flex items-center gap-6 text-[10px] uppercase tracking-[0.3em] text-[#56544e]">
+                  <span>{edu.place}</span>
+                  <span className="w-1 h-1 bg-[#8f1018] rounded-full"></span>
+                  <span className="group-hover:text-[#f0ede6] transition-colors">{edu.date}</span>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-40 md:mt-64 max-w-5xl mx-auto">
+        <SectionTitle num="03" title="Herramientas & Stack" />
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-8 gap-y-16">
+          {STACK.map((tool, i) => (
+            <Reveal key={i} delay={i * 0.05}>
+              <div className="group flex flex-col items-center gap-6 cursor-crosshair">
+                <div className="w-16 h-16 flex items-center justify-center grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
+                  <img src={`https://cdn.simpleicons.org/${tool.slug}/8f1018`} alt={tool.name} className="w-full h-full object-contain" />
+                </div>
+                <span className="text-xs uppercase tracking-[0.2em] text-[#56544e] group-hover:text-[#f0ede6] transition-colors">
+                  {tool.name}
+                </span>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
     </div>
   )
 }
