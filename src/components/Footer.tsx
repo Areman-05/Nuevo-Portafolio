@@ -7,21 +7,21 @@ interface FooterProps {
 export default function Footer({ onBackToTop }: FooterProps) {
   return (
     <footer id="contact" className="font-mono">
-      <section className="bg-[#f0ede6] px-6 py-16 text-[#090909] md:px-12 md:py-20">
+      <section data-cursor-light className="bg-[#f0ede6] px-6 py-16 text-[#090909] md:px-12 md:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="grid items-start gap-12 md:grid-cols-12">
             <div className="md:col-span-7">
               <span className="text-[9px] uppercase tracking-[0.24em] text-[#8f1018]">
-                Disponible para colaborar
+                Disponible · 2026
               </span>
               <p className="mt-7 text-2xl uppercase leading-tight tracking-tight sm:text-3xl md:text-4xl">
-                Si hay una idea,
-                <span className="block">démosle una forma propia.</span>
+                ¿Buscas un perfil que
+                <span className="block">diseñe y programe?</span>
               </p>
             </div>
 
             <p className="max-w-xs text-[11px] leading-5 text-black/55 md:col-span-3 md:col-start-10 md:pt-8">
-              Proyectos digitales, colaboraciones y conversaciones con intención.
+              Frontend developer especializado en UX/UI. pab4822@outlook.com
             </p>
           </div>
 
