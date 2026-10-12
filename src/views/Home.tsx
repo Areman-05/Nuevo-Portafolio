@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react"
+import { useLang } from "../i18n"
 
 const u = (id: string) =>
   `https://images.unsplash.com/${id}?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&w=900`
@@ -8,7 +9,7 @@ type Word = { text: string; cls?: string; img?: string; shape?: string; side?: "
 const LINES: { word: Word; end?: boolean }[] = [
   { word: { text: "Si puedes", img: u("photo-1693648793394-0b76b7eb042e"), shape: "shape-circle", side: "r" } },
   { end: true, word: { text: "diseñar", cls: "text-[#828079]", img: u("photo-1498075702571-ecb018f3752d"), shape: "shape-arch", side: "l" } },
-  { end: true, word: { text: "una cosa," } },
+  { end: true, word: { text: "una cosa,", img: u("photo-1736641933920-a8ce493f554f"), shape: "shape-square", side: "l" } },
   { word: { text: "puedes", cls: "home-outline", img: u("photo-1714765761465-e7a4974fa05b"), shape: "shape-tall", side: "r" } },
   { end: true, word: { text: "diseñarlo", img: u("photo-1717155970253-b7a4bcfaf7d8"), shape: "shape-diamond", side: "l" } },
   { word: { text: "todo.", cls: "text-[#8f1018]", img: u("photo-1554104683-c7063687d649"), shape: "shape-wide", side: "r" } },
@@ -66,6 +67,7 @@ function Magnify({ text }: { text: string }) {
 }
 
 export default function Home() {
+  const { t } = useLang()
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
@@ -87,10 +89,10 @@ export default function Home() {
         {/* Name: same type and left/right rhythm as the quote */}
         <div className="flex min-h-[calc(100vh-6rem)] flex-col justify-center">
           <p className="flex flex-col text-[15vw] uppercase leading-[0.9] tracking-[0.06em] text-[#f0ede6] md:text-[11vw]">
-            <span className="block -mt-[0.35em] overflow-hidden pt-[0.45em]">
+            <span className="block -mx-[0.25em] -mt-[0.35em] overflow-hidden px-[0.25em] pt-[0.45em]">
               <span className="home-word block"><Magnify text="Pablo" /></span>
             </span>
-            <span className="block self-end -mt-[0.35em] overflow-hidden pt-[0.45em]">
+            <span className="block self-end -mx-[0.25em] -mt-[0.35em] overflow-hidden px-[0.25em] pt-[0.45em]">
               <span className="home-word block" style={{ transitionDelay: ".12s" }}>
                 <Magnify text="Arenas" /><span className="text-[#8f1018]">.</span>
               </span>
@@ -98,7 +100,7 @@ export default function Home() {
           </p>
           <div className="home-fade mt-10 flex items-center gap-4 text-xs uppercase tracking-[0.4em] text-[#828079]">
             <span className="h-px w-12 bg-[#8f1018]" />
-            Diseño y programo interfaces que se entienden solas
+            {t.homeTag}
           </div>
         </div>
 
@@ -106,7 +108,7 @@ export default function Home() {
         <h1 className="mt-24 flex flex-col gap-[1.2vw] text-[11vw] uppercase leading-[0.95] tracking-[0.06em] md:mt-40 md:text-[7.5vw]">
           {LINES.map((l, i) => (
             <span key={i} className={`q-line flex ${l.end ? "justify-end" : ""}`}>
-              <HoverWord w={l.word} delay={i * 0.1} />
+              <HoverWord w={{ ...l.word, text: t.quote[i] }} delay={i * 0.1} />
             </span>
           ))}
         </h1>
@@ -137,6 +139,8 @@ export default function Home() {
         .shape-tall.is-on { width: .6em; clip-path: inset(0 0 0 0); transform: rotate(0); }
         .shape-diamond { clip-path: polygon(50% 50%,50% 50%,50% 50%,50% 50%); }
         .shape-diamond.is-on { width: .8em; clip-path: polygon(50% 0,100% 50%,50% 100%,0 50%); }
+        .shape-square { clip-path: inset(50% 50% 50% 50%); transform: rotate(45deg); }
+        .shape-square.is-on { width: .8em; clip-path: inset(0); transform: rotate(0); }
         .shape-wide { clip-path: inset(0 100% 0 0); }
         .shape-wide.is-on { width: 2.2em; clip-path: inset(0 0 0 0); }
         @keyframes home-drift { 0% { transform: scale(1.1); } 100% { transform: scale(1.35) translate(-4%,3%); } }
