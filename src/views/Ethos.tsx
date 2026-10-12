@@ -4,12 +4,12 @@ import { Lang, useLang } from "../i18n"
 const PHOTO = `${import.meta.env.BASE_URL}pablo.png`
 
 type Cat = "design" | "ai" | "front" | "back" | "tools"
-const STACK: { name: string; slug?: string; cat: Cat }[] = [
+const STACK: { name: string; slug?: string; icon?: string; cat: Cat }[] = [
   { name: "Figma", slug: "figma", cat: "design" },
   { name: "Framer", slug: "framer", cat: "design" },
-  { name: "Axure", cat: "design" },
+  { name: "Axure", icon: "axure.svg", cat: "design" },
   { name: "Miro", slug: "miro", cat: "design" },
-  { name: "Mobbin", cat: "design" },
+  { name: "Mobbin", icon: "mobbin.svg", cat: "design" },
   { name: "v0", slug: "v0", cat: "ai" },
   { name: "HTML5", slug: "html5", cat: "front" },
   { name: "CSS", slug: "css", cat: "front" },
@@ -28,10 +28,10 @@ const STACK: { name: string; slug?: string; cat: Cat }[] = [
   { name: "Python", slug: "python", cat: "back" },
   { name: "GitHub", slug: "github", cat: "tools" },
   { name: "WordPress", slug: "wordpress", cat: "tools" },
-  { name: "VS Code", cat: "tools" },
+  { name: "VS Code", icon: "vscode.svg", cat: "tools" },
   { name: "Cursor", slug: "cursor", cat: "ai" },
   { name: "Android Studio", slug: "androidstudio", cat: "tools" },
-  { name: "Antigravity", cat: "ai" },
+  { name: "Antigravity", icon: "antigravity.svg", cat: "ai" },
 ]
 
 type Copy = {
@@ -260,7 +260,7 @@ function Stack({ copy }: { copy: Copy }) {
         ))}
       </div>
 
-      <ul className="mt-14 grid grid-cols-3 gap-x-4 gap-y-12 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+      <ul className="mt-14 flex flex-wrap justify-center gap-x-4 gap-y-12">
         {STACK.map((tool) => {
           const match = cat === "all" || tool.cat === cat
           const lit = hover === tool.name
@@ -269,11 +269,23 @@ function Stack({ copy }: { copy: Copy }) {
               key={tool.name}
               onMouseEnter={() => setHover(tool.name)}
               onMouseLeave={() => setHover(null)}
-              className="flex flex-col items-center gap-4 transition-all duration-700"
+              className="flex w-[30%] flex-col items-center gap-4 transition-all duration-700 sm:w-[22%] md:w-[14.5%] lg:w-[11%]"
               style={{ opacity: match ? 1 : 0.12, transform: match ? "none" : "scale(.9)", filter: match ? "none" : "blur(1px)" }}
             >
               <span className={`flex size-14 items-center justify-center transition-transform duration-500 ${lit ? "-translate-y-2" : ""}`}>
-                {tool.slug ? (
+                {tool.icon ? (
+                  <span
+                    role="img"
+                    aria-hidden
+                    className="size-10 transition-opacity duration-300"
+                    style={{
+                      opacity: lit ? 1 : 0.55,
+                      backgroundColor: lit ? "#c8323a" : "#d8d5ce",
+                      WebkitMask: `url(${import.meta.env.BASE_URL}icons/${tool.icon}) center / contain no-repeat`,
+                      mask: `url(${import.meta.env.BASE_URL}icons/${tool.icon}) center / contain no-repeat`,
+                    }}
+                  />
+                ) : tool.slug ? (
                   <img
                     src={`https://cdn.simpleicons.org/${tool.slug}/${lit ? "c8323a" : "d8d5ce"}`}
                     alt=""
