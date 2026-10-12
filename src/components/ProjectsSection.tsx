@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { CaseStudy } from "../data/cases"
 import { sound } from "../utils/audio"
+import { useLang } from "../i18n"
 
 interface ProjectsSectionProps {
   projects: CaseStudy[]
@@ -12,6 +13,7 @@ const TICKS_PER = 6
 
 export default function ProjectsSection({ projects, onSelectProject }: ProjectsSectionProps) {
   const ref = useRef<HTMLDivElement>(null)
+  const { t } = useLang()
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
@@ -52,7 +54,7 @@ export default function ProjectsSection({ projects, onSelectProject }: ProjectsS
     <section ref={ref} className="relative font-mono text-[#f0ede6]" style={{ height: `${n * 90 + 100}vh` }}>
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         {/* Tick ruler */}
-        <nav aria-label="Proyectos" className="absolute top-1/2 left-5 z-30 -translate-y-1/2 lg:left-10">
+        <nav aria-label={t.work} className="absolute top-1/2 left-5 z-30 -translate-y-1/2 lg:left-10">
           <ul className="flex flex-col gap-[10px]">
             {Array.from({ length: total }).map((_, i) => {
               const major = i % TICKS_PER === 0
@@ -65,7 +67,7 @@ export default function ProjectsSection({ projects, onSelectProject }: ProjectsS
                   )}
                   <button
                     tabIndex={major ? 0 : -1}
-                    aria-label={major ? `Proyecto ${i / TICKS_PER + 1}` : undefined}
+                    aria-label={major ? `${t.work} ${i / TICKS_PER + 1}` : undefined}
                     onClick={() => major && go(Math.min(i / TICKS_PER, n - 1))}
                     className={`block h-px transition-all duration-300 ${major ? "cursor-pointer" : "pointer-events-none"}`}
                     style={{
@@ -82,7 +84,8 @@ export default function ProjectsSection({ projects, onSelectProject }: ProjectsS
         <div className="relative mx-auto w-full max-w-[1500px] pr-6 pl-16 md:pr-12 md:pl-28 lg:pl-40">
           {/* Image frame: starts at ~30%, text runs over it */}
           <div
-            data-cursor={projects[active].ready ? "Abrir" : "Pronto"}
+            data-cursor={projects[active].ready ? t.cursorOpen : t.cursorSoon}
+            data-open={projects[active].ready || undefined}
             onClick={open}
             className="relative mt-[22vh] aspect-[16/10] max-h-[68vh] overflow-hidden bg-[#0b0b0b] md:mt-[6vh] md:ml-[30%]"
           >
@@ -99,7 +102,7 @@ export default function ProjectsSection({ projects, onSelectProject }: ProjectsS
 
           {/* Text: label, two-line title, one small line */}
           <div className="pointer-events-none absolute top-0 right-6 left-16 z-10 md:right-auto md:left-28 lg:left-40">
-            <span className="block text-[11px] uppercase tracking-[0.2em] text-[#f0ede6]">Trabajo</span>
+            <span className="block text-[11px] uppercase tracking-[0.2em] text-[#f0ede6]">{t.work}</span>
             <div className="relative mt-5">
               {projects.map((p, i) => (
                 <div key={p.id} className={`gal-txt ${i === 0 ? "relative" : "absolute inset-x-0 top-0"}`} data-state={state(i)}>
@@ -107,7 +110,7 @@ export default function ProjectsSection({ projects, onSelectProject }: ProjectsS
                     <span className="gal-line block">
                       {p.title}
                       <span className="mx-[0.3em] inline-block translate-y-[-0.12em] align-middle text-[0.4em]">▸</span>
-                      {p.kicker ?? (p.ready ? "" : "En preparación")}
+                      {p.kicker ?? (p.ready ? "" : p.outcome)}
                     </span>
                   </h2>
                   <span className="gal-meta mt-5 block text-[11px] font-medium uppercase tracking-[0.3em] text-[#f0ede6]/45">
@@ -127,7 +130,7 @@ export default function ProjectsSection({ projects, onSelectProject }: ProjectsS
         .gal-img[data-state="next"] img { transform: scale(1.12); }
         .gal-img[data-state="in"] { clip-path: inset(0); z-index: 2; }
         .gal-img[data-state="past"] { clip-path: inset(0 0 100% 0); }
-        [data-cursor="Abrir"]:hover .gal-img[data-state="in"] img { transform: scale(1.03); }
+        [data-open]:hover .gal-img[data-state="in"] img { transform: scale(1.03); }
         .gal-empty {
           background-color: #0b0b0b;
           background-image: repeating-linear-gradient(135deg, rgba(240,237,230,0.035) 0 1px, transparent 1px 14px);
