@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import { Link, useParams } from "react-router"
-import { CASES } from "../data/cases"
+import { CaseStudy, getCases } from "../data/cases"
+import { useLang } from "../i18n"
 
 // Accent styles borrowed from the home quote: *red*  ~outline~  ^grey^
 function Rich({ text }: { text?: string }) {
@@ -20,10 +21,11 @@ function Rich({ text }: { text?: string }) {
   )
 }
 
-type Flow = NonNullable<(typeof CASES)[number]["flow"]>
+type Flow = NonNullable<CaseStudy["flow"]>
 
 // The user flow drawn as a metro map: red main line, grey branch, dashed shortcut
 function FlowDiagram({ flow }: { flow: Flow }) {
+  const { t } = useLang()
   const ref = useRef<HTMLDivElement>(null)
   const [on, setOn] = useState(false)
   useEffect(() => {
@@ -34,7 +36,7 @@ function FlowDiagram({ flow }: { flow: Flow }) {
     return () => io.disconnect()
   }, [])
 
-  const X0 = 70, X1 = 930, Y = 230
+  const X0 = 90, X1 = 880, Y = 230
   const step = (X1 - X0) / (flow.main.length - 1)
   const mx = (i: number) => X0 + i * step
   const BY = 80
@@ -45,7 +47,7 @@ function FlowDiagram({ flow }: { flow: Flow }) {
   return (
     <div ref={ref} className={`flow mt-20 md:mt-28 ${on ? "is-on" : ""}`}>
       <div className="-mx-6 overflow-x-auto px-6">
-        <svg viewBox="0 0 1000 460" className="mx-auto block w-full min-w-[720px] font-mono" role="img" aria-label="Flujo de usuario de NAU-22">
+        <svg viewBox="0 0 1000 460" className="mx-auto block w-full min-w-[720px] font-mono" role="img" aria-label={t.flowLabel}>
           {/* branch: Journal */}
           <path
             className="flow-line flow-d1"
@@ -98,21 +100,22 @@ function FlowDiagram({ flow }: { flow: Flow }) {
 
       {/* legend */}
       <div className="mt-12 flex flex-wrap gap-x-12 gap-y-4 text-xs uppercase tracking-[0.12em] text-[#828079]">
-        <span className="flex items-center gap-3"><span className="h-[4px] w-8 bg-[#c8323a]" /> Viaje principal</span>
-        <span className="flex items-center gap-3"><span className="h-[3px] w-8 bg-[#f0ede6]/30" /> Lectura</span>
-        <span className="flex items-center gap-3"><span className="w-8 border-t-2 border-dotted border-[#f0ede6]/40" /> Atajo de visita, desde cualquier sección</span>
+        <span className="flex items-center gap-3"><span className="h-[4px] w-8 bg-[#c8323a]" /> {t.flowMain}</span>
+        <span className="flex items-center gap-3"><span className="h-[3px] w-8 bg-[#f0ede6]/30" /> {t.flowRead}</span>
+        <span className="flex items-center gap-3"><span className="w-8 border-t-2 border-dotted border-[#f0ede6]/40" /> {t.flowShortcut}</span>
       </div>
     </div>
   )
 }
 
 function Shot({ src, caption, className = "", onOpen }: { src: string; caption?: string; className?: string; onOpen: (src: string, caption?: string) => void }) {
+  const { t } = useLang()
   const [loaded, setLoaded] = useState(false)
   return (
     <figure className={`pd-r ${className}`}>
       <button
         type="button"
-        data-cursor="Ampliar"
+        data-cursor={t.cursorZoom}
         onClick={() => onOpen(src, caption)}
         className={`pd-shot block aspect-[16/10] w-full bg-[#0d0d0d] ${loaded ? "is-loaded" : ""}`}
       >
@@ -133,6 +136,7 @@ function Shot({ src, caption, className = "", onOpen }: { src: string; caption?:
 }
 
 function Lightbox({ src, caption, onClose }: { src: string; caption?: string; onClose: () => void }) {
+  const { t } = useLang()
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose()
     document.addEventListener("keydown", onKey)
@@ -146,7 +150,7 @@ function Lightbox({ src, caption, onClose }: { src: string; caption?: string; on
     <div
       role="dialog"
       aria-modal="true"
-      data-cursor="Cerrar"
+      data-cursor={t.cursorClose}
       onClick={onClose}
       className="lb fixed inset-0 z-[90] flex flex-col items-center justify-center gap-6 bg-[#060606]/95 p-4 backdrop-blur-sm md:p-12"
     >
@@ -168,6 +172,8 @@ export default function ProjectDetail() {
   const ref = useRef<HTMLDivElement>(null)
   const [zoom, setZoom] = useState<{ src: string; caption?: string } | null>(null)
   const openShot = (src: string, caption?: string) => setZoom({ src, caption })
+  const { lang, t } = useLang()
+  const CASES = getCases(lang)
   const index = CASES.findIndex((c) => c.id === id)
   const c = CASES[index]
   const next = CASES.find((x, i) => i > index && x.ready) ?? CASES.find((x) => x.ready && x.id !== id)
@@ -190,7 +196,7 @@ export default function ProjectDetail() {
     return (
       <div className="flex min-h-[80vh] flex-col justify-center font-mono">
         <h1 className="text-[11vw] leading-[0.95] uppercase tracking-[0.02em] text-[#f0ede6]/25 md:text-[6vw]">{c.title}</h1>
-        <Link to="/work" className="mt-10 text-sm text-[#828079] transition-colors hover:text-[#f0ede6]">← Volver</Link>
+        <Link to="/work" className="mt-10 text-sm text-[#828079] transition-colors hover:text-[#f0ede6]">← {t.back}</Link>
       </div>
     )
   }
@@ -206,7 +212,7 @@ export default function ProjectDetail() {
         <p className="pd-r mt-8 max-w-[52ch] text-base leading-relaxed text-[#828079]">{c.intro}</p>
         {c.repo && (
           <a href={c.repo} target="_blank" rel="noreferrer" className="pd-r pd-link mt-12 w-fit text-sm uppercase tracking-[0.12em] text-[#f0ede6]">
-            Ver código en GitHub <span>↗</span>
+            {t.viewCode} <span>↗</span>
           </a>
         )}
       </header>
