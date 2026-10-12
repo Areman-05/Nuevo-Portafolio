@@ -1,51 +1,111 @@
+import { useEffect, useState } from "react"
+import { Link, useLocation } from "react-router"
+import { LANGS, useLang } from "../i18n"
 import { sound } from "../utils/audio"
+import { Icon, LINKS } from "./Social"
 
 interface FooterProps {
   onBackToTop: () => void
 }
 
-export default function Footer({ onBackToTop }: FooterProps) {
-  return (
-    <footer id="contact" className="font-mono">
-      <section data-cursor-light className="bg-[#f0ede6] px-6 py-16 text-[#090909] md:px-12 md:py-20">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid items-start gap-12 md:grid-cols-12">
-            <div className="md:col-span-7">
-              <span className="text-[9px] uppercase tracking-[0.24em] text-[#8f1018]">
-                Disponible · 2026
-              </span>
-              <p className="mt-7 text-2xl uppercase leading-tight tracking-tight sm:text-3xl md:text-4xl">
-                ¿Buscas un perfil que
-                <span className="block">diseñe y programe?</span>
-              </p>
-            </div>
+function useBarcelonaTime() {
+  const fmt = () =>
+    new Date().toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit", second: "2-digit", timeZone: "Europe/Madrid" })
+  const [t, setT] = useState(fmt)
+  useEffect(() => {
+    const id = setInterval(() => setT(fmt()), 1000)
+    return () => clearInterval(id)
+  }, [])
+  return t
+}
 
-            <p className="max-w-xs text-[11px] leading-5 text-black/55 md:col-span-3 md:col-start-10 md:pt-8">
-              Frontend developer especializado en UX/UI. pab4822@outlook.com
-            </p>
+export default function Footer({ onBackToTop }: FooterProps) {
+  const { pathname } = useLocation()
+  const { lang, setLang, t } = useLang()
+  const time = useBarcelonaTime()
+  const onContact = pathname === "/nodes"
+
+  return (
+    <footer id="contact" data-cursor-light className="bg-[#f0ede6] font-mono text-[#090909]">
+      <div className="mx-auto max-w-7xl px-6 md:px-12">
+        {!onContact ? (
+          <Link to="/nodes" onMouseEnter={() => sound.playTick()} className="group block pt-24 pb-20 md:pt-32 md:pb-28">
+            <span className="block text-[11vw] leading-[0.95] uppercase tracking-[0.06em] md:text-[6.5vw]">
+              {t.invite1}
+              <br />
+              <span className="f-outline">{t.invite2}</span> <span className="text-[#8f1018]">{t.invite3}</span>
+              <span className="ml-[0.2em] inline-block text-[0.6em] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-4">
+                →
+              </span>
+            </span>
+          </Link>
+        ) : (
+          <div className="pt-16" />
+        )}
+
+        <div className="grid grid-cols-2 items-center gap-y-10 pb-10 md:grid-cols-12">
+          {/* Signature + clock */}
+          <div className="col-span-2 flex items-baseline gap-6 md:col-span-4">
+            <span className="text-base uppercase tracking-[0.06em]">
+              Pablo Arenas<span className="text-[#8f1018]">.</span>
+            </span>
+            <span className="text-xs uppercase tracking-[0.12em] text-black/45">
+              Barcelona <span className="tabular-nums text-black/70">{time}</span>
+            </span>
           </div>
 
-          <div className="mt-20 pb-16 md:pb-24"></div>
+          {/* Social */}
+          <ul className="col-span-2 flex items-center gap-2 md:col-span-4 md:justify-center">
+            {LINKS.map((l) => (
+              <li key={l.label}>
+                <a
+                  href={l.href}
+                  aria-label={l.label}
+                  target={l.href.startsWith("http") ? "_blank" : undefined}
+                  rel="noreferrer"
+                  onMouseEnter={() => sound.playTick()}
+                  className="flex size-10 items-center justify-center text-black/60 transition-colors duration-500 hover:text-[#8f1018]"
+                >
+                  <Icon name={l.icon} className="size-[17px]" />
+                </a>
+              </li>
+            ))}
+          </ul>
 
-          <div className="flex flex-col gap-5 text-[9px] uppercase tracking-[0.12em] text-black/50 sm:flex-row sm:items-center sm:justify-between">
-            <span>© 2026 Pablo Arenas Mancebo</span>
-            <div className="flex items-center justify-between gap-8 sm:justify-end">
-              <span>Barcelona / España</span>
-              <button
-                type="button"
-                onClick={() => {
-                  sound.playSelect()
-                  onBackToTop()
-                }}
-                onMouseEnter={() => sound.playTick()}
-                className="cursor-pointer transition-colors hover:text-[#8f1018]"
-              >
-                Volver arriba ↑
-              </button>
+          {/* Language + back to top */}
+          <div className="col-span-2 flex items-center justify-between gap-8 md:col-span-4 md:justify-end">
+            <div role="group" aria-label="Idioma" className="flex items-center gap-1 text-xs uppercase tracking-[0.12em]">
+              {LANGS.map((l, i) => (
+                <span key={l.code} className="flex items-center gap-1">
+                  {i > 0 && <span className="text-black/20">/</span>}
+                  <button
+                    type="button"
+                    aria-pressed={lang === l.code}
+                    onClick={() => {
+                      sound.playSelect()
+                      setLang(l.code)
+                    }}
+                    className={`px-1 py-2 transition-colors ${lang === l.code ? "text-[#8f1018]" : "text-black/45 hover:text-black"}`}
+                  >
+                    {l.label}
+                  </button>
+                </span>
+              ))}
             </div>
+            <button
+              type="button"
+              onClick={() => {
+                sound.playSelect()
+                onBackToTop()
+              }}
+              className="text-xs uppercase tracking-[0.12em] text-black/50 transition-colors hover:text-[#8f1018]"
+            >
+              {t.top}
+            </button>
           </div>
         </div>
-      </section>
+      </div>
+      <style>{`.f-outline { color: transparent; -webkit-text-stroke: 1px #090909; transition: -webkit-text-stroke-color .5s; } a:hover .f-outline { -webkit-text-stroke-color: #8f1018; }`}</style>
     </footer>
   )
 }
