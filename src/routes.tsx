@@ -20,5 +20,5 @@ export const router = createBrowserRouter(
       ],
     },
   ],
-  { basename: "/Nuevo-Portafolio" },
+  { basename: import.meta.env.BASE_URL.replace(/\/$/, "") || "/" },
 )
