@@ -25,6 +25,7 @@ interface CaseBase {
   ready: boolean
   coverDark?: boolean
   repo?: string
+  live?: string
   copy: Record<Lang, CaseCopy>
 }
 
@@ -41,6 +42,7 @@ const NAU: CaseBase = {
   ready: true,
   coverDark: true,
   repo: "https://github.com/Areman-05/Nau-22",
+  live: "https://areman-05.github.io/Nau-22/",
   copy: {
     es: {
       title: "NAU-22",

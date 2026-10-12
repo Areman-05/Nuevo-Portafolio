@@ -210,10 +210,25 @@ export default function ProjectDetail() {
         </h1>
         <p className="pd-r mt-10 max-w-[22ch] text-2xl leading-snug text-[#f0ede6] md:text-4xl"><Rich text={c.outcome} /></p>
         <p className="pd-r mt-8 max-w-[52ch] text-base leading-relaxed text-[#828079]">{c.intro}</p>
-        {c.repo && (
-          <a href={c.repo} target="_blank" rel="noreferrer" className="pd-r pd-link mt-12 w-fit text-sm uppercase tracking-[0.12em] text-[#f0ede6]">
-            {t.viewCode} <span>↗</span>
-          </a>
+        {(c.live || c.repo) && (
+          <div className="pd-r mt-12 flex flex-wrap items-center gap-x-8 gap-y-4">
+            {c.live && (
+              <a
+                href={c.live}
+                target="_blank"
+                rel="noreferrer"
+                className="group inline-flex items-center gap-3 bg-[#f0ede6] px-8 py-5 text-sm uppercase tracking-[0.12em] text-[#060606] transition-colors duration-500 hover:bg-[#c8323a] hover:text-[#f0ede6]"
+              >
+                {t.viewLive}
+                <span className="inline-block transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+              </a>
+            )}
+            {c.repo && (
+              <a href={c.repo} target="_blank" rel="noreferrer" className="pd-link w-fit text-sm uppercase tracking-[0.12em] text-[#f0ede6]">
+                {t.viewCode} <span>↗</span>
+              </a>
+            )}
+          </div>
         )}
       </header>
 
