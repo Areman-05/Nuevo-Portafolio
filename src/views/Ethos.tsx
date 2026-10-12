@@ -267,6 +267,7 @@ function Stack({ copy }: { copy: Copy }) {
           return (
             <li
               key={tool.name}
+              data-cursor-skip
               onMouseEnter={() => setHover(tool.name)}
               onMouseLeave={() => setHover(null)}
               className="flex w-[30%] flex-col items-center gap-4 transition-all duration-700 sm:w-[22%] md:w-[14.5%] lg:w-[11%]"
@@ -290,6 +291,7 @@ function Stack({ copy }: { copy: Copy }) {
                     src={`https://cdn.simpleicons.org/${tool.slug}/${lit ? "c8323a" : "d8d5ce"}`}
                     alt=""
                     loading="lazy"
+                    data-cursor-skip
                     className="size-10 object-contain transition-opacity duration-300"
                     style={{ opacity: lit ? 1 : 0.55 }}
                   />
