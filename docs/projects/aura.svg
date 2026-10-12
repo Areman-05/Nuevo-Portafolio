@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" fill="none">
-  <rect width="1600" height="1000" fill="#12110f"/>
-  <circle cx="1180" cy="320" r="280" fill="#8f1018" fill-opacity="0.35"/>
-  <circle cx="980" cy="720" r="360" fill="#d8d5ce" fill-opacity="0.06"/>
-  <path d="M0 620 C420 480 780 820 1600 540 L1600 1000 L0 1000 Z" fill="#1c1b18"/>
-  <text x="80" y="860" fill="#f0ede6" font-family="ui-monospace, monospace" font-size="64" letter-spacing="8">AURA 22@</text>
-  <text x="80" y="920" fill="#828079" font-family="ui-monospace, monospace" font-size="24" letter-spacing="6">BARCELONA · 2025</text>
-</svg>
