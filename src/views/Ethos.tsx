@@ -368,8 +368,13 @@ function BlurPortrait() {
     img.src = PHOTO
     const cur = { x: 0.5, y: 0.5, h: 0 }
     let raf = 0
+    const dprCap = Math.min(devicePixelRatio || 1, 1.5)
     const draw = (now: number) => {
-      const w = cv.clientWidth * devicePixelRatio, hh = cv.clientHeight * devicePixelRatio
+      if (document.hidden) {
+        raf = requestAnimationFrame(draw)
+        return
+      }
+      const w = cv.clientWidth * dprCap, hh = cv.clientHeight * dprCap
       if (cv.width !== w || cv.height !== hh) { cv.width = w; cv.height = hh; gl.viewport(0, 0, w, hh) }
       const t = target.current
       cur.x += (t.x - cur.x) * 0.08

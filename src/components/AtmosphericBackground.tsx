@@ -45,6 +45,13 @@ function smoothstep(edgeStart: number, edgeEnd: number, value: number) {
   return normalized * normalized * (3 - 2 * normalized)
 }
 
+function isLowPower() {
+  const cores = navigator.hardwareConcurrency || 4
+  const memory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory ?? 8
+  const coarse = window.matchMedia("(pointer: coarse)").matches
+  return cores <= 4 || memory <= 4 || coarse
+}
+
 export default function AtmosphericBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
@@ -56,9 +63,14 @@ export default function AtmosphericBackground() {
     if (!context) return
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const lowPower = isLowPower()
+    const frameGap = lowPower ? 160 : 100
+    const maxWidth = lowPower ? 240 : 420
+    const surfaceOctaves = lowPower ? 2 : 3
     let animationFrame = 0
     let lastFrame = 0
     let image: ImageData
+    let paused = document.hidden
 
     const resize = () => {
       const viewportWidth = Math.max(
@@ -69,10 +81,9 @@ export default function AtmosphericBackground() {
         1,
         window.innerHeight || document.documentElement.clientHeight || 1,
       )
-      const lowPowerDevice = (navigator.hardwareConcurrency || 4) <= 4
       const targetWidth = Math.min(
-        lowPowerDevice ? 300 : 500,
-        Math.max(250, Math.round(viewportWidth / 3)),
+        maxWidth,
+        Math.max(200, Math.round(viewportWidth / (lowPower ? 4 : 3))),
       )
       canvas.width = targetWidth
       canvas.height = Math.round(targetWidth * (viewportHeight / viewportWidth))
@@ -81,7 +92,12 @@ export default function AtmosphericBackground() {
     }
 
     const render = (timestamp: number) => {
-      if (!reducedMotion.matches && timestamp - lastFrame < 100) {
+      if (paused) {
+        animationFrame = requestAnimationFrame(render)
+        return
+      }
+
+      if (!reducedMotion.matches && timestamp - lastFrame < frameGap) {
         animationFrame = requestAnimationFrame(render)
         return
       }
@@ -96,21 +112,21 @@ export default function AtmosphericBackground() {
         for (let x = 0; x < width; x += 1) {
           const normalizedX = x / width
           const normalizedY = y / height
-          
+
           const nx = x * 0.012
           const ny = y * 0.012
-          
+
           const warp1 = fbm(nx + time * 0.008, ny - time * 0.005, 2)
           const warp2 = fbm(nx - warp1 * 1.5 + time * 0.01, ny + warp1 * 1.5 - time * 0.007, 2)
-          
-          const surfaceNoise = fbm(nx * 2.5 + warp2 * 3, ny * 2.5 - warp2 * 3, 3)
-          
+
+          const surfaceNoise = fbm(nx * 2.5 + warp2 * 3, ny * 2.5 - warp2 * 3, surfaceOctaves)
+
           const ridges = Math.sin(surfaceNoise * 26)
           const highlight = smoothstep(0.75, 1.0, ridges)
           const shadow = smoothstep(-1.0, -0.75, ridges)
-          
+
           const topography = smoothstep(0.35, 0.65, warp2)
-            
+
           const surfaceForm = topography * 25 + highlight * 32 - shadow * 12
 
           const edgeFalloff =
@@ -118,7 +134,7 @@ export default function AtmosphericBackground() {
             0.18 *
               Math.sin(Math.min(normalizedX, 1 - normalizedX) * Math.PI) *
               Math.sin(Math.min(normalizedY, 1 - normalizedY) * Math.PI)
-              
+
           const gray = Math.max(
             0,
             Math.min(80, (6 + surfaceForm) * edgeFalloff),
@@ -139,13 +155,23 @@ export default function AtmosphericBackground() {
       }
     }
 
+    const onVisibility = () => {
+      paused = document.hidden
+      if (!paused && !reducedMotion.matches) {
+        lastFrame = 0
+        animationFrame = requestAnimationFrame(render)
+      }
+    }
+
     resize()
     window.addEventListener("resize", resize)
+    document.addEventListener("visibilitychange", onVisibility)
     animationFrame = requestAnimationFrame(render)
 
     return () => {
       cancelAnimationFrame(animationFrame)
       window.removeEventListener("resize", resize)
+      document.removeEventListener("visibilitychange", onVisibility)
     }
   }, [])
 
