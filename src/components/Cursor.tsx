@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState } from "react"
+import { useLang } from "../i18n"
 
 type Mode = "idle" | "link" | "view" | "text"
 
 // Signage-style cursor: exact red dot + square frame that trails with inertia
 export default function Cursor() {
+  const { t } = useLang()
+  const viewLabel = useRef(t.cursorView)
+  viewLabel.current = t.cursorView
   const dot = useRef<HTMLDivElement>(null)
   const frame = useRef<HTMLDivElement>(null)
   const [mode, setMode] = useState<Mode>("idle")
@@ -40,7 +44,7 @@ export default function Cursor() {
         setMode("link")
       } else if (el?.matches("img")) {
         setMode("view")
-        setLabel("Ver")
+        setLabel(viewLabel.current)
       } else if (el?.matches("p, h1, h2, h3")) {
         setMode("text")
       } else {
