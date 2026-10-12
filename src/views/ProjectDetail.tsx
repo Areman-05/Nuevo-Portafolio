@@ -115,7 +115,7 @@ function Shot({ src, caption, className = "", onOpen }: { src: string; caption?:
     <figure className={`pd-r ${className}`}>
       <button
         type="button"
-        data-cursor={t.cursorZoom}
+        data-cursor={t.cursorView}
         onClick={() => onOpen(src, caption)}
         className={`pd-shot block aspect-[16/10] w-full bg-[#0d0d0d] ${loaded ? "is-loaded" : ""}`}
       >
@@ -152,10 +152,19 @@ function Lightbox({ src, caption, onClose }: { src: string; caption?: string; on
       aria-modal="true"
       data-cursor={t.cursorClose}
       onClick={onClose}
-      className="lb fixed inset-0 z-[90] flex flex-col items-center justify-center gap-6 bg-[#060606]/95 p-4 backdrop-blur-sm md:p-12"
+      className="lb fixed inset-0 z-[90] flex flex-col items-center justify-center gap-6 bg-[#060606]/95 p-4 md:p-12"
     >
-      <img src={src} alt={caption ?? ""} className="lb-img max-h-[85vh] max-w-full object-contain shadow-2xl" />
-      {caption && <span className="lb-img text-lg uppercase tracking-[0.12em] text-[#f0ede6]">{caption}</span>}
+      <img
+        src={src}
+        alt={caption ?? ""}
+        data-cursor={t.cursorClose}
+        className="lb-img max-h-[85vh] max-w-full object-contain"
+      />
+      {caption && (
+        <span data-cursor={t.cursorClose} className="lb-img text-lg uppercase tracking-[0.12em] text-[#f0ede6]">
+          {caption}
+        </span>
+      )}
       <style>{`
         .lb { animation: lb-in .45s ease both; }
         .lb-img { animation: lb-img .7s cubic-bezier(0.16,1,0.3,1) both; }
